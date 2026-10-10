@@ -9,8 +9,8 @@
       "name": "ゲコ部長",
       "role": "ディレクター・マネージャー",
       "schedule": "毎月1日",
-      "look": "カエル（紺色のネクタイ）",
-      "color": "#6aae62",
+      "look": "ウシガエル（紺色のネクタイ）",
+      "color": "#7a9a4a",
       "scarf": "#34508a",
       "item": "tie",
       "seat": 1,
@@ -19,6 +19,15 @@
         "title": "キックオフ会議のまとめ",
         "file": "会議/2026-10_キックオフ会議.md",
         "speech": "せな社長、最初にやること3つをまとめました。"
+      },
+      "species": "ウシガエル",
+      "frog": {
+        "body": "#7a9a4a",
+        "belly": "#f3ecc8",
+        "limb": "#9bb86a",
+        "eye": "gold",
+        "spots": "#5d7a38",
+        "scale": 1.12
       }
     },
     {
@@ -27,8 +36,8 @@
       "name": "ニュースくん",
       "role": "リサーチ担当",
       "schedule": "毎朝7:00",
-      "look": "サングラスをかけたカエル",
-      "color": "#7cc576",
+      "look": "ニホンアマガエル（サングラス）",
+      "color": "#6cc644",
       "scarf": "#f4a7a0",
       "item": "sunglasses",
       "seat": 2,
@@ -37,6 +46,14 @@
         "title": "ふすまリサーチ 2件",
         "file": "報告/2026-10-10_ふすまリサーチ.md",
         "speech": "せな社長！今日は2件です！"
+      },
+      "species": "ニホンアマガエル",
+      "frog": {
+        "body": "#6cc644",
+        "belly": "#fbf8e6",
+        "limb": "#93dc6e",
+        "eye": "normal",
+        "stripe": "#4a3a2a"
       }
     },
     {
@@ -45,8 +62,8 @@
       "name": "ケロ助",
       "role": "企画担当",
       "schedule": "毎月1日",
-      "look": "普通のカエル（黄色いスカーフ）",
-      "color": "#7cc576",
+      "look": "トノサマガエル（黄色いスカーフ）",
+      "color": "#8cbf5a",
       "scarf": "#f6d58a",
       "item": "none",
       "seat": 3,
@@ -55,6 +72,15 @@
         "title": "10月の企画 3案",
         "file": "企画/2026-10_企画提案.md",
         "speech": "せな社長、今月の企画できたで〜！3つ考えたで！"
+      },
+      "species": "トノサマガエル",
+      "frog": {
+        "body": "#8cbf5a",
+        "belly": "#f7f3dc",
+        "limb": "#a9d47a",
+        "eye": "gold",
+        "spots": "#3d4a2a",
+        "dorsal": "#e4efb8"
       }
     },
     {
@@ -63,8 +89,8 @@
       "name": "ケロ吉",
       "role": "トップ営業",
       "schedule": "毎週月曜",
-      "look": "カエル（赤いスカーフ）",
-      "color": "#86c96a",
+      "look": "ニホンアカガエル（赤いスカーフ）",
+      "color": "#c9805a",
       "scarf": "#e5675c",
       "item": "none",
       "seat": 4,
@@ -73,6 +99,14 @@
         "title": "はじめての営業・相手さがし3件",
         "file": "営業/2026-10-10_営業メモ.md",
         "speech": "せな社長！ふすまアートを見てほしい相手、3つ見つけてきました！連絡は大人と相談してから！"
+      },
+      "species": "ニホンアカガエル",
+      "frog": {
+        "body": "#c9805a",
+        "belly": "#f6e2cf",
+        "limb": "#dca07c",
+        "eye": "gold",
+        "stripe": "#6a3b26"
       }
     },
     {
@@ -81,8 +115,8 @@
       "name": "ケリー（Kerry）",
       "role": "英語発信担当",
       "schedule": "毎週水曜",
-      "look": "カエル（青いスカーフ）",
-      "color": "#74c08a",
+      "look": "コバルトヤドクガエル（青いスカーフ）",
+      "color": "#2f7fd8",
       "scarf": "#5aa6e0",
       "item": "none",
       "seat": 5,
@@ -91,6 +125,14 @@
         "title": "はじめての英語投稿案（3つ）",
         "file": "発信/2026-10-10_英語投稿案.md",
         "speech": "Hi せな社長！はじめての英語投稿案を3つ作りました！公開は大人とcheckしてからね！"
+      },
+      "species": "コバルトヤドクガエル",
+      "frog": {
+        "body": "#2f7fd8",
+        "belly": "#7fb6f0",
+        "limb": "#4f9ae6",
+        "eye": "normal",
+        "spots": "#1a1f2e"
       }
     },
     {
@@ -99,8 +141,8 @@
       "name": "ピョン太",
       "role": "応援・助成金さがし担当",
       "schedule": "毎週金曜",
-      "look": "カエル（オレンジのスカーフ）",
-      "color": "#8ccf74",
+      "look": "トマトガエル（オレンジのスカーフ）",
+      "color": "#e8642e",
       "scarf": "#f29a4a",
       "item": "none",
       "seat": 6,
@@ -109,6 +151,14 @@
         "title": "伝統工芸・和紙コンテスト3件さがし",
         "file": "応援/2026-10-10_応援さがし.md",
         "speech": "せな社長、応援してくれそうなコンテストを3つ探してきたよ！締め切りが近いから、大人と公式ページを確認してね！"
+      },
+      "species": "トマトガエル",
+      "frog": {
+        "body": "#e8642e",
+        "belly": "#f8b48a",
+        "limb": "#f08a50",
+        "eye": "normal",
+        "scale": 1.04
       }
     },
     {
@@ -117,12 +167,20 @@
       "name": "ケロ美",
       "role": "経理担当",
       "schedule": "毎月1日",
-      "look": "カエル（ピンクのリボン）",
-      "color": "#7cc576",
+      "look": "アカメアマガエル（ピンクのリボン）",
+      "color": "#5cc85a",
       "scarf": "#f4a7c4",
       "item": "ribbon",
       "seat": 7,
-      "last_work": null
+      "last_work": null,
+      "species": "アカメアマガエル",
+      "frog": {
+        "body": "#5cc85a",
+        "belly": "#fbf3d0",
+        "limb": "#f29a3a",
+        "eye": "red",
+        "flank": "#3a78c8"
+      }
     },
     {
       "id": "finance",
@@ -130,12 +188,20 @@
       "name": "ケロ蔵",
       "role": "財務担当",
       "schedule": "毎月1日",
-      "look": "カエル（むらさきのスカーフ・メガネ）",
-      "color": "#6fb07a",
+      "look": "ニホンヒキガエル（むらさきのスカーフ・メガネ）",
+      "color": "#9a7a52",
       "scarf": "#9a7fd1",
       "item": "glasses",
       "seat": 8,
-      "last_work": null
+      "last_work": null,
+      "species": "ニホンヒキガエル",
+      "frog": {
+        "body": "#9a7a52",
+        "belly": "#e8d7b8",
+        "limb": "#b3936a",
+        "eye": "gold",
+        "bumps": "#6e5436"
+      }
     },
     {
       "id": "hr",
@@ -143,12 +209,20 @@
       "name": "ケロ子",
       "role": "人事担当",
       "schedule": "社長に呼ばれたとき",
-      "look": "カエル（ミントのスカーフ）",
-      "color": "#86c96a",
+      "look": "モリアオガエル（ミントのスカーフ）",
+      "color": "#66c06a",
       "scarf": "#8fd4bd",
       "item": "none",
       "seat": 9,
-      "last_work": null
+      "last_work": null,
+      "species": "モリアオガエル",
+      "frog": {
+        "body": "#66c06a",
+        "belly": "#fbf7e4",
+        "limb": "#8ad48a",
+        "eye": "gold",
+        "spots": "#b0663a"
+      }
     },
     {
       "id": "labor",
@@ -156,12 +230,22 @@
       "name": "ケロ平",
       "role": "労務担当",
       "schedule": "社長に呼ばれたとき",
-      "look": "カエル（茶色のスカーフ）",
-      "color": "#7aba64",
+      "look": "ベルツノガエル（茶色のスカーフ）",
+      "color": "#8fc45a",
       "scarf": "#a87850",
       "item": "none",
       "seat": 10,
-      "last_work": null
+      "last_work": null,
+      "species": "ベルツノガエル",
+      "frog": {
+        "body": "#8fc45a",
+        "belly": "#f4ecc4",
+        "limb": "#a8d27a",
+        "eye": "gold",
+        "spots": "#7a5a3a",
+        "horns": true,
+        "scale": 1.05
+      }
     },
     {
       "id": "general",
@@ -169,12 +253,20 @@
       "name": "ケロ丸",
       "role": "総務担当",
       "schedule": "社長に呼ばれたとき",
-      "look": "カエル（灰色のスカーフ）",
-      "color": "#74c08a",
+      "look": "カジカガエル（灰色のスカーフ）",
+      "color": "#8a8a78",
       "scarf": "#9aa4b1",
       "item": "none",
       "seat": 11,
-      "last_work": null
+      "last_work": null,
+      "species": "カジカガエル",
+      "frog": {
+        "body": "#8a8a78",
+        "belly": "#e8e4d4",
+        "limb": "#a6a690",
+        "eye": "gold",
+        "spots": "#5e5e50"
+      }
     }
   ]
 }
