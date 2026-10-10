@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>たなかAIカンパニー オフィス</title>
+<title>中尾AIカンパニー オフィス</title>
 <style>
   :root {
     --cream: #fff7ec;
@@ -234,7 +234,7 @@
 <!-- NEWS_DATA_START -->
 <script id="news-data" type="application/json">
 {
-  "company": "たなかAIカンパニー",
+  "company": "中尾AIカンパニー",
   "employee": {
     "name": "ニュースくん",
     "role": "AIニュース担当",
@@ -291,7 +291,7 @@
 <!-- PLANS_DATA_START -->
 <script id="plans-data" type="application/json">
 {
-  "company": "たなかAIカンパニー",
+  "company": "中尾AIカンパニー",
   "employee": {
     "name": "ケロ助",
     "role": "企画担当",
@@ -341,7 +341,7 @@
   try { DATA = JSON.parse(document.getElementById("news-data").textContent); } catch (e) { DATA = {}; }
   var days = Array.isArray(DATA.days) ? DATA.days : [];
   var emp = DATA.employee || { name: "ニュースくん", role: "AIニュース担当", look: "サングラスをかけたカエル", hours: "毎朝7:00（日本時間）" };
-  var companyName = DATA.company || "たなかAIカンパニー";
+  var companyName = DATA.company || "中尾AIカンパニー";
 
   var params = new URLSearchParams(location.search);
   // 日本時間の「今」。?hour=18 のように指定すると時間帯の見た目を試せる
