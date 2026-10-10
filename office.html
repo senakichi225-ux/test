@@ -8,8 +8,8 @@
   :root {
     --cream: #fff7ec;
     --paper: #fffdf8;
-    --shiba: #e8a35c;
-    --shiba-deep: #c97c35;
+    --main: #6dbb6a;
+    --main-deep: #4a9a50;
     --ink: #4a3426;
     --ink-soft: #8a6e5a;
     --mint: #8fd4bd;
@@ -42,14 +42,14 @@
     margin-top: 8px; display: flex; align-items: baseline; gap: 6px;
     background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer;
   }
-  #hud .count b { font-size: 30px; color: var(--shiba-deep); line-height: 1; }
+  #hud .count b { font-size: 30px; color: var(--main-deep); line-height: 1; }
   #hud .count span { font-size: 12px; color: var(--ink-soft); }
   #week { display: flex; gap: 6px; margin-top: 8px; }
   #week i {
     width: 14px; height: 14px; border-radius: 50%; background: #eadfd3;
     display: block; border: 2px solid #fff; box-shadow: 0 0 0 1px #e2d2c0;
   }
-  #week i.on { background: var(--shiba); box-shadow: 0 0 0 1px var(--shiba-deep); }
+  #week i.on { background: var(--main); box-shadow: 0 0 0 1px var(--main-deep); }
   #week i.today { outline: 2px dashed var(--mint-deep); outline-offset: 2px; }
   #hint {
     position: fixed; right: 16px; bottom: 16px; z-index: 5; font-size: 12px;
@@ -62,7 +62,7 @@
     white-space: nowrap; transition: opacity .2s;
   }
   #nametag {
-    background: var(--shiba); color: #fff; font-weight: 800; font-size: 13px;
+    background: var(--main); color: #fff; font-weight: 800; font-size: 13px;
     padding: 4px 12px; border-radius: 999px; border: 2px solid #fff; box-shadow: var(--shadow);
   }
   #bubble {
@@ -110,15 +110,15 @@
   .empty { text-align: center; padding: 18px 8px; color: var(--ink-soft); font-weight: 700; }
   .btn {
     display: block; width: 100%; margin-top: 14px; text-align: center; text-decoration: none;
-    background: var(--shiba); color: #fff; font-weight: 800; padding: 12px; border-radius: 14px;
+    background: var(--main); color: #fff; font-weight: 800; padding: 12px; border-radius: 14px;
     border: 0; font-size: 15px; font-family: inherit; cursor: pointer;
   }
-  .btn:hover { background: var(--shiba-deep); }
+  .btn:hover { background: var(--main-deep); }
 
   /* 社員証 */
   .idcard { padding: 0; overflow: hidden; width: min(360px, 100%); }
   .idcard .band {
-    background: linear-gradient(135deg, var(--shiba), #f2c08a); color: #fff;
+    background: linear-gradient(135deg, var(--main), #b5e3a1); color: #fff;
     padding: 12px 18px; font-weight: 800; font-size: 13px; letter-spacing: .05em;
   }
   .idcard .body { padding: 18px; display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; }
@@ -142,7 +142,7 @@
   @media (max-width: 600px) { #hint { top: 16px; bottom: auto; } }
   #fallback .wrap { max-width: 560px; margin: 0 auto; }
   #fallback .top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-  #fallback .big { font-size: 44px; font-weight: 800; color: var(--shiba-deep); line-height: 1; }
+  #fallback .big { font-size: 44px; font-weight: 800; color: var(--main-deep); line-height: 1; }
   #fallback .note { font-size: 12px; color: var(--ink-soft); margin-top: 12px; }
 </style>
 </head>
@@ -216,7 +216,7 @@
   "employee": {
     "name": "ニュースくん",
     "role": "AIニュース担当",
-    "look": "メガネをかけた柴犬",
+    "look": "サングラスをかけたカエル",
     "hours": "毎朝7:00（日本時間）"
   },
   "updated_at": "2026-10-10T11:16:00+09:00",
@@ -273,7 +273,7 @@
   var DATA = {};
   try { DATA = JSON.parse(document.getElementById("news-data").textContent); } catch (e) { DATA = {}; }
   var days = Array.isArray(DATA.days) ? DATA.days : [];
-  var emp = DATA.employee || { name: "ニュースくん", role: "AIニュース担当", look: "メガネをかけた柴犬", hours: "毎朝7:00（日本時間）" };
+  var emp = DATA.employee || { name: "ニュースくん", role: "AIニュース担当", look: "サングラスをかけたカエル", hours: "毎朝7:00（日本時間）" };
   var companyName = DATA.company || "たなかAIカンパニー";
 
   var params = new URLSearchParams(location.search);
@@ -365,16 +365,16 @@
   // 社員証
   var faceSvg =
     '<svg viewBox="0 0 100 100" width="84" height="84" aria-hidden="true">' +
-    '<path d="M22 40 L28 10 L46 30 Z M78 40 L72 10 L54 30 Z" fill="#e8a35c"/>' +
-    '<path d="M28 34 L30 18 L40 30 Z M72 34 L70 18 L60 30 Z" fill="#fff3e0"/>' +
-    '<ellipse cx="50" cy="56" rx="34" ry="32" fill="#e8a35c"/>' +
-    '<ellipse cx="50" cy="70" rx="24" ry="18" fill="#fff3e0"/>' +
-    '<ellipse cx="38" cy="38" rx="4" ry="2.5" fill="#fff3e0"/><ellipse cx="62" cy="38" rx="4" ry="2.5" fill="#fff3e0"/>' +
-    '<circle cx="38" cy="52" r="4" fill="#3b2a20"/><circle cx="62" cy="52" r="4" fill="#3b2a20"/>' +
-    '<circle cx="38" cy="52" r="10" fill="none" stroke="#5b3a29" stroke-width="3"/><circle cx="62" cy="52" r="10" fill="none" stroke="#5b3a29" stroke-width="3"/>' +
-    '<path d="M48 52 H52" stroke="#5b3a29" stroke-width="3"/>' +
-    '<ellipse cx="50" cy="64" rx="5" ry="3.5" fill="#3b2a20"/>' +
-    '<path d="M43 71 Q50 77 57 71" fill="none" stroke="#3b2a20" stroke-width="2.5" stroke-linecap="round"/>' +
+    '<ellipse cx="50" cy="62" rx="40" ry="28" fill="#7cc576"/>' +
+    '<circle cx="31" cy="36" r="16" fill="#7cc576"/><circle cx="69" cy="36" r="16" fill="#7cc576"/>' +
+    '<circle cx="31" cy="37" r="11" fill="#fff"/><circle cx="69" cy="37" r="11" fill="#fff"/>' +
+    '<circle cx="32" cy="38" r="5.5" fill="#2f3a2c"/><circle cx="70" cy="38" r="5.5" fill="#2f3a2c"/>' +
+    '<circle cx="31" cy="37" r="13" fill="#1b2a33" fill-opacity=".85" stroke="#1f2328" stroke-width="3"/><circle cx="69" cy="37" r="13" fill="#1b2a33" fill-opacity=".85" stroke="#1f2328" stroke-width="3"/>' +
+    '<path d="M44 35 H56" stroke="#1f2328" stroke-width="3.5"/>' +
+    '<path d="M35 30 L31 38 M73 30 L69 38" stroke="#fff" stroke-opacity=".7" stroke-width="2.5" stroke-linecap="round"/>' +
+    '<ellipse cx="22" cy="64" rx="6" ry="3.5" fill="#f6a6a0"/><ellipse cx="78" cy="64" rx="6" ry="3.5" fill="#f6a6a0"/>' +
+    '<circle cx="45" cy="54" r="1.6" fill="#2f3a2c"/><circle cx="55" cy="54" r="1.6" fill="#2f3a2c"/>' +
+    '<path d="M30 63 Q50 76 70 63" fill="none" stroke="#2f3a2c" stroke-width="2.8" stroke-linecap="round"/>' +
     "</svg>";
   $("id-co").textContent = companyName + "　社員証";
   $("id-face").innerHTML = faceSvg;
@@ -692,56 +692,55 @@
   var recChair = chair(REC.x, REC.z - 1.05, "#c9d2dc");
   var recSign = makeSign("募集中", "#9fd6f5", "#ffffff", 0.9); recSign.position.set(0.15, 0.93, 0.3); recSign.rotation.y = -0.25; recDesk.add(recSign);
 
-  /* ---- ニュースくん（メガネの柴犬） ---- */
-  var ORANGE = "#e8a35c", CREAM = "#fff3e0", DARK = "#3b2a20";
-  var dog = new THREE.Group(); dog.position.set(EMP.x, 0.6, EMP.z - 1.0); scene.add(dog);
-  var torso = new THREE.Group(); dog.add(torso);
-  var body = ball(0.42, ORANGE, 0, 0.42, 0, torso); body.scale.set(1, 1.1, 0.88);
-  var belly = ball(0.32, CREAM, 0, 0.38, 0.17, torso); belly.scale.set(0.9, 1.05, 0.6);
-  // ミントのスカーフ
-  var scarf = mesh(new THREE.TorusGeometry(0.27, 0.07, 12, 28), toon("#8fd4bd"), 0, 0.8, 0, torso); scarf.rotation.x = Math.PI / 2;
-  var knot = mesh(new THREE.ConeGeometry(0.1, 0.18, 12), toon("#6cc3a6"), 0, 0.7, 0.27, torso); knot.rotation.x = Math.PI;
-  // 足（机の下）
-  [-0.16, 0.16].forEach(function (lx) {
-    var leg = cyl(0.11, 0.11, 0.42, ORANGE, lx, 0.06, 0.25, dog, 14); leg.rotation.x = Math.PI / 2;
-    ball(0.12, CREAM, lx, 0.06, 0.48, dog);
-  });
-  // しっぽ（くるん）
-  var tail = new THREE.Group(); tail.position.set(0, 0.42, -0.36); torso.add(tail);
-  var tailRing = mesh(new THREE.TorusGeometry(0.14, 0.07, 12, 24, Math.PI * 1.6), toon(ORANGE), 0, 0.12, -0.04, tail);
-  tailRing.rotation.y = Math.PI / 2;
-  ball(0.075, CREAM, 0, 0.0, -0.0, tail);
-  // 頭
-  var head = new THREE.Group(); head.position.set(0, 1.18, 0.04); torso.add(head);
-  var skull = ball(0.42, ORANGE, 0, 0, 0, head); skull.scale.set(1.05, 0.95, 0.95);
-  var muzzle = ball(0.2, CREAM, 0, -0.1, 0.32, head); muzzle.scale.set(1.25, 0.85, 1);
-  [-1, 1].forEach(function (sx) { var ch = ball(0.15, CREAM, sx * 0.2, -0.13, 0.24, head); ch.scale.set(1, 0.8, 0.8); });
-  ball(0.06, DARK, 0, -0.04, 0.52, head);
+  /* ---- ニュースくん（サングラスのカエル） ---- */
+  var GREEN = "#7cc576", LIGHT = "#a8de96", BELLY = "#f7f3c4", DARK = "#2f3a2c";
+  var chara = new THREE.Group(); chara.position.set(EMP.x, 0.6, EMP.z - 1.0); scene.add(chara);
+  var torso = new THREE.Group(); chara.add(torso);
+  var body = ball(0.42, GREEN, 0, 0.4, 0, torso); body.scale.set(1.05, 1.0, 0.9);
+  var belly = ball(0.32, BELLY, 0, 0.36, 0.17, torso); belly.scale.set(0.95, 1.0, 0.6);
+  // コーラル色のスカーフ
+  var scarf = mesh(new THREE.TorusGeometry(0.29, 0.065, 12, 28), toon("#f4a7a0"), 0, 0.74, 0, torso); scarf.rotation.x = Math.PI / 2;
+  var knot = mesh(new THREE.ConeGeometry(0.1, 0.18, 12), toon("#ee8f86"), 0, 0.64, 0.29, torso); knot.rotation.x = Math.PI;
+  // カエル足（机の下）
   [-1, 1].forEach(function (sx) {
-    var ear = mesh(new THREE.ConeGeometry(0.15, 0.32, 16), toon(ORANGE), sx * 0.24, 0.38, -0.02, head);
-    ear.rotation.z = -sx * 0.35;
-    var inner = mesh(new THREE.ConeGeometry(0.09, 0.2, 14), toon(CREAM), sx * 0.235, 0.36, 0.05, head);
-    inner.rotation.z = -sx * 0.35;
+    var thigh = ball(0.2, GREEN, sx * 0.27, 0.12, 0.16, chara); thigh.scale.set(1, 0.7, 1.3);
+    var foot = ball(0.13, LIGHT, sx * 0.24, 0.0, 0.5, chara); foot.scale.set(1.3, 0.35, 1.1);
+    [-1, 0, 1].forEach(function (k) { ball(0.045, LIGHT, sx * 0.24 + k * 0.09, 0.0, 0.63 - Math.abs(k) * 0.03, chara); });
   });
+  // のど袋（ぷくぷく動く）
+  var throat = ball(0.17, BELLY, 0, 0.86, 0.22, torso); throat.scale.set(1.1, 0.7, 0.8);
+  // 頭（横に広い）
+  var head = new THREE.Group(); head.position.set(0, 1.12, 0.04); torso.add(head);
+  var skull = ball(0.45, GREEN, 0, 0, 0, head); skull.scale.set(1.25, 0.78, 1.0);
+  [-1, 1].forEach(function (sx) {
+    var ch = ball(0.075, "#f6a6a0", sx * 0.4, -0.06, 0.28, head); ch.scale.set(1.2, 0.8, 0.4);
+    ball(0.02, DARK, sx * 0.06, 0.08, 0.44, head);
+  });
+  // 大きな目玉
   var eyes = [], brows = [];
   [-1, 1].forEach(function (sx) {
-    var eye = ball(0.055, DARK, sx * 0.15, 0.06, 0.36, head); eye.scale.z = 0.6; eyes.push(eye);
-    var hl = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
-    hl.position.set(0.018, 0.022, 0.035); eye.add(hl);
-    // 柴犬の麻呂まゆ
-    var brow = ball(0.045, CREAM, sx * 0.15, 0.18, 0.34, head); brow.scale.set(1.4, 0.8, 0.6); brows.push(brow);
-    // メガネ
-    var lens = mesh(new THREE.TorusGeometry(0.105, 0.017, 10, 32), toon("#5b3a29"), sx * 0.155, 0.06, 0.4, head);
-    var glass = new THREE.Mesh(new THREE.CircleGeometry(0.1, 24), new THREE.MeshBasicMaterial({ color: 0xdff4ff, transparent: true, opacity: 0.25 }));
-    glass.position.set(sx * 0.155, 0.06, 0.398); head.add(glass);
-    var arm = cyl(0.012, 0.012, 0.32, "#5b3a29", sx * 0.27, 0.07, 0.25, head, 8); arm.rotation.x = Math.PI / 2;
+    ball(0.18, GREEN, sx * 0.25, 0.3, 0.1, head);
+    var eye = new THREE.Group(); eye.position.set(sx * 0.25, 0.32, 0.2); head.add(eye); eyes.push(eye);
+    ball(0.135, "#ffffff", 0, 0, 0, eye);
+    var pupil = ball(0.07, DARK, 0, 0.01, 0.1, eye); pupil.scale.z = 0.6;
+    var hl = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+    hl.position.set(0.025, 0.03, 0.04); pupil.add(hl);
+    // まゆ（困ったときに傾く）
+    var brow = box(0.12, 0.03, 0.03, "#4a9a50", sx * 0.25, 0.53, 0.14, head); brows.push(brow);
+    // サングラス（濃いレンズ。中の目がうっすら見える）
+    mesh(new THREE.TorusGeometry(0.16, 0.024, 10, 32), toon("#1f2328"), sx * 0.25, 0.32, 0.37, head);
+    var glass = new THREE.Mesh(new THREE.CircleGeometry(0.155, 28), new THREE.MeshBasicMaterial({ color: 0x1b2a33, transparent: true, opacity: 0.72 }));
+    glass.position.set(sx * 0.25, 0.32, 0.372); head.add(glass);
+    var shine = new THREE.Mesh(new THREE.PlaneGeometry(0.035, 0.11), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 }));
+    shine.position.set(sx * 0.25 + 0.06, 0.36, 0.375); shine.rotation.z = -0.6; head.add(shine);
+    var arm = cyl(0.015, 0.015, 0.34, "#1f2328", sx * 0.42, 0.33, 0.2, head, 8); arm.rotation.x = Math.PI / 2;
   });
-  var bridge = cyl(0.014, 0.014, 0.1, "#5b3a29", 0, 0.08, 0.41, head, 8); bridge.rotation.z = Math.PI / 2;
-  // 口（にっこり／困り）
-  var mouth = mesh(new THREE.TorusGeometry(0.06, 0.013, 8, 20, Math.PI), toon(DARK), 0, -0.13, 0.48, head);
-  mouth.rotation.z = Math.PI;
+  var bridge = cyl(0.018, 0.018, 0.2, "#1f2328", 0, 0.36, 0.37, head, 8); bridge.rotation.z = Math.PI / 2;
+  // 横に広い口（にっこり／困り）
+  var mouth = mesh(new THREE.TorusGeometry(0.2, 0.016, 8, 28, Math.PI), toon(DARK), 0, 0.02, 0.38, head);
+  mouth.rotation.z = Math.PI; mouth.scale.y = 0.45;
   // 汗（困ったとき）
-  var sweat = new THREE.Group(); sweat.position.set(0.38, 0.2, 0.15); head.add(sweat);
+  var sweat = new THREE.Group(); sweat.position.set(0.55, 0.25, 0.15); head.add(sweat);
   var drop = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16, 12), new THREE.MeshToonMaterial({ color: 0x9fd6f5, gradientMap: gradTex }));
   sweat.add(drop);
   var tip = new THREE.Mesh(new THREE.ConeGeometry(0.058, 0.1, 16), drop.material); tip.position.y = 0.07; sweat.add(tip);
@@ -749,19 +748,20 @@
   // 腕（キーボードを打つ）
   var arms = [];
   [-1, 1].forEach(function (sx) {
-    var pivot = new THREE.Group(); pivot.position.set(sx * 0.36, 0.66, 0.06); torso.add(pivot);
-    var upper = cyl(0.085, 0.085, 0.5, ORANGE, 0, -0.25, 0, pivot, 14);
-    ball(0.1, CREAM, 0, -0.5, 0, pivot);
+    var pivot = new THREE.Group(); pivot.position.set(sx * 0.38, 0.62, 0.06); torso.add(pivot);
+    cyl(0.075, 0.075, 0.5, GREEN, 0, -0.25, 0, pivot, 14);
+    ball(0.09, LIGHT, 0, -0.5, 0, pivot);
+    [-1, 0, 1].forEach(function (k) { ball(0.04, LIGHT, k * 0.06, -0.58, 0.02, pivot); });
     pivot.rotation.x = -1.15; pivot.rotation.z = sx * 0.12;
     arms.push(pivot);
   });
-  dog.traverse(function (o) { if (o.isMesh) { o.userData.action = "id"; clickables.push(o); } });
+  chara.traverse(function (o) { if (o.isMesh) { o.userData.action = "id"; clickables.push(o); } });
 
   // 今日の状態をオフィスの様子で見せる
   var emptyEmpSign = null, okSign = null;
   if (state === "before") {
-    dog.visible = false;
-    dog.traverse(function (o) { var ix = clickables.indexOf(o); if (ix >= 0) clickables.splice(ix, 1); });
+    chara.visible = false;
+    chara.traverse(function (o) { var ix = clickables.indexOf(o); if (ix >= 0) clickables.splice(ix, 1); });
     emptyEmpSign = makeSign("出社前", "#f6d58a", "#7a5236", 0.9);
     emptyEmpSign.position.set(0.55, 0.93, 0.25); emptyEmpSign.rotation.y = -0.2; empDesk.add(emptyEmpSign);
     // 出社前でも空席の札をクリックすると社員証が見られる
@@ -773,9 +773,8 @@
   }
   if (state === "search_failed") {
     sweat.visible = true;
-    mouth.rotation.z = 0; mouth.position.y = -0.17;
-    brows[0].rotation.z = -0.5; brows[1].rotation.z = 0.5;
-    brows[0].position.y = brows[1].position.y = 0.2;
+    mouth.rotation.z = 0; mouth.position.y = -0.06; mouth.scale.set(0.6, 0.35, 1);
+    brows[0].rotation.z = -0.45; brows[1].rotation.z = 0.45;
     empLaptop.screen.material.color.set(0xf4b6ae);
   }
 
@@ -919,7 +918,7 @@
     backWall.visible = camera.position.z > -D / 2 + 0.5;
     leftWall.visible = camera.position.x > -W / 2 + 0.5;
 
-    if (dog.visible) {
+    if (chara.visible) {
       // キーボード
       if (typingSpeed) {
         arms[0].rotation.x = -1.15 + Math.sin(t * typingSpeed) * 0.09;
@@ -935,7 +934,8 @@
         head.rotation.z = Math.sin(t * 1.6) * 0.05; head.rotation.x = Math.sin(t * 0.8) * 0.03 + 0.05;
       }
       torso.position.y = Math.abs(Math.sin(t * (typingSpeed || 2) / 2)) * 0.015;
-      tail.rotation.y = Math.sin(t * (state === "search_failed" ? 2 : 7)) * 0.35;
+      var puff = 1 + Math.max(0, Math.sin(t * (state === "search_failed" ? 1.5 : 3))) * 0.18;
+      throat.scale.set(1.1 * puff, 0.7 * puff, 0.8 * puff);
       // まばたき
       if (t > nextBlink) { blinkEnd = t + 0.13; nextBlink = t + 2.2 + Math.random() * 2.8; }
       var sy = t < blinkEnd ? 0.12 : 1;
@@ -952,8 +952,8 @@
 
     updateClock();
     renderer.render(scene, camera);
-    placeTag(nametag, head, 0.85, dog.visible);
-    placeTag(bubble, head, 0.85, dog.visible && !!speech);
+    placeTag(nametag, head, 0.85, chara.visible);
+    placeTag(bubble, head, 0.85, chara.visible && !!speech);
   }
   animate();
 
