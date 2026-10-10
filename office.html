@@ -44,6 +44,11 @@
   }
   #hud .count b { font-size: 30px; color: var(--main-deep); line-height: 1; }
   #hud .count span { font-size: 12px; color: var(--ink-soft); }
+  #hud .plan {
+    margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-soft);
+    background: none; border: 0; padding: 0; font-family: inherit; cursor: pointer;
+  }
+  #hud .plan b { color: #c9961f; font-size: 14px; }
   #week { display: flex; gap: 6px; margin-top: 8px; }
   #week i {
     width: 14px; height: 14px; border-radius: 50%; background: #eadfd3;
@@ -61,19 +66,20 @@
     position: fixed; z-index: 4; transform: translate(-50%, -100%); pointer-events: none;
     white-space: nowrap; transition: opacity .2s;
   }
-  #nametag {
+  #nametag, #nametag2 {
     background: var(--main); color: #fff; font-weight: 800; font-size: 13px;
     padding: 4px 12px; border-radius: 999px; border: 2px solid #fff; box-shadow: var(--shadow);
   }
-  #bubble {
+  #nametag2 { background: #e9b93c; }
+  #bubble, #bubble2 {
     background: #fff; color: var(--ink); font-weight: 700; font-size: 14px;
     padding: 8px 14px; border-radius: 16px; box-shadow: var(--shadow);
     transform: translate(10%, -100%);
     white-space: normal; width: max-content; max-width: min(320px, 60vw);
   }
-  #bubble.flip { transform: translate(-90%, -100%); }
-  #bubble.flip::after { left: auto; right: 14px; }
-  #bubble::after {
+  #bubble.flip, #bubble2.flip { transform: translate(-90%, -100%); }
+  #bubble.flip::after, #bubble2.flip::after { left: auto; right: 14px; }
+  #bubble::after, #bubble2::after {
     content: ""; position: absolute; left: 14px; bottom: -8px;
     border: 8px solid transparent; border-top-color: #fff; border-bottom: 0;
   }
@@ -143,6 +149,7 @@
   #fallback .wrap { max-width: 560px; margin: 0 auto; }
   #fallback .top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
   #fallback .big { font-size: 44px; font-weight: 800; color: var(--main-deep); line-height: 1; }
+  #fallback h3 { margin: 20px 0 10px; font-size: 15px; }
   #fallback .note { font-size: 12px; color: var(--ink-soft); margin-top: 12px; }
 </style>
 </head>
@@ -162,6 +169,9 @@
     </div>
     <div class="cards" id="fb-cards"></div>
     <a class="btn" id="fb-report" href="#">報告ファイルを開く</a>
+    <h3>💡 今月の企画</h3>
+    <div class="cards" id="fb-plans"></div>
+    <a class="btn" id="fb-plan-file" href="#" style="background:#e9b93c">企画ファイルを開く</a>
     <div class="note">3D表示を読み込めなかったため、簡易表示にしています（インターネット接続を確認してください）。</div>
   </div>
 </div>
@@ -171,11 +181,14 @@
   <div class="date" id="hud-date"></div>
   <button class="count" id="hud-count" type="button" title="今日のニュースを見る"><b id="hud-num">0</b><span id="hud-label">件</span></button>
   <div id="week" aria-label="直近7日の出勤"></div>
+  <button class="plan" id="hud-plan" type="button" title="今月の企画を見る">💡 今月の企画 <b id="hud-plan-num">0</b><span id="hud-plan-label">案</span></button>
 </div>
 <div id="hint">🖱 ドラッグで回転・ホイールで拡大</div>
 
 <div class="tag" id="nametag">ニュースくん</div>
 <div class="tag" id="bubble"></div>
+<div class="tag" id="nametag2">ケロ助</div>
+<div class="tag" id="bubble2"></div>
 
 <div class="modal" id="news-modal" role="dialog" aria-modal="true">
   <div class="panel">
@@ -183,6 +196,15 @@
     <h2 id="news-title">📄 今日の報告</h2>
     <div class="cards" id="news-cards"></div>
     <a class="btn" id="news-report" href="#">📂 報告ファイルを開く</a>
+  </div>
+</div>
+
+<div class="modal" id="plan-modal" role="dialog" aria-modal="true">
+  <div class="panel">
+    <button class="close" data-close aria-label="閉じる">×</button>
+    <h2 id="plan-title">💡 今月の企画</h2>
+    <div class="cards" id="plan-cards"></div>
+    <a class="btn" id="plan-file" href="#" style="background:#e9b93c">📂 企画ファイルを開く</a>
   </div>
 </div>
 
@@ -263,6 +285,51 @@
 </script>
 <!-- NEWS_DATA_END -->
 
+<!--
+  企画の記録。data/plans.json と全く同じ内容をここに入れる。
+-->
+<!-- PLANS_DATA_START -->
+<script id="plans-data" type="application/json">
+{
+  "company": "たなかAIカンパニー",
+  "employee": {
+    "name": "ケロ助",
+    "role": "企画担当",
+    "look": "普通のカエル（黄色いスカーフ）",
+    "hours": "毎月1日 8:00（日本時間）"
+  },
+  "updated_at": "2026-10-10T11:40:00+09:00",
+  "months": [
+    {
+      "month": "2026-10",
+      "status": "proposed",
+      "created_at": "2026-10-10T11:40:00+09:00",
+      "count": 3,
+      "speech": "社長、今月の企画できたで〜！3つ考えたで！",
+      "plan_file": "企画/2026-10_企画提案.md",
+      "items": [
+        {
+          "no": 1,
+          "title": "ハロウィン限定デザートとSNS写真企画",
+          "category": "イベント"
+        },
+        {
+          "no": 2,
+          "title": "秋の味覚フェアのメニュー紹介をAIで作る",
+          "category": "季節メニュー"
+        },
+        {
+          "no": 3,
+          "title": "口コミ返信と予約メールのAI下書きルールを作る",
+          "category": "AI活用"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- PLANS_DATA_END -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/OrbitControls.min.js"></script>
 <script>
@@ -294,6 +361,22 @@
   var items = (today && Array.isArray(today.items)) ? today.items : [];
   var count = items.length;
   var reportFile = today && today.report_file ? today.report_file : ("報告/" + todayStr + "_AIニュース.md");
+
+  // 企画（月に1回）
+  var PLANS = {};
+  try { PLANS = JSON.parse(document.getElementById("plans-data").textContent); } catch (e) { PLANS = {}; }
+  var planner = PLANS.employee || { name: "ケロ助", role: "企画担当", look: "普通のカエル（黄色いスカーフ）", hours: "毎月1日 8:00（日本時間）" };
+  var monthStr = todayStr.slice(0, 7);
+  var plan = null;
+  (Array.isArray(PLANS.months) ? PLANS.months : []).forEach(function (m) { if (m.month === monthStr) plan = m; });
+  // planState: proposed / failed / before（今月はまだ）
+  var planState = plan ? plan.status : "before";
+  var planItems = (plan && Array.isArray(plan.items)) ? plan.items : [];
+  var planCount = planItems.length;
+  var planFile = plan && plan.plan_file ? plan.plan_file : ("企画/" + monthStr + "_企画提案.md");
+  var PLAN_ICONS = { "季節メニュー": "🍂", "イベント": "🎉", "集客": "📣", "AI活用": "🤖", "その他": "💡" };
+  var PLAN_STATE_TEXT = { proposed: "今月の企画 " + planCount + "案 提出済み", failed: "今月は提案できず困り中", before: "今月の企画はまだ（毎月1日に提出）" };
+  var planSpeech = (plan && plan.speech) || (planState === "failed" ? "社長、すんまへん…今月はうまいこと考えられへんかったわ" : "");
 
   var ICONS = { "ChatGPT": "💬", "Claude": "🤖", "画像生成": "🎨", "仕事効率化": "⚡", "その他": "📰" };
   var STATE_TEXT = {
@@ -354,6 +437,26 @@
   $("news-report").href = encodeURI(reportFile);
   $("news-report").style.display = state === "before" ? "none" : "";
 
+  function planCardsHtml() {
+    if (!planCount) {
+      return '<div class="empty">' + esc(planState === "failed" ? "今月は企画を提案できませんでした。" : "今月の企画はまだです（毎月1日に提出）。") + "</div>";
+    }
+    return planItems.map(function (it) {
+      return '<div class="card"><div class="ic">' + (PLAN_ICONS[it.category] || "💡") + '</div><div>' +
+        '<div class="hl">' + esc(it.title) + '</div>' +
+        '<div class="src" style="color:#c9961f">' + esc(it.category) + "</div></div></div>";
+    }).join("");
+  }
+  $("plan-title").textContent = "💡 " + monthStr.replace("-", "年") + "月の企画 " + planCount + "案";
+  $("plan-cards").innerHTML = planCardsHtml();
+  $("plan-file").href = encodeURI(planFile);
+  $("plan-file").style.display = planState === "before" ? "none" : "";
+  $("hud-plan-num").textContent = planCount;
+  $("hud-plan-label").textContent = planState === "before" ? "案・まだ" : planState === "failed" ? "案・提案できず" : "案";
+  $("fb-plans").innerHTML = planCardsHtml();
+  $("fb-plan-file").href = encodeURI(planFile);
+  $("fb-plan-file").style.display = planState === "before" ? "none" : "";
+
   // 3Dなしの簡易表示
   $("fb-co").textContent = companyName + "　" + todayStr.replace(/-/g, "/");
   $("fb-count").textContent = count;
@@ -376,15 +479,34 @@
     '<circle cx="45" cy="54" r="1.6" fill="#2f3a2c"/><circle cx="55" cy="54" r="1.6" fill="#2f3a2c"/>' +
     '<path d="M30 63 Q50 76 70 63" fill="none" stroke="#2f3a2c" stroke-width="2.8" stroke-linecap="round"/>' +
     "</svg>";
-  $("id-co").textContent = companyName + "　社員証";
-  $("id-face").innerHTML = faceSvg;
-  $("id-name").textContent = emp.name;
-  $("id-role").textContent = emp.role;
-  $("id-hours").textContent = emp.hours;
-  $("id-look").textContent = emp.look;
-  $("id-state").textContent = "今日：" + STATE_TEXT[state];
-  if (state === "before") { $("id-state").style.background = "#f3ece4"; $("id-state").style.color = "#8a6e5a"; }
-  if (state === "search_failed") { $("id-state").style.background = "#fdeceb"; $("id-state").style.color = "#c0605a"; }
+  var faceSvg2 =
+    '<svg viewBox="0 0 100 100" width="84" height="84" aria-hidden="true">' +
+    '<ellipse cx="50" cy="62" rx="40" ry="28" fill="#7cc576"/>' +
+    '<circle cx="31" cy="36" r="16" fill="#7cc576"/><circle cx="69" cy="36" r="16" fill="#7cc576"/>' +
+    '<circle cx="31" cy="37" r="11" fill="#fff"/><circle cx="69" cy="37" r="11" fill="#fff"/>' +
+    '<circle cx="32" cy="38" r="5.5" fill="#2f3a2c"/><circle cx="70" cy="38" r="5.5" fill="#2f3a2c"/>' +
+    '<circle cx="34" cy="35" r="1.8" fill="#fff"/><circle cx="72" cy="35" r="1.8" fill="#fff"/>' +
+    '<ellipse cx="22" cy="64" rx="6" ry="3.5" fill="#f6a6a0"/><ellipse cx="78" cy="64" rx="6" ry="3.5" fill="#f6a6a0"/>' +
+    '<circle cx="45" cy="54" r="1.6" fill="#2f3a2c"/><circle cx="55" cy="54" r="1.6" fill="#2f3a2c"/>' +
+    '<path d="M30 63 Q50 78 70 63" fill="none" stroke="#2f3a2c" stroke-width="2.8" stroke-linecap="round"/>' +
+    '<path d="M26 88 Q50 80 74 88 L68 96 Q50 90 32 96 Z" fill="#f6d58a"/>' +
+    "</svg>";
+  function showId(who) {
+    var e = who === 2 ? planner : emp;
+    var st = who === 2 ? planState : state;
+    $("id-co").textContent = companyName + "　社員証";
+    $("id-face").innerHTML = who === 2 ? faceSvg2 : faceSvg;
+    $("id-name").textContent = e.name;
+    $("id-role").textContent = e.role;
+    $("id-hours").textContent = e.hours;
+    $("id-look").textContent = e.look;
+    $("id-state").textContent = who === 2 ? "今月：" + PLAN_STATE_TEXT[planState] : "今日：" + STATE_TEXT[state];
+    var bg = "#eaf7f2", fg = "#4fae92";
+    if (st === "before") { bg = "#f3ece4"; fg = "#8a6e5a"; }
+    if (st === "search_failed" || st === "failed") { bg = "#fdeceb"; fg = "#c0605a"; }
+    $("id-state").style.background = bg; $("id-state").style.color = fg;
+    $("id-modal").classList.add("open");
+  }
   var faceMini = document.querySelector(".face-mini");
   if (faceMini) faceMini.innerHTML = faceSvg;
 
@@ -396,10 +518,15 @@
     if (e.key === "Escape") document.querySelectorAll(".modal.open").forEach(function (m) { m.classList.remove("open"); });
   });
   $("hud-count").addEventListener("click", function () { openModal("news-modal"); });
+  $("hud-plan").addEventListener("click", function () { openModal("plan-modal"); });
 
   var nametag = $("nametag"), bubble = $("bubble");
   nametag.style.opacity = "0"; bubble.style.opacity = "0";
   bubble.textContent = speech;
+  var nametag2 = $("nametag2"), bubble2 = $("bubble2");
+  nametag2.textContent = planner.name;
+  nametag2.style.opacity = "0"; bubble2.style.opacity = "0";
+  bubble2.textContent = planSpeech;
 
   /* ================= 3D ================= */
   if (typeof THREE === "undefined") { document.body.classList.add("no3d"); return; }
@@ -685,22 +812,45 @@
   chair(EMP.x, EMP.z - 1.05, "#8fd4bd");
   cyl(0.07, 0.06, 0.13, "#f4a7a0", 0.8, 0.995, 0.2, empDesk, 16);
 
+  // 企画担当（ケロ助）の席
+  var PLN = { x: 3.4, z: 1.6 };
+  var plnDesk = desk(PLN.x, PLN.z, 2.0, "#e9c39a", planner.name);
+  var plnLaptop = laptop(plnDesk, 0, -0.1, planState !== "before");
+  chair(PLN.x, PLN.z - 1.05, "#f6d58a");
+  // 企画のメモ（付せん）
+  ["#f6d58a", "#f4a7a0", "#9fd6f5"].forEach(function (c, ix) {
+    var note = box(0.16, 0.01, 0.16, c, -0.75 + ix * 0.05, 0.94 + ix * 0.01, 0.2 - ix * 0.04, plnDesk); note.rotation.y = ix * 0.4;
+  });
+
   // 募集中の席
-  var REC = { x: 3.4, z: 1.6 };
+  var REC = { x: -2.9, z: 2.0 };
   var recDesk = desk(REC.x, REC.z, 2.0, "#e9c39a", null);
   laptop(recDesk, 0, -0.1, false);
   var recChair = chair(REC.x, REC.z - 1.05, "#c9d2dc");
   var recSign = makeSign("募集中", "#9fd6f5", "#ffffff", 0.9); recSign.position.set(0.15, 0.93, 0.3); recSign.rotation.y = -0.25; recDesk.add(recSign);
 
-  /* ---- ニュースくん（サングラスのカエル） ---- */
+  // 社長の机：企画フォルダ（今月の案の数だけ紙が入る）
+  var folder = new THREE.Group(); folder.position.set(0.05, 0.93, 0.32); presDesk.add(folder);
+  box(0.42, 0.03, 0.32, "#e9b93c", 0, 0.015, 0, folder);
+  for (var fi = 0; fi < planCount; fi++) {
+    var sheet = box(0.38, 0.02, 0.28, "#fffdf8", 0.02 * fi, 0.04 + fi * 0.025, -0.01 * fi, folder); sheet.rotation.y = 0.06 * fi;
+  }
+  var folderTop = box(0.42, 0.02, 0.32, "#f2c94c", 0, 0.05 + planCount * 0.025, 0, folder); folderTop.rotation.z = planCount ? 0.0 : 0;
+  var folderHit = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.4, 0.45), new THREE.MeshBasicMaterial({ visible: false }));
+  folderHit.position.set(0.05, 1.05, 0.32); presDesk.add(folderHit);
+  folderHit.userData.action = "plans"; clickables.push(folderHit);
+
+  /* ---- カエルの社員（丸っこいトゥーン調） ---- */
   var GREEN = "#7cc576", LIGHT = "#a8de96", BELLY = "#f7f3c4", DARK = "#2f3a2c";
-  var chara = new THREE.Group(); chara.position.set(EMP.x, 0.6, EMP.z - 1.0); scene.add(chara);
+  // o: { x, z, scarf, knot, sunglasses }
+  function makeFrog(o) {
+  var chara = new THREE.Group(); chara.position.set(o.x, 0.6, o.z - 1.0); scene.add(chara);
   var torso = new THREE.Group(); chara.add(torso);
   var body = ball(0.42, GREEN, 0, 0.4, 0, torso); body.scale.set(1.05, 1.0, 0.9);
   var belly = ball(0.32, BELLY, 0, 0.36, 0.17, torso); belly.scale.set(0.95, 1.0, 0.6);
   // コーラル色のスカーフ
-  var scarf = mesh(new THREE.TorusGeometry(0.29, 0.065, 12, 28), toon("#f4a7a0"), 0, 0.74, 0, torso); scarf.rotation.x = Math.PI / 2;
-  var knot = mesh(new THREE.ConeGeometry(0.1, 0.18, 12), toon("#ee8f86"), 0, 0.64, 0.29, torso); knot.rotation.x = Math.PI;
+  var scarf = mesh(new THREE.TorusGeometry(0.29, 0.065, 12, 28), toon(o.scarf), 0, 0.74, 0, torso); scarf.rotation.x = Math.PI / 2;
+  var knot = mesh(new THREE.ConeGeometry(0.1, 0.18, 12), toon(o.knot), 0, 0.64, 0.29, torso); knot.rotation.x = Math.PI;
   // カエル足（机の下）
   [-1, 1].forEach(function (sx) {
     var thigh = ball(0.2, GREEN, sx * 0.27, 0.12, 0.16, chara); thigh.scale.set(1, 0.7, 1.3);
@@ -727,6 +877,7 @@
     hl.position.set(0.025, 0.03, 0.04); pupil.add(hl);
     // まゆ（困ったときに傾く）
     var brow = box(0.12, 0.03, 0.03, "#4a9a50", sx * 0.25, 0.53, 0.14, head); brows.push(brow);
+    if (!o.sunglasses) return;
     // サングラス（濃いレンズ。中の目がうっすら見える）
     mesh(new THREE.TorusGeometry(0.16, 0.024, 10, 32), toon("#1f2328"), sx * 0.25, 0.32, 0.37, head);
     var glass = new THREE.Mesh(new THREE.CircleGeometry(0.155, 28), new THREE.MeshBasicMaterial({ color: 0x1b2a33, transparent: true, opacity: 0.72 }));
@@ -735,7 +886,7 @@
     shine.position.set(sx * 0.25 + 0.06, 0.36, 0.375); shine.rotation.z = -0.6; head.add(shine);
     var arm = cyl(0.015, 0.015, 0.34, "#1f2328", sx * 0.42, 0.33, 0.2, head, 8); arm.rotation.x = Math.PI / 2;
   });
-  var bridge = cyl(0.018, 0.018, 0.2, "#1f2328", 0, 0.36, 0.37, head, 8); bridge.rotation.z = Math.PI / 2;
+  if (o.sunglasses) cyl(0.018, 0.018, 0.2, "#1f2328", 0, 0.36, 0.37, head, 8).rotation.z = Math.PI / 2;
   // 横に広い口（にっこり／困り）
   var mouth = mesh(new THREE.TorusGeometry(0.2, 0.016, 8, 28, Math.PI), toon(DARK), 0, 0.02, 0.38, head);
   mouth.rotation.z = Math.PI; mouth.scale.y = 0.45;
@@ -755,6 +906,32 @@
     pivot.rotation.x = -1.15; pivot.rotation.z = sx * 0.12;
     arms.push(pivot);
   });
+  return { group: chara, torso: torso, head: head, eyes: eyes, brows: brows, mouth: mouth, sweat: sweat, arms: arms, throat: throat };
+  }
+  // ニュースくん（サングラスのカエル）
+  var F1 = makeFrog({ x: EMP.x, z: EMP.z, scarf: "#f4a7a0", knot: "#ee8f86", sunglasses: true });
+  var chara = F1.group, torso = F1.torso, head = F1.head, eyes = F1.eyes, brows = F1.brows, mouth = F1.mouth, sweat = F1.sweat, arms = F1.arms, throat = F1.throat;
+  // ケロ助（普通のカエル・黄色いスカーフ）
+  var F2 = makeFrog({ x: PLN.x, z: PLN.z, scarf: "#f6d58a", knot: "#e9b93c", sunglasses: false });
+  F2.group.traverse(function (o) { if (o.isMesh) { o.userData.action = "id2"; clickables.push(o); } });
+  // ひらめき電球（企画を出した月だけ光る）
+  var idea = new THREE.Group(); idea.position.set(0.62, 0.6, 0); F2.head.add(idea);
+  var ideaBulb = new THREE.Mesh(new THREE.SphereGeometry(0.13, 20, 16), new THREE.MeshBasicMaterial({ color: 0xffe066 }));
+  idea.add(ideaBulb);
+  cyl(0.06, 0.06, 0.08, "#b8bcc4", 0, -0.14, 0, idea, 12);
+  idea.visible = planState === "proposed";
+  if (planState === "before") {
+    F2.group.visible = false;
+    F2.group.traverse(function (o) { var ix = clickables.indexOf(o); if (ix >= 0) clickables.splice(ix, 1); });
+    var plnSign = makeSign("今月まだ", "#f6d58a", "#7a5236", 0.95);
+    plnSign.position.set(0.55, 0.93, 0.25); plnSign.rotation.y = -0.2; plnDesk.add(plnSign);
+    plnSign.traverse(function (o) { if (o.isMesh) { o.userData.action = "id2"; clickables.push(o); } });
+  }
+  if (planState === "failed") {
+    F2.sweat.visible = true;
+    F2.mouth.rotation.z = 0; F2.mouth.position.y = -0.06; F2.mouth.scale.set(0.6, 0.35, 1);
+    F2.brows[0].rotation.z = -0.45; F2.brows[1].rotation.z = 0.45;
+  }
   chara.traverse(function (o) { if (o.isMesh) { o.userData.action = "id"; clickables.push(o); } });
 
   // 今日の状態をオフィスの様子で見せる
@@ -873,7 +1050,7 @@
     var r = renderer.domElement.getBoundingClientRect();
     ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1; ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
     ray.setFromCamera(ndc, camera);
-    var hits = ray.intersectObjects(clickables.filter(function (o) { var v = true; o.traverseAncestors(function (a) { if (!a.visible) v = false; }); return v && (o.visible || o === trayHit); }), false);
+    var hits = ray.intersectObjects(clickables.filter(function (o) { var v = true; o.traverseAncestors(function (a) { if (!a.visible) v = false; }); return v && (o.visible || o === trayHit || o === folderHit); }), false);
     return hits.length ? hits[0].object.userData.action : null;
   }
   renderer.domElement.addEventListener("pointerdown", function (e) { downAt = { x: e.clientX, y: e.clientY }; });
@@ -881,7 +1058,9 @@
     if (!downAt || Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) return;
     var act = pick(e);
     if (act === "news") openModal("news-modal");
-    if (act === "id") openModal("id-modal");
+    if (act === "id") showId(1);
+    if (act === "id2") showId(2);
+    if (act === "plans") openModal("plan-modal");
   });
   renderer.domElement.addEventListener("pointermove", function (e) {
     var act = pick(e); hovered = act;
@@ -896,16 +1075,18 @@
     if (tmp.z > 1) { el.style.opacity = "0"; return; }
     el.style.left = ((tmp.x + 1) / 2 * window.innerWidth) + "px";
     // 吹き出しは名札のすぐ上に置く
-    el.style.top = ((1 - tmp.y) / 2 * window.innerHeight - (el === bubble ? nametag.offsetHeight + 10 : 0)) + "px";
+    el.style.top = ((1 - tmp.y) / 2 * window.innerHeight - (el === bubble ? nametag.offsetHeight + 10 : el === bubble2 ? nametag2.offsetHeight + 10 : 0)) + "px";
     el.style.opacity = "1";
-    if (el === bubble) {
+    if (el === bubble || el === bubble2) {
       var x = (tmp.x + 1) / 2 * window.innerWidth;
-      el.classList.toggle("flip", x + el.offsetWidth * 1.1 > window.innerWidth - 8);
+      // ケロ助の吹き出しはニュースくんに重ならないよう左側を優先する
+      if (el === bubble2) el.classList.toggle("flip", x - el.offsetWidth * 0.9 > 8);
+      else el.classList.toggle("flip", x + el.offsetWidth * 1.1 > window.innerWidth - 8);
     }
   }
 
   /* ---- 動き ---- */
-  var clockT = new THREE.Clock(), nextBlink = 1.5, blinkEnd = 0;
+  var clockT = new THREE.Clock(), nextBlink = 1.5, blinkEnd = 0, nextBlink2 = 2.3, blinkEnd2 = 0;
   var typingSpeed = state === "reported" ? 14 : state === "no_news" ? 6 : 0;
   function animate() {
     requestAnimationFrame(animate);
@@ -941,6 +1122,22 @@
       var sy = t < blinkEnd ? 0.12 : 1;
       eyes[0].scale.y = eyes[1].scale.y = sy;
     }
+    // ケロ助：考えごと（ゆっくり打つ・電球がふわふわ）
+    if (F2.group.visible) {
+      var f2fail = planState === "failed";
+      F2.arms[0].rotation.x = f2fail ? -0.9 : -1.15 + Math.sin(t * 4) * 0.08;
+      F2.arms[1].rotation.x = f2fail ? -0.9 : -1.15 + Math.sin(t * 4 + Math.PI) * 0.08;
+      F2.head.rotation.z = f2fail ? 0.18 + Math.sin(t * 1.2) * 0.04 : Math.sin(t * 1.1 + 1) * 0.08;
+      F2.head.rotation.x = f2fail ? 0.12 : 0.03;
+      if (f2fail) F2.sweat.position.y = 0.25 - (t * 0.25 % 0.2);
+      var p2 = 1 + Math.max(0, Math.sin(t * 2.4 + 1)) * 0.2;
+      F2.throat.scale.set(1.1 * p2, 0.7 * p2, 0.8 * p2);
+      F2.torso.position.y = Math.abs(Math.sin(t * 2)) * 0.012;
+      if (t > nextBlink2) { blinkEnd2 = t + 0.13; nextBlink2 = t + 2.6 + Math.random() * 3; }
+      F2.eyes[0].scale.y = F2.eyes[1].scale.y = t < blinkEnd2 ? 0.12 : 1;
+      idea.position.y = 0.6 + Math.sin(t * 2.2) * 0.05;
+      ideaBulb.material.color.setHSL(0.14, 1, 0.62 + Math.sin(t * 3) * 0.08);
+    }
     // 報告書の目印
     if (marker.children.length) {
       marker.position.y = 1.45 + count * 0.07 + Math.sin(t * 3) * 0.06;
@@ -954,6 +1151,8 @@
     renderer.render(scene, camera);
     placeTag(nametag, head, 0.85, chara.visible);
     placeTag(bubble, head, 0.85, chara.visible && !!speech);
+    placeTag(nametag2, F2.head, 0.85, F2.group.visible);
+    placeTag(bubble2, F2.head, 0.85, F2.group.visible && !!planSpeech);
   }
   animate();
 
