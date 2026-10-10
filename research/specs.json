@@ -1,0 +1,51 @@
+{
+  "area": "specs",
+  "items": [
+    {
+      "id": "spec-jp-fusuma-size",
+      "area": "specs",
+      "title": "日本のふすまの一般的な寸法",
+      "status": "hypothesis",
+      "summary": "高さ約1,760〜1,800mm前後 × 幅約880〜900mm前後（地域・住宅で差がある）という目安。未確認。",
+      "data": {
+        "height_mm_range": [
+          1760,
+          1800
+        ],
+        "width_mm_range": [
+          880,
+          900
+        ]
+      },
+      "evidence": [],
+      "owner": "保護者＋職人さん",
+      "next_action": "協力してくれている表具師さんと、国内建具メーカーのカタログで確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "spec-us-door-height",
+      "area": "specs",
+      "title": "米国の室内ドアの標準的な高さ",
+      "status": "hypothesis",
+      "summary": "80インチ（約2,030mm）が多いという仮説。天井高は8〜9フィートが多いという仮説。",
+      "data": {
+        "door_height_in": 80
+      },
+      "evidence": [],
+      "owner": "保護者",
+      "next_action": "米国の建材メーカー2社以上の仕様書で確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "spec-first-format",
+      "area": "specs",
+      "title": "最初の製品は「アートパネル」か「フレームキット」",
+      "status": "hypothesis",
+      "summary": "H2-2。工事がいらず、配送しやすい形から始める。",
+      "evidence": [],
+      "owner": "せな",
+      "next_action": "LPの回答とインタビューで、A（アートパネル）とC（フレームキット）のどちらに関心が集まるかを見る",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}

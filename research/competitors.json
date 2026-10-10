@@ -1,0 +1,65 @@
+{
+  "area": "competitors",
+  "items": [
+    {
+      "id": "comp-hosoo",
+      "area": "competitors",
+      "title": "HOSOO（西陣織）の海外展開",
+      "status": "hypothesis",
+      "summary": "伝統技術をインテリア素材に変えた先進事例として調べる。中身はまだ未調査。",
+      "evidence": [],
+      "owner": "せな",
+      "next_action": "公式サイトで、商品・取引先の種類・発信のしかたを確かめ、プロファイル項目を埋める",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "comp-fusuma-paris",
+      "area": "competitors",
+      "title": "全国襖工業会のパリでの襖展",
+      "status": "investigating",
+      "summary": "パリ日本文化会館で襖展「Fusuma ～アートとクラフトの交差点～」が開かれた（2025年2月4日〜15日）と検索結果に出た。ふすま業界の海外挑戦の先例。",
+      "evidence": [
+        {
+          "url": "https://harimasangyou-news.com/",
+          "source": "ハリマ産業 ニュースサイト",
+          "checked_at": "2026-10-10",
+          "primary": false,
+          "note": "kerokero AI社員の調査（検索結果で確認・本文は開けず）。転記元：報告/2026-10-10_ふすまリサーチ.md"
+        }
+      ],
+      "owner": "ニュースくん",
+      "next_action": "主催者の公式ページで、日付・展示内容・反応を確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "comp-japan-house-london",
+      "area": "competitors",
+      "title": "Japan House London（日本文化の発信拠点）",
+      "status": "investigating",
+      "summary": "日本の工芸品を展示・販売したことがある、ロンドンの日本文化の発信拠点。紹介先の候補でもある。",
+      "evidence": [
+        {
+          "url": "https://japanhouse.jp/en/what/london.html",
+          "source": "Japan House",
+          "checked_at": "2026-10-10",
+          "primary": false,
+          "note": "kerokero AI社員の調査（検索結果で確認・本文は開けず）。転記元：営業/2026-10-10_営業メモ.md"
+        }
+      ],
+      "owner": "ケロ吉",
+      "next_action": "公式サイトで、いまの展示と問い合わせ先を確かめる（連絡は大人と）",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "comp-overseas-shoji",
+      "area": "competitors",
+      "title": "海外の障子・和風間仕切りメーカー（直接の競合）",
+      "status": "hypothesis",
+      "summary": "米国・欧州で shoji / Japanese room divider を作っている会社の価格・サイズ・素材・売り方。",
+      "evidence": [],
+      "owner": "せな",
+      "next_action": "Etsy・Amazon・専門店で3社以上を選び、プロファイル項目を埋める",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "area": "trends",
+  "items": [
+    {
+      "id": "trend-japandi",
+      "area": "trends",
+      "title": "Japandi（和モダン×北欧）への関心は海外で続いている",
+      "status": "hypothesis",
+      "summary": "H1-1。#Japandi / #Japanandi / #ShojiScreen などの投稿・検索の量と、投稿している人の種類を確かめる。",
+      "evidence": [],
+      "owner": "せな＋保護者",
+      "next_action": "Google Trends で “japandi” “shoji screen” “fusuma” を国別に比較し、画面のスクリーンショットと確認日を残す",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "trend-art-over-door",
+      "area": "trends",
+      "title": "欲しいのは「建具」より「飾れて動かせるアート」",
+      "status": "hypothesis",
+      "summary": "H1-2。壁面パネル・間仕切りのほうが、本物の引き戸より需要が大きいという仮説。",
+      "evidence": [],
+      "owner": "せな",
+      "next_action": "LPの「いちばん興味のある形」の回答と、デザイナー5〜10人へのインタビューで確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "trend-washi-light-overseas",
+      "area": "trends",
+      "title": "海外の人も、大きな和紙・筆の体験を楽しんでいる",
+      "status": "investigating",
+      "summary": "在日米陸軍キャンプ座間で、約2m×4mの和紙に大きな筆で書く体験イベントが開かれたと報じられた（2026-10-05）。和紙の大きな面の魅力が伝わる例。",
+      "evidence": [
+        {
+          "url": "https://www.army.mil/article/295940/bold_ink_big_paper_camp_zama_residents_embrace_grand_scale_japanese_calligraphy",
+          "source": "U.S. Army（army.mil）",
+          "checked_at": "2026-10-10",
+          "primary": false,
+          "note": "kerokero AI社員の調査（検索結果で確認・本文は開けず）。転記元：報告/2026-10-10_ふすまリサーチ.md"
+        }
+      ],
+      "owner": "ニュースくん",
+      "next_action": "army.mil の記事本文を開いて、内容と日付を確かめる",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}

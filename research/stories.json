@@ -1,0 +1,61 @@
+{
+  "area": "stories",
+  "items": [
+    {
+      "id": "story-a-light",
+      "area": "stories",
+      "title": "A. Light & Shadow — Paper that holds the light.",
+      "status": "hypothesis",
+      "summary": "H5-1。光と影を前面に出すメッセージ。LPのヒーローで使用中。",
+      "data": {
+        "en": "Paper that holds the light.",
+        "ja": "光を抱く、紙。"
+      },
+      "evidence": [],
+      "owner": "せな＋ケリー",
+      "next_action": "LP公開後、登録率を他の案と比べる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "story-b-transition",
+      "area": "stories",
+      "title": "B. Transition — Art that moves. Space that changes.",
+      "status": "hypothesis",
+      "summary": "空間を切り替える体験を前面に出すメッセージ。",
+      "data": {
+        "en": "Art that moves. Space that changes.",
+        "ja": "動くアート。変わる空間。"
+      },
+      "evidence": [],
+      "owner": "せな＋ケリー",
+      "next_action": "ヒーローの見出しを入れ替えるテストの候補にする",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "story-c-hands",
+      "area": "stories",
+      "title": "C. Hands & Future — Made by hands. Kept alive by you.",
+      "status": "hypothesis",
+      "summary": "手仕事と、技を未来へつなぐことを前面に出すメッセージ。職人さんの許可が取れてから使う。",
+      "data": {
+        "en": "Made by hands. Kept alive by you.",
+        "ja": "手でつくり、あなたとつなぐ。"
+      },
+      "evidence": [],
+      "owner": "せな＋ケリー",
+      "next_action": "職人さんの紹介の許可が取れたら、Craft セクションで試す",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "story-name-son",
+      "area": "stories",
+      "title": "SŌN の意味（Spirit / Origin / New）は海外の人に伝わるか",
+      "status": "hypothesis",
+      "summary": "ブランド名の意味を LP の「The name」セクションで紹介中。伝わり方・覚えやすさを確かめる。",
+      "evidence": [],
+      "owner": "せな",
+      "next_action": "インタビューで、名前から何を想像するかを聞く",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}

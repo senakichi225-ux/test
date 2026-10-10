@@ -1,0 +1,38 @@
+{
+  "area": "logistics",
+  "items": [
+    {
+      "id": "logi-ems-limits",
+      "area": "logistics",
+      "title": "1枚もの（約1.8m）は EMS のサイズ上限を超えるかもしれない",
+      "status": "hypothesis",
+      "summary": "H2-3。国際小包の長さ・長さ＋胴回りの上限を確かめ、分割・組み立て式が必要かを判断する。",
+      "evidence": [],
+      "owner": "保護者",
+      "next_action": "日本郵便の公式ページで、主な配送先の国のEMSのサイズ・重さの上限を確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "logi-courier-limits",
+      "area": "logistics",
+      "title": "FedEx／DHL の国際便の上限と容積重量",
+      "status": "hypothesis",
+      "summary": "大きく軽い荷物は「容積重量」で料金が決まるため、梱包サイズが送料を大きく左右するという仮説。",
+      "evidence": [],
+      "owner": "保護者",
+      "next_action": "FedEx・DHL の公式ページで、最大サイズ・重さ・容積重量の計算式を確かめる",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "logi-light-core",
+      "area": "logistics",
+      "title": "軽い芯材と角の保護で、壊さず軽く送れる",
+      "status": "hypothesis",
+      "summary": "H2-4。芯材・梱包材を3パターン比べる。",
+      "evidence": [],
+      "owner": "保護者＋職人さん",
+      "next_action": "試作サイズで、梱包後の重さと送料の見積もりを取る",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}

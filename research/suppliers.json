@@ -1,0 +1,46 @@
+{
+  "area": "suppliers",
+  "items": [
+    {
+      "id": "sup-current-artisan",
+      "area": "suppliers",
+      "title": "協力してくれている表具師さんとの連携",
+      "status": "investigating",
+      "summary": "H4-1・H4-2。小ロットの特注・試作に協力してもらえるか、無理のない分担を相談する。",
+      "evidence": [],
+      "owner": "せな＋保護者",
+      "next_action": "ケロ子（人事）が作る質問のたたき台をもとに、大人と一緒に相談する",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "sup-tokyo-shokunin-ten",
+      "area": "suppliers",
+      "title": "TOKYO職人展（若手職人の後継者育成）",
+      "status": "investigating",
+      "summary": "東京都が第14回 TOKYO職人展（2026年11月6日〜19日、伝統工芸青山スクエア）の開催を発表したと検索結果に出た。若手職人の育て方を学ぶ機会。",
+      "evidence": [
+        {
+          "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100912",
+          "source": "東京都 報道発表",
+          "checked_at": "2026-10-10",
+          "primary": false,
+          "note": "kerokero AI社員の調査（検索結果で確認・本文は開けず）。転記元：報告/2026-10-10_ふすまリサーチ.md"
+        }
+      ],
+      "owner": "ニュースくん",
+      "next_action": "東京都の発表ページを開いて内容を確かめ、大人と一緒に見学を検討する",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "id": "sup-washi-regions",
+      "area": "suppliers",
+      "title": "和紙の産地との連携",
+      "status": "hypothesis",
+      "summary": "越前・美濃・土佐などの和紙産地と、ふすま紙の調達・共同制作ができるか。",
+      "evidence": [],
+      "owner": "保護者",
+      "next_action": "産地の組合・工房の公式情報を調べ、候補を3つにしぼる",
+      "updated_at": "2026-10-10"
+    }
+  ]
+}
