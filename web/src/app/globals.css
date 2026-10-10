@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+ * SŌN デザイントークン（CLAUDE.md §5）
+ * Tailwind v4 では tailwind.config ではなく、ここ（@theme）にトークンを定義する。
+ * 例：bg-washi / text-sumi / border-kin / font-serif
+ */
+@theme {
+  --color-washi: #f6f2ea;
+  --color-washi-deep: #ece5d8;
+  --color-sumi: #1f1d1a;
+  --color-usuzumi: #6b6560;
+  --color-ai: #27405e;
+  --color-kin: #b08d45;
+  --color-shu: #b5482f;
+  --color-fuchi: #2b241e; /* ふすまの縁（ふち）の色 */
+
+  --tracking-brand: 0.32em;
+
+  --animate-fusuma-open: fusuma-open 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s both;
+  --animate-fade-up: fade-up 1.2s ease-out both;
+  --animate-light: light-breathe 9s ease-in-out infinite;
+
+  @keyframes fusuma-open {
+    from { transform: translateX(0); }
+    to { transform: translateX(-62%); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes light-breathe {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+  }
+}
+
+/* フォントは layout.tsx の next/font が CSS 変数を用意する */
+@theme inline {
+  --font-serif: var(--font-cormorant), var(--font-shippori), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: var(--font-inter), var(--font-noto-jp), "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-washi);
+  color: var(--color-sumi);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-kin) 30%, transparent);
+}
+
+/* 和紙の繊維感（SVG ノイズ）。画像ファイルを使わず CSS だけで表現する */
+@utility washi-texture {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.37  0 0 0 0 0.31  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.08' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
+}
+
+/* 細い金の罫線 */
+@utility kin-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-kin) 20%, var(--color-kin) 80%, transparent);
+}
+
+/* 動きを減らす設定の人には、アニメーションを止める（CLAUDE.md §4-5） */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

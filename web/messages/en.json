@@ -1,0 +1,246 @@
+{
+  "meta": {
+    "title": "SŌN — Fusuma Art from Japan",
+    "description": "SŌN brings fusuma — Japanese sliding panels of paper and wood — to spaces around the world, as art that changes a room. Join the waitlist."
+  },
+  "nav": {
+    "about": "Fusuma",
+    "gallery": "Gallery",
+    "craft": "Craft",
+    "designers": "For designers",
+    "waitlist": "Join the waitlist",
+    "language": "Language",
+    "skip": "Skip to content"
+  },
+  "hero": {
+    "eyebrow": "Fusuma Art from Japan",
+    "title": "Paper that holds the light.",
+    "lead": "SŌN brings fusuma — Japanese sliding panels of paper and wood — to homes, studios and hotels around the world, as art that changes a room.",
+    "cta": "Join the waitlist",
+    "secondary": "What is fusuma?",
+    "visualAlt": "Illustration of two fusuma panels sliding open to let soft light through."
+  },
+  "name": {
+    "eyebrow": "The name",
+    "title": "What SŌN stands for",
+    "letters": [
+      {
+        "letter": "S",
+        "word": "Spirit",
+        "body": "The tradition of Japan, the care of the artisans, and the soul we put into every piece."
+      },
+      {
+        "letter": "Ō",
+        "word": "Origin",
+        "body": "A culture born in Japan, and a return to the origin of fusuma art."
+      },
+      {
+        "letter": "N",
+        "word": "New",
+        "body": "Not only preserving tradition, but carrying it forward as a new form of art."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "What is fusuma?",
+    "title": "A wall that moves. A surface that glows.",
+    "body": "Fusuma are Japanese sliding panels made of layers of paper on a light wooden frame. For centuries they have shaped how light and space move through a Japanese home — closing to create a quiet room, opening to join two spaces into one.",
+    "points": [
+      {
+        "title": "Light & shadow",
+        "body": "Washi paper softens the light. The day moves across its surface, and shadow becomes part of the room."
+      },
+      {
+        "title": "Transition",
+        "body": "Slide it open, and two rooms become one. Slide it closed, and a quiet place appears."
+      },
+      {
+        "title": "A canvas",
+        "body": "The surface of a fusuma has long been a canvas — for paper, pattern and painting."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "Directions we are exploring",
+    "note": "The images on this page are illustrations. Photographs of real works will be added once permissions are confirmed.",
+    "items": [
+      {
+        "title": "Morning light",
+        "caption": "Plain washi that changes with the hour."
+      },
+      {
+        "title": "Hikite",
+        "caption": "The recessed pull — a small detail you touch every day."
+      },
+      {
+        "title": "Ink",
+        "caption": "Brushwork on paper, made to be lived with."
+      },
+      {
+        "title": "Pattern",
+        "caption": "Printed paper patterns, quiet and repeating."
+      }
+    ]
+  },
+  "craft": {
+    "eyebrow": "Craft",
+    "title": "Made by many hands",
+    "lead": "A fusuma brings several crafts together in one panel.",
+    "steps": [
+      {
+        "title": "Frame",
+        "body": "A light wooden lattice forms the core of the panel."
+      },
+      {
+        "title": "Layers",
+        "body": "Layers of paper are pasted onto the lattice by a paper-mounting artisan, or hyōgu-shi."
+      },
+      {
+        "title": "Surface",
+        "body": "The final washi — or an artwork — is applied as the face of the panel."
+      },
+      {
+        "title": "Edge & pull",
+        "body": "A wooden edge frames the panel, and the hikite, the recessed pull, is set in place."
+      }
+    ],
+    "note": "We are working with artisans in Japan. Their names and stories will be shared here with their permission."
+  },
+  "designers": {
+    "eyebrow": "For designers & architects",
+    "title": "Fusuma, made for spaces beyond Japan",
+    "lead": "We are researching formats that fit ceiling heights, openings and shipping outside Japan.",
+    "badge": "In research",
+    "items": [
+      {
+        "title": "Art panels",
+        "body": "Wall-mounted panels. No installation work."
+      },
+      {
+        "title": "Folding screens",
+        "body": "Free-standing dividers for rooms and hotel suites."
+      },
+      {
+        "title": "Frame kits",
+        "body": "Assembled on site, with paper you can replace."
+      },
+      {
+        "title": "Sliding systems",
+        "body": "Fusuma for existing openings."
+      }
+    ]
+  },
+  "waitlist": {
+    "eyebrow": "Waitlist",
+    "title": "Join the waitlist",
+    "lead": "Be the first to hear about our first collection and resources for designers.",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "role": "I am a…",
+    "roleOptions": {
+      "designer": "Interior designer",
+      "architect": "Architect",
+      "homeowner": "Homeowner",
+      "hotel": "Hotel / hospitality",
+      "other": "Other"
+    },
+    "rolePlaceholder": "Select one",
+    "country": "Country",
+    "countryPlaceholder": "e.g. United States",
+    "interest": "Which would you be most interested in?",
+    "interestOptions": {
+      "panel": "Art panels",
+      "screen": "Folding screens",
+      "kit": "Frame kits",
+      "sliding": "Sliding systems",
+      "unsure": "Not sure yet"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your space or project (optional)",
+    "optional": "optional",
+    "consentBefore": "I agree to receive emails about SŌN and accept the ",
+    "consentLink": "privacy policy",
+    "consentAfter": ".",
+    "submit": "Join the waitlist",
+    "submitting": "Sending…",
+    "success": "Thank you. You are on the list.",
+    "updated": "You were already on the list — we have updated your details.",
+    "errors": {
+      "email": "Please enter a valid email address.",
+      "role": "Please choose one.",
+      "country": "Please keep this under 80 characters.",
+      "interest": "Please choose one of the options.",
+      "message": "Please keep your message under 1,000 characters.",
+      "consent": "Please agree to the privacy policy to continue.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "footer": {
+    "operated": "SŌN is a project by kerokero.",
+    "privacy": "Privacy policy",
+    "contact": "Contact: [TBD]",
+    "rights": "All rights reserved."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "draft": "Draft — this policy will be reviewed before the site is published.",
+    "updated": "Last updated: [TBD]",
+    "sections": [
+      {
+        "title": "Who we are",
+        "body": "SŌN is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]."
+      },
+      {
+        "title": "What we collect",
+        "body": "When you join the waitlist, we collect your email address, your role, and — if you choose to give them — your country, the format you are interested in, and your message. We also record the language of the page and the time you agreed to this policy."
+      },
+      {
+        "title": "Why we use it",
+        "body": "Only to send you news about SŌN and our first collection, and to understand which formats people are interested in. We do not sell or share your data."
+      },
+      {
+        "title": "Where it is stored",
+        "body": "Your data is stored on a computer managed by the operator. It is not sent to any third-party service."
+      },
+      {
+        "title": "Your choices",
+        "body": "You can ask us at any time to see, correct or delete your data, or to stop sending you emails, by contacting [TBD]."
+      }
+    ],
+    "back": "Back to SŌN"
+  },
+  "research": {
+    "title": "Research dashboard",
+    "lead": "Hypotheses and evidence for SŌN. Internal use only.",
+    "private": "Private page — not indexed.",
+    "total": "Total",
+    "areas": {
+      "trends": "Overseas demand",
+      "specs": "Product specs",
+      "logistics": "Logistics",
+      "competitors": "Competitors & cases",
+      "suppliers": "Supply chain",
+      "stories": "Storytelling"
+    },
+    "statuses": {
+      "hypothesis": "Hypothesis",
+      "investigating": "Investigating",
+      "verified": "Verified",
+      "rejected": "Rejected"
+    },
+    "evidence": "Evidence",
+    "noEvidence": "No evidence yet",
+    "checked": "checked",
+    "nextAction": "Next",
+    "owner": "Owner",
+    "updated": "Updated",
+    "empty": "No items yet.",
+    "loadError": "Some research files could not be read:",
+    "dataSource": "Data: research/*.json in the repository"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to SŌN"
+  }
+}
