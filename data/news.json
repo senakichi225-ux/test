@@ -1,15 +1,34 @@
 {
   "company": "kerokero",
-  "updated_at": "2026-10-10T16:06:00+09:00",
+  "updated_at": "2026-10-10T16:37:00+09:00",
   "days": [
     {
       "date": "2026-10-10",
-      "status": "no_news",
-      "checked_at": "2026-10-10T16:06:00+09:00",
-      "count": 0,
-      "speech": "せな社長、今日は新しいニュースはなかったです！",
+      "status": "reported",
+      "checked_at": "2026-10-10T16:37:00+09:00",
+      "count": 2,
+      "speech": "せな社長！今日は2件です！",
       "report_file": "報告/2026-10-10_ふすまリサーチ.md",
-      "items": []
+      "items": [
+        {
+          "no": 1,
+          "headline": "東京都が「第14回 TOKYO職人展」開催を発表",
+          "category": "伝統工芸・職人",
+          "published": "2026-10-09",
+          "source": "東京都（報道発表）",
+          "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026100912",
+          "check": "検索結果で確認（本文は開けず）"
+        },
+        {
+          "no": 2,
+          "headline": "米軍キャンプ座間で巨大和紙に書道体験",
+          "category": "海外・和風インテリア",
+          "published": "2026-10-05",
+          "source": "U.S. Army（army.mil）",
+          "url": "https://www.army.mil/article/295940/bold_ink_big_paper_camp_zama_residents_embrace_grand_scale_japanese_calligraphy",
+          "check": "検索結果で確認（本文は開けず）"
+        }
+      ]
     }
   ]
 }
