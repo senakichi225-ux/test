@@ -1,0 +1,76 @@
+{
+  "works": [
+    {
+      "slug": "ichi",
+      "series": "ICHI",
+      "workNo": null,
+      "title": { "en": "ICHI — One", "ja": "ICHI（一）" },
+      "kind": "unique",
+      "editionSize": null,
+      "panels": 1,
+      "year": null,
+      "status": "concept",
+      "medium": {
+        "en": "Sumi ink on washi; fusuma construction (wooden lattice, layered paper), wooden edge",
+        "ja": "和紙に墨、襖の構造（木の骨・下張り）、木の縁"
+      },
+      "size": { "w": 60, "h": 90, "d": 2 },
+      "summary": { "en": "One character. The rest is space.", "ja": "一文字と、大きな余白。" },
+      "description": {
+        "en": "A single brush character placed low on a deep field of white. The panel is built the way a fusuma is built — a wooden lattice, layers of paper, a wooden edge — so the frame is part of the work, not around it.",
+        "ja": "白い面の低い位置に、筆の一文字だけを置きます。襖と同じく、木の骨・何層もの紙・木の縁でつくるため、縁は作品を囲む額ではなく、作品の一部になります。"
+      },
+      "illustration": "ichi",
+      "images": [],
+      "priceJpy": null
+    },
+    {
+      "slug": "tsui",
+      "series": "TSUI",
+      "workNo": null,
+      "title": { "en": "TSUI — Pair", "ja": "TSUI（対）" },
+      "kind": "unique",
+      "editionSize": null,
+      "panels": 2,
+      "year": null,
+      "status": "concept",
+      "medium": {
+        "en": "Sumi ink on washi; fusuma construction, wooden edge, hikite (recessed pull); diptych",
+        "ja": "和紙に墨、襖の構造、木の縁、引手。2枚組"
+      },
+      "size": { "w": 45, "h": 90, "d": 2 },
+      "summary": { "en": "Two panels. One breath.", "ja": "二枚の襖に、ひと筆の流れ。" },
+      "description": {
+        "en": "Fusuma are made in pairs. TSUI follows that rule: one brushstroke runs across two panels, and the space you leave between them on the wall becomes part of the composition.",
+        "ja": "襖は2枚1組で使われます。TSUI はその決まりにならい、ひと筆の流れが2枚にまたがります。壁に掛けたときの2枚のすき間も、構図の一部になります。"
+      },
+      "illustration": "tsui",
+      "images": [],
+      "priceJpy": null
+    },
+    {
+      "slug": "ma",
+      "series": "MA",
+      "workNo": null,
+      "title": { "en": "MA — Interval", "ja": "MA（間）" },
+      "kind": "edition",
+      "editionSize": 30,
+      "panels": 1,
+      "year": null,
+      "status": "concept",
+      "medium": {
+        "en": "Printed paper pattern, sumi ink finished by hand, hikite (recessed pull), wooden edge",
+        "ja": "文様紙、手で仕上げる墨、引手、木の縁"
+      },
+      "size": { "w": 30, "h": 30, "d": 2 },
+      "summary": { "en": "A small door to a quiet room.", "ja": "静かな部屋への、小さな入口。" },
+      "description": {
+        "en": "The hikite — the recessed pull you touch every day — becomes the centre of a small square work. Each piece in the edition shares one pattern and receives its own brushstroke by hand, so no two are exactly alike.",
+        "ja": "毎日ふれる小さなくぼみ「引手」を主役にした小品です。同じ文様の上に1点ずつ手で墨の一筆を加えるため、同じエディションでも一つとして同じものはありません。"
+      },
+      "illustration": "ma",
+      "images": [],
+      "priceJpy": null
+    }
+  ]
+}

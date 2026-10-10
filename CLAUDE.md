@@ -118,18 +118,22 @@ npm run check      # lint＋typecheck＋test をまとめて
 ### 3-2. 主なファイル（`web/`）
 | ファイル | 役割 |
 |---|---|
-| `src/app/[locale]/page.tsx` | LP（Hero／名前の意味／襖とは／ギャラリー／職人の技／デザイナー向け／登録フォーム） |
-| `src/app/[locale]/privacy/page.tsx` | プライバシーポリシー（**下書き。公開前に要確認**） |
+| `src/app/[locale]/page.tsx` | Home（Beyond the Frame.／使命／最初のコレクション／襖の構造／名前／ウェイティングリスト） |
+| `src/app/[locale]/works/` | 作品一覧と作品ページ（`[slug]`）。美術館のキャプション形式 |
+| `src/app/[locale]/story/`・`commissions/`・`contact/`・`shipping-care/`・`privacy/` | ストーリー／特注（襖アートドア・将来）／問い合わせ／発送とお手入れ（下書き）／プライバシー（下書き） |
 | `src/app/[locale]/research/page.tsx` | リサーチ管理画面（noindex。本番は Basic 認証必須） |
-| `src/app/[locale]/actions.ts` | 登録の Server Action（検証・ボット対策・保存） |
-| `src/lib/waitlist/` | 入力の検証（zod）と保存先（ローカルJSON、同じメールは上書き） |
+| `src/app/[locale]/actions.ts` | Server Action：ウェイティングリスト登録・問い合わせ（検証・ボット対策・保存） |
+| `src/app/global-not-found.tsx` | どのルートにも当たらない URL の 404（英日併記）。`experimental.globalNotFound` |
+| `content/works.json` | **作品データ**（`src/lib/works/schema.ts` で検証）。構想・試作中は価格を入れられない。作品番号は作品台帳と同じ |
+| `src/lib/waitlist/`・`src/lib/inquiry/` | 入力の検証（zod）と保存先（ローカルJSON。`src/lib/jsonFile.ts` で安全に書き込む） |
 | `src/lib/research/` | `research/*.json` のスキーマと読み込み |
-| `src/components/FusumaPanel.tsx` | 写真の代わりの襖イラスト（CSSのみ）。許可済みの写真ができたら差し替える |
-| `src/proxy.ts` | 言語の振り分け、リサーチ画面の保護 |
+| `src/components/ArtworkIllustration.tsx` | 写真の代わりの作品イラスト（CSS・SVGのみ）。**必ず「Illustration」と明記して使う** |
+| `src/components/WorkCaption.tsx` | 作品キャプション（寸法の cm/inch 変換、種類、価格表示のルール） |
+| `src/proxy.ts` | 言語の振り分け、存在しない作品 URL を 404 に、リサーチ画面の保護 |
 | `messages/en.json`・`messages/ja.json` | すべての文言（**両方に同じ項目が必要**。テストで確認） |
 
-### 3-3. ウェイティングリストの登録データ
-- 保存先：`web/.data/waitlist.json`（環境変数 `WAITLIST_FILE` で変更可）。**個人情報なので Git にコミットしない（.gitignore 済み）。**
+### 3-3. ウェイティングリスト・問い合わせのデータ
+- 保存先：`web/.data/waitlist.json`・`web/.data/inquiries.json`（環境変数 `WAITLIST_FILE`・`INQUIRY_FILE` で変更可）。**個人情報なので Git にコミットしない（.gitignore 済み）。**
 - 同じメールアドレスで再登録すると、重複させずに内容を更新する。
 - ファイルに書き込むしくみなので、**`next start` を動かすパソコン（またはファイルが残るサーバー）でだけ使える。** サーバーレスのホスティングに出すときは、保存先を差し替える（§7。保護者の判断）。
 
@@ -185,23 +189,20 @@ npm run check      # lint＋typecheck＋test をまとめて
 
 ---
 
-## 6. 主要機能（初期スコープ）
+## 6. 主要機能（いまのスコープ）
 
-### A. ブランドLP（`web/src/app/[locale]/page.tsx`）
-1. Hero（ふすまのビジュアル＋1行のメッセージ）
-2. What is Fusuma（光と影・空間を切り替えるアート）
-3. Gallery（作品と職人技のストーリー）
-4. Craft / Makers（工程と職人。許可が取れるまでは匿名・手元のみ）
-5. For Designers（海外向けモジュール規格の予告）
-6. **Waitlist フォーム**（メール、役割：Designer / Architect / Homeowner / Hotel / Other、国、任意メッセージ、同意チェック）
-7. Footer（プライバシーポリシー、問い合わせ）
+サイト構成とデザインの詳細は [`docs/website_plan.md`](docs/website_plan.md)。
+
+### A. 公式サイト（`web/`、日本語・英語）
+- **Home・Works・作品ページ・Story・Commissions・Contact・Shipping & Care・Privacy**
+- 作品はいま**すべて「構想中」**（ICHI／TSUI／MA）。写真がないので CSS のイラストを「Illustration」と明記して表示。**価格は出さない**（仮説のため）
+- 作品を追加するときは `content/works.json` に1件足す（作品番号・状態・寸法・素材・説明を日英で）。写真は権利の許可が取れたものだけ `public/` に置き、`images` に登録する
+- 売り方は「問い合わせで販売」から始める。**決済・特定商取引法の表記・返品条件の確定は、販売を始める前に保護者と決める**（フェーズ4）
+- ウェイティングリスト（Home）と問い合わせ（Contact。作品ページ・特注ページから種類や作品を選んだ状態で開く）
 
 ### B. リサーチ管理画面（`web/src/app/[locale]/research/`）
-- `research/*.json` を読み込み、観点ごと（トレンド／規格・物流／競合／供給網／ストーリー）に一覧・状態（仮説／検証中／確認済み）を表示する。
-- **非公開**：`noindex`、本番では Basic 認証などで保護する。
-- 初期は「読むだけ」。編集はJSONを直接更新（PRで履歴を残す）。
-
----
+- `research/*.json` を読み込み、観点ごとに一覧・状態（仮説／調査中／確認済み）を表示する。
+- **非公開**：`noindex`、本番では Basic 認証（`RESEARCH_BASIC_AUTH`）がないと 404。
 
 ## 7. 法務・プライバシー・運営（必ず守る）
 

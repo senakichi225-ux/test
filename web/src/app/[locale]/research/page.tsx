@@ -20,13 +20,13 @@ async function getResearch() {
 
 const statusStyle: Record<ResearchStatus, string> = {
   hypothesis: "bg-usuzumi/15 text-usuzumi",
-  investigating: "bg-ai/10 text-ai",
+  investigating: "bg-[#3d5a80]/12 text-[#3d5a80]",
   verified: "bg-[#3f6a3a]/12 text-[#3f6a3a]",
   rejected: "bg-shu/10 text-shu",
 };
 const barStyle: Record<ResearchStatus, string> = {
   hypothesis: "bg-usuzumi/40",
-  investigating: "bg-ai",
+  investigating: "bg-[#3d5a80]",
   verified: "bg-[#3f6a3a]",
   rejected: "bg-shu",
 };
@@ -80,7 +80,7 @@ export default async function ResearchPage() {
         {researchAreas.map((a) => {
           const items = data.byArea[a];
           return (
-            <a key={a} href={`#${a}`} className="grid grid-cols-[10rem_1fr_2rem] items-center gap-4 text-sm hover:text-ai sm:grid-cols-[14rem_1fr_2rem]">
+            <a key={a} href={`#${a}`} className="grid grid-cols-[10rem_1fr_2rem] items-center gap-4 text-sm hover:text-sumi sm:grid-cols-[14rem_1fr_2rem]">
               <span className="truncate">{t.areas[a]}</span>
               <span className="flex h-2.5 overflow-hidden bg-sumi/5" aria-hidden>
                 {researchStatuses.map((s) => (
@@ -118,7 +118,7 @@ export default async function ResearchPage() {
                       <ul className="mt-1 space-y-1">
                         {item.evidence.map((e) => (
                           <li key={e.url} className="break-all">
-                            <a href={e.url} target="_blank" rel="noopener noreferrer" className="text-ai underline underline-offset-2">
+                            <a href={e.url} target="_blank" rel="noopener noreferrer" className="text-sumi underline underline-offset-2">
                               {e.source}
                             </a>{" "}
                             <span className={`ml-1 px-1.5 text-[11px] ${e.primary ? "bg-[#3f6a3a]/12 text-[#3f6a3a]" : "bg-usuzumi/10 text-usuzumi"}`}>

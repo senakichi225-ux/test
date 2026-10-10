@@ -3,42 +3,38 @@
 /*
  * SŌN デザイントークン（CLAUDE.md §5）
  * Tailwind v4 では tailwind.config ではなく、ここ（@theme）にトークンを定義する。
- * 例：bg-washi / text-sumi / border-kin / font-serif
+ * 例：bg-washi / text-sumi / border-line / font-serif
  */
 @theme {
-  --color-washi: #f6f2ea;
-  --color-washi-deep: #ece5d8;
-  --color-sumi: #1f1d1a;
-  --color-usuzumi: #6b6560;
-  --color-ai: #27405e;
-  --color-kin: #b08d45;
-  --color-shu: #b5482f;
-  --color-fuchi: #2b241e; /* ふすまの縁（ふち）の色 */
+  --color-sumi: #161513;       /* 墨黒 */
+  --color-washi: #f3efe6;      /* 和紙アイボリー */
+  --color-washi-deep: #e8e2d5; /* 作品の台座・セクションの切り替え */
+  --color-usuzumi: #6e6962;    /* 薄墨：補足の文字 */
+  --color-nezumi: #a8a39a;     /* 鼠色：ラベル・罫線 */
+  --color-line: #d9d3c7;       /* 細い罫線 */
+  --color-shu: #a8432e;        /* エラー表示だけに使う */
 
-  --tracking-brand: 0.32em;
+  --tracking-brand: 0.34em;
+  --tracking-label: 0.22em;
 
-  --animate-fusuma-open: fusuma-open 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s both;
-  --animate-fade-up: fade-up 1.2s ease-out both;
-  --animate-light: light-breathe 9s ease-in-out infinite;
+  --animate-fade-up: fade-up 1.4s ease-out both;
+  --animate-light-sweep: light-sweep 3.2s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
 
-  @keyframes fusuma-open {
-    from { transform: translateX(0); }
-    to { transform: translateX(-62%); }
-  }
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0.001; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes light-breathe {
-    0%, 100% { opacity: 0.85; }
-    50% { opacity: 1; }
+  /* 作品の面を、横から光が差していく（1回だけ） */
+  @keyframes light-sweep {
+    from { transform: translateX(-60%); opacity: 0.9; }
+    to { transform: translateX(60%); opacity: 0.35; }
   }
 }
 
 /* フォントは layout.tsx の next/font が CSS 変数を用意する */
 @theme inline {
-  --font-serif: var(--font-cormorant), var(--font-shippori), "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --font-sans: var(--font-inter), var(--font-noto-jp), "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), var(--font-zen-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: var(--font-hanken), var(--font-zen-gothic), "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
 }
 
 html {
@@ -53,7 +49,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-kin) 30%, transparent);
+  background: color-mix(in srgb, var(--color-nezumi) 40%, transparent);
 }
 
 /* 和紙の繊維感（SVG ノイズ）。画像ファイルを使わず CSS だけで表現する */
@@ -63,10 +59,12 @@ body {
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.08' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.5  0 0 0 0 0.42  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>");
 }
 
-/* 細い金の罫線 */
-@utility kin-rule {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-kin) 20%, var(--color-kin) 80%, transparent);
+/* キャプション・ラベル（美術館の壁のラベルのような小さな大文字） */
+@utility label {
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-usuzumi);
 }
 
 /* 動きを減らす設定の人には、アニメーションを止める（CLAUDE.md §4-5） */

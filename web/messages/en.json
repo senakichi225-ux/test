@@ -1,163 +1,251 @@
 {
   "meta": {
-    "title": "SŌN — Fusuma Art from Japan",
-    "description": "SŌN brings fusuma — Japanese sliding panels of paper and wood — to spaces around the world, as art that changes a room. Join the waitlist."
+    "title": "SŌN — Beyond the Frame.",
+    "description": "SŌN is a fusuma art brand from Japan. Works built the way a fusuma is built — wooden lattice, layered paper, a wooden edge — and finished with sumi ink."
   },
   "nav": {
-    "about": "Fusuma",
-    "gallery": "Gallery",
-    "craft": "Craft",
-    "designers": "For designers",
-    "waitlist": "Join the waitlist",
+    "works": "Works",
+    "story": "Story",
+    "commissions": "Commissions",
+    "contact": "Contact",
     "language": "Language",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "main": "Main"
   },
-  "hero": {
-    "eyebrow": "Fusuma Art from Japan",
-    "title": "Paper that holds the light.",
-    "lead": "SŌN brings fusuma — Japanese sliding panels of paper and wood — to homes, studios and hotels around the world, as art that changes a room.",
-    "cta": "Join the waitlist",
-    "secondary": "What is fusuma?",
-    "visualAlt": "Illustration of two fusuma panels sliding open to let soft light through."
+  "common": {
+    "illustration": "Illustration — photographs of the works will replace these drawings.",
+    "illustrationShort": "Illustration",
+    "inquire": "Inquire",
+    "inquireAbout": "Inquire about this work",
+    "priceOnRequest": "Price on request",
+    "notForSale": "Not yet available",
+    "unique": "Unique",
+    "edition": "Limited edition of {n}",
+    "diptych": "Diptych — two panels",
+    "certificate": "With certificate of authenticity",
+    "plannedSize": "Planned size",
+    "perPanel": "each panel",
+    "back": "Back",
+    "status": {
+      "concept": "In development",
+      "prototype": "Prototype",
+      "available": "Available",
+      "reserved": "Reserved",
+      "sold": "Sold"
+    }
   },
-  "name": {
-    "eyebrow": "The name",
-    "title": "What SŌN stands for",
-    "letters": [
-      {
-        "letter": "S",
-        "word": "Spirit",
-        "body": "The tradition of Japan, the care of the artisans, and the soul we put into every piece."
-      },
-      {
-        "letter": "Ō",
-        "word": "Origin",
-        "body": "A culture born in Japan, and a return to the origin of fusuma art."
-      },
-      {
-        "letter": "N",
-        "word": "New",
-        "body": "Not only preserving tradition, but carrying it forward as a new form of art."
-      }
-    ]
+  "home": {
+    "hero": {
+      "lead": "Fusuma, reimagined as contemporary art. Each work is built the way a Japanese sliding door is built — so the frame is part of the work.",
+      "cta": "See the first collection",
+      "secondary": "Join the waitlist",
+      "visualAlt": "Illustration of a SŌN work: a single sumi brushstroke low on an ivory paper panel with a dark wooden edge."
+    },
+    "statement": {
+      "label": "Mission",
+      "text": "To carry the Japanese fusuma forward — from a sliding door in a Japanese home to contemporary art recognised around the world."
+    },
+    "collection": {
+      "label": "First collection",
+      "title": "Three series, in development",
+      "lead": "The first works are being designed and prototyped now. Sizes are planned sizes.",
+      "link": "View all works"
+    },
+    "structure": {
+      "label": "Built like a fusuma",
+      "title": "The frame is not around the work. It is the work.",
+      "lead": "A framed calligraphy is paper behind glass. A SŌN work is made with the structure of a fusuma, layer by layer.",
+      "layers": [
+        { "name": "Hikite", "jp": "引手", "body": "The recessed pull. In SŌN works, a point of punctuation — or a signature." },
+        { "name": "Edge", "jp": "縁", "body": "A wooden edge chosen for each work. It frames the panel and belongs to it." },
+        { "name": "Face paper", "jp": "上張り", "body": "The final washi surface that receives the ink." },
+        { "name": "Underlayers", "jp": "下張り", "body": "Layers of paper pasted one over another, giving the surface its tension and depth." },
+        { "name": "Lattice core", "jp": "骨", "body": "A light wooden lattice at the centre of the panel." }
+      ],
+      "note": "Layer names and methods will be confirmed with the artisans we work with."
+    },
+    "name": {
+      "label": "The name",
+      "title": "SŌN",
+      "reading": "Pronounced “son”.",
+      "note": "SPIRIT, ORIGIN and NEW are a concept we created for the brand. They are not the etymology of the name.",
+      "letters": [
+        { "letter": "S", "word": "Spirit", "body": "The tradition of Japan, the care of the artisans, and the soul in every work." },
+        { "letter": "Ō", "word": "Origin", "body": "A culture born in Japan, and the origin of fusuma art." },
+        { "letter": "N", "word": "New", "body": "Not only preserving tradition, but carrying it forward as a new art." }
+      ]
+    }
   },
-  "about": {
-    "eyebrow": "What is fusuma?",
-    "title": "A wall that moves. A surface that glows.",
-    "body": "Fusuma are Japanese sliding panels made of layers of paper on a light wooden frame. For centuries they have shaped how light and space move through a Japanese home — closing to create a quiet room, opening to join two spaces into one.",
-    "points": [
-      {
-        "title": "Light & shadow",
-        "body": "Washi paper softens the light. The day moves across its surface, and shadow becomes part of the room."
-      },
-      {
-        "title": "Transition",
-        "body": "Slide it open, and two rooms become one. Slide it closed, and a quiet place appears."
-      },
-      {
-        "title": "A canvas",
-        "body": "The surface of a fusuma has long been a canvas — for paper, pattern and painting."
-      }
-    ]
+  "works": {
+    "title": "Works",
+    "lead": "The first collection is in development. Works will be added here as they are completed, each with a work number and a certificate of authenticity.",
+    "back": "All works"
   },
-  "gallery": {
-    "eyebrow": "Gallery",
-    "title": "Directions we are exploring",
-    "note": "The images on this page are illustrations. Photographs of real works will be added once permissions are confirmed.",
-    "items": [
-      {
-        "title": "Morning light",
-        "caption": "Plain washi that changes with the hour."
-      },
-      {
-        "title": "Hikite",
-        "caption": "The recessed pull — a small detail you touch every day."
-      },
-      {
-        "title": "Ink",
-        "caption": "Brushwork on paper, made to be lived with."
-      },
-      {
-        "title": "Pattern",
-        "caption": "Printed paper patterns, quiet and repeating."
-      }
-    ]
+  "work": {
+    "year": "Year",
+    "yearPlanned": "In development",
+    "medium": "Medium",
+    "size": "Dimensions",
+    "type": "Type",
+    "status": "Status",
+    "price": "Price",
+    "workNo": "Work no.",
+    "workNoPending": "Assigned when the work is completed",
+    "about": "About this work",
+    "inquireNote": "Interested in this series? Ask about the first works, or join the waitlist to hear when they are ready."
   },
-  "craft": {
-    "eyebrow": "Craft",
-    "title": "Made by many hands",
-    "lead": "A fusuma brings several crafts together in one panel.",
-    "steps": [
-      {
-        "title": "Frame",
-        "body": "A light wooden lattice forms the core of the panel."
-      },
-      {
-        "title": "Layers",
-        "body": "Layers of paper are pasted onto the lattice by a paper-mounting artisan, or hyōgu-shi."
-      },
-      {
-        "title": "Surface",
-        "body": "The final washi — or an artwork — is applied as the face of the panel."
-      },
-      {
-        "title": "Edge & pull",
-        "body": "A wooden edge frames the panel, and the hikite, the recessed pull, is set in place."
-      }
-    ],
-    "note": "We are working with artisans in Japan. Their names and stories will be shared here with their permission."
+  "story": {
+    "title": "Story",
+    "lead": "SŌN begins with the Japanese fusuma — and asks what it can become beyond the home it was made for.",
+    "mission": { "label": "Mission", "text": "To carry the Japanese fusuma forward as contemporary art recognised around the world." },
+    "concept": {
+      "label": "Concept",
+      "text": "Japanese tradition is our origin. We carry the spirit held in it to the world as a new art."
+    },
+    "beyond": {
+      "label": "Beyond the Frame.",
+      "title": "Three frames we want to move beyond",
+      "points": [
+        { "title": "The picture frame", "body": "Instead of putting calligraphy in a frame, we build the work with the fusuma's own structure. Its wooden edge is part of the piece." },
+        { "title": "The door", "body": "A fusuma is usually something you slide open and closed. We treat it as art that can live on a wall — and one day, again as a door." },
+        { "title": "The border", "body": "From Japanese homes to galleries, homes and hotels around the world." }
+      ]
+    },
+    "process": {
+      "label": "Process",
+      "title": "How a work is made",
+      "lead": "Our planned process. It will be refined with the artisans as the first works are made.",
+      "steps": [
+        { "title": "Lattice", "body": "A light wooden lattice is prepared as the core." },
+        { "title": "Underlayers", "body": "Paper is pasted in layers to give the surface tension and depth." },
+        { "title": "Face paper", "body": "The final washi is applied." },
+        { "title": "Brush", "body": "The character or stroke is written in sumi ink — once." },
+        { "title": "Seal and edge", "body": "The work is sealed, and the wooden edge is fitted." },
+        { "title": "Record", "body": "Each finished work receives a work number and a certificate of authenticity." }
+      ]
+    },
+    "people": {
+      "label": "People",
+      "text": "SŌN is a project by kerokero, founded by a student in Japan and made together with fusuma artisans. Names and stories will be shared here with each person's permission."
+    }
   },
-  "designers": {
-    "eyebrow": "For designers & architects",
-    "title": "Fusuma, made for spaces beyond Japan",
-    "lead": "We are researching formats that fit ceiling heights, openings and shipping outside Japan.",
-    "badge": "In research",
-    "items": [
-      {
-        "title": "Art panels",
-        "body": "Wall-mounted panels. No installation work."
-      },
-      {
-        "title": "Folding screens",
-        "body": "Free-standing dividers for rooms and hotel suites."
-      },
-      {
-        "title": "Frame kits",
-        "body": "Assembled on site, with paper you can replace."
-      },
-      {
-        "title": "Sliding systems",
-        "body": "Fusuma for existing openings."
-      }
+  "commissions": {
+    "title": "Commissions",
+    "lead": "Fusuma art doors — real sliding doors carrying calligraphy and contemporary art — for hotels, restaurants, private homes and galleries.",
+    "status": "A future product. We are starting conversations with architects and interior designers now; we are not taking orders yet.",
+    "why": {
+      "label": "For architects and designers",
+      "points": [
+        { "title": "Made to the opening", "body": "Each door would be designed for the dimensions, sliding method and conditions of the site." },
+        { "title": "Art you can use", "body": "A door that opens and closes, with a surface made as a work of art." },
+        { "title": "Built to be cared for", "body": "Fusuma are traditionally repaired and re-papered. We plan for maintenance from the start." }
+      ]
+    },
+    "process": {
+      "label": "Process",
+      "title": "How a commission would work",
+      "lead": "Planned. Final terms will be agreed in each contract.",
+      "steps": [
+        { "title": "Conversation", "body": "Space, purpose, timing and budget." },
+        { "title": "Site check", "body": "Dimensions, sliding method and installation conditions, confirmed by a local contractor." },
+        { "title": "Proposal and quote", "body": "Design, materials, schedule and price." },
+        { "title": "Deposit", "body": "Production starts after the agreement and deposit." },
+        { "title": "Making", "body": "Made in Japan, with progress shared along the way." },
+        { "title": "Shipping and installation", "body": "Shipped with insurance; installed by a local contractor." },
+        { "title": "Care", "body": "Care guide, and support for repairs." }
+      ]
+    },
+    "responsibility": {
+      "title": "Who does what (planned)",
+      "columns": ["Item", "SŌN", "Client / local team"],
+      "rows": [
+        ["Design and making", "Yes", "Review and approve"],
+        ["Measurements on site", "Provide what we need", "Yes"],
+        ["Packing and shipping", "Yes", "Receive and inspect"],
+        ["Installation", "Instructions", "Yes"],
+        ["Building requirements", "—", "Yes"],
+        ["Care and repair", "Guidance and repair", "Daily care"]
+      ]
+    },
+    "cta": "Start a conversation"
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Questions about a work, a commission, a gallery or the press. We reply by email.",
+    "type": "What is this about?",
+    "types": {
+      "purchase": "A work",
+      "commission": "A commission (doors)",
+      "gallery": "Gallery or shop",
+      "press": "Press",
+      "other": "Something else"
+    },
+    "name": "Name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "country": "Country",
+    "countryPlaceholder": "e.g. France",
+    "work": "Work",
+    "workNone": "No specific work",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your space, project or question.",
+    "optional": "optional",
+    "consentBefore": "I agree that SŌN may store my message and reply by email, and I accept the ",
+    "consentLink": "privacy policy",
+    "consentAfter": ".",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "success": "Thank you. Your message has been received, and we will reply by email.",
+    "errors": {
+      "type": "Choose what your message is about.",
+      "name": "Please keep your name under 100 characters.",
+      "email": "Enter a valid email address, for example name@example.com.",
+      "country": "Please keep this under 80 characters.",
+      "work": "Choose a work from the list.",
+      "message": "Write a message (up to 2,000 characters).",
+      "consent": "Agree to the privacy policy to send your message.",
+      "generic": "Your message could not be saved. Please try again in a moment."
+    }
+  },
+  "shipping": {
+    "title": "Shipping & Care",
+    "draft": "Draft — these terms will be confirmed before the first works are offered.",
+    "sections": [
+      { "title": "Shipping", "body": "Works ship from Japan, insured and packed for the journey. Shipping costs depend on the destination and are quoted before purchase." },
+      { "title": "Payment", "body": "Payment details are shared after we confirm your inquiry." },
+      { "title": "Duties and taxes", "body": "Import duties and taxes depend on your country. Who pays them will be stated in each quote." },
+      { "title": "Returns", "body": "Each work is unique or made in a small edition, so returns are generally not accepted. If a work arrives damaged or differs from its description, we will make it right." },
+      { "title": "If a work arrives damaged", "body": "Contact us within the period stated in your quote, with photographs of the work and the packaging. We will arrange a repair or a refund." },
+      { "title": "Care", "body": "Keep the work away from direct sunlight, heaters and humid places. Do not touch the paper surface; dust gently with a soft, dry brush. For repairs, contact SŌN." }
     ]
   },
   "waitlist": {
-    "eyebrow": "Waitlist",
-    "title": "Join the waitlist",
-    "lead": "Be the first to hear about our first collection and resources for designers.",
+    "label": "Waitlist",
+    "title": "Hear about the first works",
+    "lead": "We will write when the first works are ready. No other emails.",
     "email": "Email",
     "emailPlaceholder": "you@example.com",
     "role": "I am a…",
     "roleOptions": {
       "designer": "Interior designer",
       "architect": "Architect",
-      "homeowner": "Homeowner",
+      "homeowner": "Collector / homeowner",
       "hotel": "Hotel / hospitality",
       "other": "Other"
     },
     "rolePlaceholder": "Select one",
     "country": "Country",
     "countryPlaceholder": "e.g. United States",
-    "interest": "Which would you be most interested in?",
+    "interest": "Which series interests you most?",
     "interestOptions": {
-      "panel": "Art panels",
-      "screen": "Folding screens",
-      "kit": "Frame kits",
-      "sliding": "Sliding systems",
+      "ichi": "ICHI",
+      "tsui": "TSUI",
+      "ma": "MA",
+      "door": "Doors",
       "unsure": "Not sure yet"
     },
     "message": "Message",
-    "messagePlaceholder": "Tell us about your space or project (optional)",
+    "messagePlaceholder": "Anything you would like us to know (optional)",
     "optional": "optional",
     "consentBefore": "I agree to receive emails about SŌN and accept the ",
     "consentLink": "privacy policy",
@@ -167,19 +255,20 @@
     "success": "Thank you. You are on the list.",
     "updated": "You were already on the list — we have updated your details.",
     "errors": {
-      "email": "Please enter a valid email address.",
-      "role": "Please choose one.",
+      "email": "Enter a valid email address, for example name@example.com.",
+      "role": "Choose one option.",
       "country": "Please keep this under 80 characters.",
-      "interest": "Please choose one of the options.",
+      "interest": "Choose one of the options.",
       "message": "Please keep your message under 1,000 characters.",
-      "consent": "Please agree to the privacy policy to continue.",
-      "generic": "Something went wrong. Please try again."
+      "consent": "Agree to the privacy policy to join the waitlist.",
+      "generic": "Your details could not be saved. Please try again in a moment."
     }
   },
   "footer": {
     "operated": "SŌN is a project by kerokero.",
-    "privacy": "Privacy policy",
-    "contact": "Contact: [TBD]",
+    "privacy": "Privacy",
+    "shipping": "Shipping & Care",
+    "contact": "Contact",
     "rights": "All rights reserved."
   },
   "privacy": {
@@ -187,26 +276,11 @@
     "draft": "Draft — this policy will be reviewed before the site is published.",
     "updated": "Last updated: [TBD]",
     "sections": [
-      {
-        "title": "Who we are",
-        "body": "SŌN is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]."
-      },
-      {
-        "title": "What we collect",
-        "body": "When you join the waitlist, we collect your email address, your role, and — if you choose to give them — your country, the format you are interested in, and your message. We also record the language of the page and the time you agreed to this policy."
-      },
-      {
-        "title": "Why we use it",
-        "body": "Only to send you news about SŌN and our first collection, and to understand which formats people are interested in. We do not sell or share your data."
-      },
-      {
-        "title": "Where it is stored",
-        "body": "Your data is stored on a computer managed by the operator. It is not sent to any third-party service."
-      },
-      {
-        "title": "Your choices",
-        "body": "You can ask us at any time to see, correct or delete your data, or to stop sending you emails, by contacting [TBD]."
-      }
+      { "title": "Who we are", "body": "SŌN is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]." },
+      { "title": "What we collect", "body": "Waitlist: your email address, your role, and — if you choose — your country, the series you are interested in and a message. Contact form: your email address, the topic, your message, and — if you choose — your name, your country and the work you are asking about. We also record the page language and the time you agreed to this policy." },
+      { "title": "Why we use it", "body": "To reply to your message, and to send you news about SŌN if you joined the waitlist. We do not sell or share your data." },
+      { "title": "Where it is stored", "body": "Your data is stored on a computer managed by the operator. It is not sent to any third-party service." },
+      { "title": "Your choices", "body": "You can ask us at any time to see, correct or delete your data, or to stop sending you emails, by contacting [TBD]." }
     ],
     "back": "Back to SŌN"
   },

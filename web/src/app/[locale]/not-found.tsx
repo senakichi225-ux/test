@@ -9,7 +9,7 @@ export default async function NotFound() {
     <main id="main" className="flex min-h-dvh flex-col items-center justify-center gap-6 px-5 text-center">
       <Wordmark className="text-3xl" />
       <h1 className="font-serif text-2xl font-light">{dict.notFound.title}</h1>
-      <Link href={`/${locale}`} className="text-sm text-ai underline underline-offset-4">
+      <Link href={`/${locale}`} className="text-sm text-sumi underline underline-offset-4">
         {dict.notFound.back}
       </Link>
     </main>

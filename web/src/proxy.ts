@@ -1,20 +1,31 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isLocale, pickLocale } from "@/i18n/config";
+import worksData from "../content/works.json";
+
+/** 作品ページとして存在する slug（content/works.json） */
+const workSlugs = new Set(worksData.works.map((w) => w.slug));
 
 /**
  * 1. 言語のない URL（例：/ や /privacy）を、ブラウザの言語に合わせて /en または /ja へ移動する
- * 2. リサーチ管理画面（/{locale}/research）を守る
+ * 2. 存在しない作品（/{locale}/works/xxx）は、最初のアクセスから確実に 404 にする
+ *    （Cache Components では dynamicParams が使えず、初回は 200 で「見つかりません」を返すことがあるため）
+ * 3. リサーチ管理画面（/{locale}/research）を守る
  *    - RESEARCH_BASIC_AUTH（"ユーザー名:パスワード"）があれば Basic 認証
  *    - 本番（next start）で未設定なら 404（うっかり公開しないため）
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const [, first, second] = pathname.split("/");
+  const [, first, second, third, ...rest] = pathname.split("/");
 
   if (!first || !isLocale(first)) {
     const url = request.nextUrl.clone();
     url.pathname = `/${pickLocale(request.headers.get("accept-language"))}${pathname === "/" ? "" : pathname}`;
     return NextResponse.redirect(url);
+  }
+
+  if (second === "works" && third && rest.length === 0 && !workSlugs.has(third)) {
+    // どのページにも当たらない URL に置き換えると、[locale]/not-found.tsx が 404 で表示される
+    return NextResponse.rewrite(new URL(`/${first}/_not-found-work`, request.url));
   }
 
   if (second === "research") {

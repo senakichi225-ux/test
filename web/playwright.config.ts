@@ -4,6 +4,7 @@ import { defineConfig, devices } from "@playwright/test";
 const PORT = 3100;
 // E2E テストの登録データは、本物の保存先とは別のファイルに書く
 export const E2E_WAITLIST_FILE = path.join(__dirname, "test-results", "e2e-waitlist.json");
+export const E2E_INQUIRY_FILE = path.join(__dirname, "test-results", "e2e-inquiries.json");
 
 export default defineConfig({
   testDir: "tests/e2e",
@@ -23,6 +24,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     env: {
       WAITLIST_FILE: E2E_WAITLIST_FILE,
+      INQUIRY_FILE: E2E_INQUIRY_FILE,
       RESEARCH_BASIC_AUTH: "e2e:secret",
     },
   },

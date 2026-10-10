@@ -6,39 +6,33 @@ import { Wordmark } from "./Wordmark";
 
 export function SiteHeader({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const links = [
-    { href: "#about", label: dict.nav.about },
-    { href: "#gallery", label: dict.nav.gallery },
-    { href: "#craft", label: dict.nav.craft },
-    { href: "#designers", label: dict.nav.designers },
+    { href: `/${locale}/works`, label: dict.nav.works },
+    { href: `/${locale}/story`, label: dict.nav.story },
+    { href: `/${locale}/commissions`, label: dict.nav.commissions },
+    { href: `/${locale}/contact`, label: dict.nav.contact },
   ];
   return (
-    <header className="fixed inset-x-0 top-0 z-30 border-b border-sumi/5 bg-washi/80 backdrop-blur-md">
+    <header className="sticky top-[env(safe-area-inset-top,0px)] z-30 border-b border-line/70 bg-washi/90 backdrop-blur-md">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-washi focus:px-3 focus:py-2"
       >
         {dict.nav.skip}
       </a>
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
-        <Link href={`/${locale}`} className="text-xl text-sumi" aria-label="SŌN">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-4 sm:px-10 lg:px-16">
+        <Link href={`/${locale}`} className="text-xl text-sumi" aria-label="SŌN — Home">
           <Wordmark />
         </Link>
-        <nav aria-label="Main" className="hidden items-center gap-8 text-sm text-usuzumi lg:flex">
+        <div className="md:order-last">
+          <LanguageSwitcher current={locale} label={dict.nav.language} />
+        </div>
+        <nav aria-label={dict.nav.main} className="order-last -mx-1 flex w-full gap-6 overflow-x-auto px-1 text-sm text-usuzumi md:order-none md:ml-auto md:w-auto md:gap-9">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors hover:text-sumi">
+            <Link key={l.href} href={l.href} className="whitespace-nowrap py-1 transition-colors hover:text-sumi">
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-5">
-          <LanguageSwitcher current={locale} label={dict.nav.language} />
-          <a
-            href="#waitlist"
-            className="hidden border border-sumi px-4 py-2 text-xs tracking-wider transition-colors hover:bg-sumi hover:text-washi sm:inline-block"
-          >
-            {dict.nav.waitlist}
-          </a>
-        </div>
       </div>
     </header>
   );

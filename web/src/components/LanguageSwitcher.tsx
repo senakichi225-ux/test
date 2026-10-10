@@ -13,7 +13,7 @@ export function LanguageSwitcher({ current, label }: { current: Locale; label: s
     <nav aria-label={label} className="flex items-center gap-1 text-xs tracking-wider">
       {locales.map((l, i) => (
         <span key={l} className="flex items-center gap-1">
-          {i > 0 && <span aria-hidden className="text-usuzumi/50">/</span>}
+          {i > 0 && <span aria-hidden className="text-nezumi">/</span>}
           <Link
             href={`/${l}${rest ? `/${rest}` : ""}`}
             hrefLang={l}
@@ -21,7 +21,7 @@ export function LanguageSwitcher({ current, label }: { current: Locale; label: s
             aria-current={l === current ? "true" : undefined}
             className={
               l === current
-                ? "text-sumi underline decoration-kin underline-offset-4"
+                ? "text-sumi underline decoration-sumi/40 underline-offset-4"
                 : "text-usuzumi hover:text-sumi"
             }
           >

@@ -12,8 +12,8 @@ type Copy = Dictionary["waitlist"];
 const initialState: WaitlistState = { status: "idle" };
 
 const inputClass =
-  "w-full border-0 border-b border-sumi/30 bg-transparent px-0 py-3 text-base text-sumi placeholder:text-usuzumi/60 focus:border-sumi focus:outline-none focus:ring-0 aria-[invalid=true]:border-shu";
-const labelClass = "block text-xs uppercase tracking-[0.18em] text-usuzumi";
+  "w-full border-0 border-b border-nezumi bg-transparent px-0 py-3 text-base text-sumi placeholder:text-nezumi focus:border-sumi focus:outline-none focus:ring-0 aria-[invalid=true]:border-shu";
+const labelClass = "label block";
 
 export function WaitlistForm({ copy, locale }: { copy: Copy; locale: Locale }) {
   const [state, action, pending] = useActionState(joinWaitlist, initialState);
@@ -25,7 +25,7 @@ export function WaitlistForm({ copy, locale }: { copy: Copy; locale: Locale }) {
 
   if (done) {
     return (
-      <div role="status" aria-live="polite" className="border border-kin/50 bg-washi/60 px-6 py-10 text-center">
+      <div role="status" aria-live="polite" className="border border-line px-6 py-12 text-center">
         <p className="font-serif text-2xl text-sumi">{state.status === "updated" ? copy.updated : copy.success}</p>
       </div>
     );
@@ -130,7 +130,7 @@ export function WaitlistForm({ copy, locale }: { copy: Copy; locale: Locale }) {
                 defaultChecked={v.interest === it}
                 className="peer sr-only"
               />
-              <span className="inline-block border border-sumi/25 px-4 py-2 text-sm text-usuzumi transition-colors peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ai">
+              <span className="inline-block border border-line px-4 py-2 text-sm text-usuzumi transition-colors peer-checked:border-sumi peer-checked:bg-sumi peer-checked:text-washi peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sumi">
                 {copy.interestOptions[it]}
               </span>
             </label>
@@ -171,7 +171,7 @@ export function WaitlistForm({ copy, locale }: { copy: Copy; locale: Locale }) {
           />
           <span>
             {copy.consentBefore}
-            <Link href={`/${locale}/privacy`} className="text-ai underline underline-offset-4" target="_blank">
+            <Link href={`/${locale}/privacy`} className="text-sumi underline underline-offset-4" target="_blank">
               {copy.consentLink}
             </Link>
             {copy.consentAfter}
@@ -189,7 +189,7 @@ export function WaitlistForm({ copy, locale }: { copy: Copy; locale: Locale }) {
       <button
         type="submit"
         disabled={pending}
-        className="w-full bg-sumi px-8 py-4 text-sm tracking-[0.2em] text-washi transition-colors hover:bg-ai disabled:opacity-60 sm:w-auto"
+        className="w-full bg-sumi px-10 py-4 text-xs uppercase tracking-[0.24em] text-washi transition-opacity hover:opacity-85 disabled:opacity-60 sm:w-auto"
       >
         {pending ? copy.submitting : copy.submit}
       </button>

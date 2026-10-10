@@ -1,30 +1,31 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
+import { Cormorant_Garamond, Hanken_Grotesk, Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { locales } from "@/i18n/config";
 import "../globals.css";
 
-// 見出し：欧文セリフ（Ō を含む Latin Extended-A に対応）＋和文明朝
+// 見出し・ロゴ：欧文セリフ（Ō を含む Latin Extended-A に対応）＋和文明朝
 const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
   variable: "--font-cormorant",
   display: "swap",
 });
-const shippori = Shippori_Mincho({
-  weight: ["400", "500", "600"],
-  variable: "--font-shippori",
+const zenMincho = Zen_Old_Mincho({
+  weight: ["400", "500"],
+  variable: "--font-zen-mincho",
   display: "swap",
   preload: false, // 和文は文字数が多いので先読みしない
 });
-// 本文：欧文サンセリフ＋和文ゴシック
-const inter = Inter({
+// 本文・UI：欧文グロテスク＋和文ゴシック
+const hanken = Hanken_Grotesk({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
+  variable: "--font-hanken",
   display: "swap",
 });
-const notoJp = Noto_Sans_JP({
-  variable: "--font-noto-jp",
+const zenGothic = Zen_Kaku_Gothic_New({
+  weight: ["400", "500"],
+  variable: "--font-zen-gothic",
   display: "swap",
   preload: false,
 });
@@ -56,7 +57,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[locale]">)
   return (
     <html
       lang={locale}
-      className={`${cormorant.variable} ${shippori.variable} ${inter.variable} ${notoJp.variable} antialiased`}
+      className={`${cormorant.variable} ${zenMincho.variable} ${hanken.variable} ${zenGothic.variable} antialiased`}
     >
       <body className="min-h-dvh bg-washi text-sumi">{children}</body>
     </html>
