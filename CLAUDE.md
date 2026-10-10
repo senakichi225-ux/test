@@ -15,7 +15,7 @@
 | 正式表記 | **SŌN**（O にマクロン＝長音記号。Unicode `U+014C`）。すべて大文字 |
 | 表記できない場所 | URL・ドメイン・ファイル名・メールアドレス・SNSのID などは **`son`** または **`SON`**（ASCII） |
 | 運営会社 | kerokero（ブランドの運営元として、フッターなどに表記） |
-| ブランドの意味・由来 | [TBD]（決まったらここに書き、LPのストーリーに使う） |
+| ブランドの意味 | **S — Spirit（精神・魂）**：日本の伝統、職人の想い、作品に込める魂<br>**Ō — Origin（起源・原点）**：日本から生まれた文化と、襖アートの原点<br>**N — New（新しさ）**：伝統を守るだけでなく、新しい芸術へ進化させる<br>（LPの「The name」セクションで紹介。文言は `web/messages/*.json` の `name`） |
 | 商標 | 公開・ロゴ確定の前に、日本と主な販売国で重なりを確認する（`docs/research_plan.md` §9） |
 
 - コードでは `BRAND_NAME = "SŌN"` を1か所（`web/src/lib/brand.ts`）で定義し、直書きしない。
@@ -44,8 +44,8 @@
 ├── CLAUDE.md                 ← このファイル
 ├── docs/                     ← 事業・リサーチ・設計のドキュメント
 │   └── research_plan.md      ← リサーチ計画（最初に読む）
-├── research/                 ← 調査データ（JSON。ダッシュボードが読む）※作成予定
-├── web/                      ← Next.js アプリ（LP＋リサーチ管理画面）※作成予定
+├── research/                 ← 調査データ（JSON。ダッシュボードが読む）
+├── web/                      ← Next.js アプリ（LP＋リサーチ管理画面）
 │
 └── （kerokero AI会社の領域）  ← 下記。製品開発では原則さわらない
     ├── .claude/agents/       ← AI社員11人の設定
@@ -63,28 +63,54 @@
 
 | 用途 | 採用 | メモ |
 |---|---|---|
-| フレームワーク | **Next.js（App Router）** | `web/` 配下。Server Components を基本にする |
+| フレームワーク | **Next.js 16（App Router）** | `web/` 配下。Server Components を基本にする。**Cache Components 有効**（§3-1） |
 | 言語 | **TypeScript**（`strict: true`） | `any` を使わない。外部入力は zod で検証 |
-| スタイル | **Tailwind CSS** | デザイントークンは `tailwind.config` の theme に集約（§5） |
-| 多言語（i18n） | **next-intl** | ルートは `/[locale]/...`。**既定は `en`**、次に `ja`。文言は `web/messages/{locale}.json` |
+| スタイル | **Tailwind CSS v4** | デザイントークンは `web/src/app/globals.css` の `@theme` に集約（v4 は tailwind.config を使わない）（§5） |
+| 多言語（i18n） | **Next.js 標準の辞書方式**＋`next/root-params` | 対応言語は **英語（`en`、既定）と日本語（`ja`）**。ルートは `/[locale]/...`、文言は `web/messages/{en,ja}.json`。`/` はブラウザの言語で振り分け（`src/proxy.ts`）。※当初案の next-intl は、Next.js 16 の公式手順で足りるため不採用 |
 | フォント | `next/font/google` | 欧文セリフ＋和文明朝（見出し）、欧文サンセリフ＋和文ゴシック（本文） |
 | 画像 | `next/image` | WebP/AVIF。ギャラリー画像は `public/images/`（権利確認済みのものだけ） |
-| フォーム | Server Action ＋ zod | 保存先は**アダプタ経由**（開発：ローカルJSON／本番：未決定 §7） |
+| フォーム | Server Action ＋ zod | 保存先は**パソコンの中のファイルだけ**（`web/.data/waitlist.json`。外部サービスなし）。アダプタ経由なので将来差し替え可（§7） |
 | データ（リサーチ） | `research/*.json` ＋ zod スキーマ | DBは使わず、まずはGit管理のJSON |
-| テスト | Vitest（ロジック）、Playwright（主要画面の表示・フォーム） | |
+| テスト | Vitest（ロジック）、Playwright（主要画面の表示・フォーム、PC＋スマホ） | `@playwright/test` は環境のブラウザに合わせて **1.56.1 に固定** |
 | 品質 | ESLint ＋ Prettier ＋ `tsc --noEmit` | コミット前に必ず通す |
-| パッケージ管理 | npm | Node.js 20 以上 |
+| パッケージ管理 | npm | Node.js 22 推奨（20.9 以上） |
 
-### よく使うコマンド（`web/` 作成後）
+### よく使うコマンド
 ```bash
 cd web
-npm run dev        # 開発サーバー（http://localhost:3000/en）
+npm install        # 初回だけ
+npm run dev        # 開発サーバー（http://localhost:3000 → /en または /ja）
 npm run build      # 本番ビルド
 npm run lint       # ESLint
-npm run typecheck  # tsc --noEmit
-npm test           # Vitest
-npm run e2e        # Playwright
+npm run typecheck  # 型を生成してから tsc --noEmit
+npm test           # Vitest（research/*.json の形の検証も含む）
+npm run e2e        # Playwright（ビルド→起動→PC・スマホで確認）
+npm run check      # lint＋typecheck＋test をまとめて
 ```
+
+### 3-1. Next.js 16 の注意（必ず読む）
+- この版は、学習データの Next.js と書き方が違う部分がある。**コードを書く前に `web/node_modules/next/dist/docs/` の該当ガイドを読む**（`web/AGENTS.md`）。
+- `middleware` は **`proxy`**（`web/src/proxy.ts`）に名前が変わった。
+- **Cache Components が有効**：現在時刻・ファイル・外部データを読むコンポーネントは `"use cache"`＋`cacheLife()` を付けるか `<Suspense>` で囲む（例：`SiteFooter` の年、リサーチ画面の読み込み）。
+- 言語は `import { locale } from "next/root-params"` で読む（`src/i18n/dictionaries.ts` の `getDictionary()`／`getLocale()`）。Server Action では使えないので、フォームは hidden の `locale` を送る。
+
+### 3-2. 主なファイル（`web/`）
+| ファイル | 役割 |
+|---|---|
+| `src/app/[locale]/page.tsx` | LP（Hero／名前の意味／襖とは／ギャラリー／職人の技／デザイナー向け／登録フォーム） |
+| `src/app/[locale]/privacy/page.tsx` | プライバシーポリシー（**下書き。公開前に要確認**） |
+| `src/app/[locale]/research/page.tsx` | リサーチ管理画面（noindex。本番は Basic 認証必須） |
+| `src/app/[locale]/actions.ts` | 登録の Server Action（検証・ボット対策・保存） |
+| `src/lib/waitlist/` | 入力の検証（zod）と保存先（ローカルJSON、同じメールは上書き） |
+| `src/lib/research/` | `research/*.json` のスキーマと読み込み |
+| `src/components/FusumaPanel.tsx` | 写真の代わりの襖イラスト（CSSのみ）。許可済みの写真ができたら差し替える |
+| `src/proxy.ts` | 言語の振り分け、リサーチ画面の保護 |
+| `messages/en.json`・`messages/ja.json` | すべての文言（**両方に同じ項目が必要**。テストで確認） |
+
+### 3-3. ウェイティングリストの登録データ
+- 保存先：`web/.data/waitlist.json`（環境変数 `WAITLIST_FILE` で変更可）。**個人情報なので Git にコミットしない（.gitignore 済み）。**
+- 同じメールアドレスで再登録すると、重複させずに内容を更新する。
+- ファイルに書き込むしくみなので、**`next start` を動かすパソコン（またはファイルが残るサーバー）でだけ使える。** サーバーレスのホスティングに出すときは、保存先を差し替える（§7。保護者の判断）。
 
 ---
 
@@ -107,7 +133,7 @@ npm run e2e        # Playwright
 - **光と影**：ふすま・和紙が光を受けたときの「やわらかい陰影」をビジュアルの主役にする。
 - **職人の手**：完成品だけでなく、手仕事の工程（張る・刷毛・引手）を見せる。
 
-### デザイントークン（初期案。`tailwind.config` に定義）
+### デザイントークン（`web/src/app/globals.css` の `@theme` に定義）
 | トークン | 色 | 用途 |
 |---|---|---|
 | `washi` | `#F6F2EA` | 背景（和紙の白） |
@@ -116,8 +142,10 @@ npm run e2e        # Playwright
 | `ai` | `#27405E` | リンク・アクセント（藍） |
 | `kin` | `#B08D45` | 細い罫線・ハイライト（金砂子） |
 | `shu` | `#B5482F` | ごく小さな強調のみ（朱）。多用しない |
+| `washi-deep` | `#ECE5D8` | セクションの背景の切り替え |
+| `fuchi` | `#2B241E` | 襖の縁（ふち）・敷居 |
 
-- タイポグラフィ：見出しはセリフ／明朝系（例：Cormorant Garamond＋Shippori Mincho）、本文はサンセリフ（例：Inter＋Noto Sans JP）。
+- タイポグラフィ：見出しは Cormorant Garamond＋Shippori Mincho、本文は Inter＋Noto Sans JP（`next/font/google`。Cormorant は `latin-ext` を読み込み、Ō を表示する）。
 - レイアウト：最大幅を広めに取り、セクション間の余白を大きく（`py-24` 以上が基本）。グリッドは非対称を許容。
 - 動き：ゆっくりしたフェード／スライド（ふすまが開くような横方向の動き）を控えめに。過剰なアニメーションはしない。
 - 写真：自然光・斜光、引手や縁（ふち）のディテール、和紙の質感。**権利（撮影者・職人・写っている人）の許可が取れた写真のみ使用。**
@@ -156,6 +184,8 @@ npm run e2e        # Playwright
 
 - **運営責任者は保護者（成人）にする。** 代表のせなさんは中学生のため、契約・アカウント作成・お金・個人情報の管理者は成人が担う。
 - メールアドレスを集めるフォームには、**プライバシーポリシーへのリンクと同意チェック**を必ず付ける。目的（事前案内・資料送付）以外に使わない。
+- 登録データは**パソコンの中のファイルだけ**に保存する（外部サービスに送らない）。プライバシーポリシーにもそう書いてある。保存先を変えるときは、ポリシーも同時に直す。
+- プライバシーポリシーの [TBD]（運営者の氏名・連絡先、最終更新日）を埋めるまでは、LPを一般公開しない。
 - 海外（EU/UK など）の人のデータを扱うため、GDPR 等を意識する：必要最小限の項目、明確な同意、削除依頼への対応手段。**本番公開前に専門家または大人が確認する。**
 - フォームの保存先・メール配信サービス・ドメイン・ホスティングの**アカウント作成や有料契約は、保護者の判断なしに行わない。** コード上はアダプタで差し替えられるようにしておく。
 - シークレット（APIキー等）は `.env.local` に置き、**コミットしない**。`.env.example` にキー名だけ書く。
