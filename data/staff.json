@@ -1,0 +1,165 @@
+{
+  "company": "kerokero",
+  "president": "せな社長",
+  "updated_at": "2026-10-10T16:15:00+09:00",
+  "staff": [
+    {
+      "id": "director",
+      "agent": "ai-director",
+      "name": "ゲコ部長",
+      "role": "ディレクター・マネージャー",
+      "schedule": "毎月1日",
+      "look": "カエル（紺色のネクタイ）",
+      "color": "#6aae62",
+      "scarf": "#34508a",
+      "item": "tie",
+      "seat": 1,
+      "last_work": {
+        "date": "2026-10-10",
+        "title": "キックオフ会議のまとめ",
+        "file": "会議/2026-10_キックオフ会議.md",
+        "speech": "せな社長、最初にやること3つをまとめました。"
+      }
+    },
+    {
+      "id": "research",
+      "agent": "ai-research",
+      "name": "ニュースくん",
+      "role": "リサーチ担当",
+      "schedule": "毎朝7:00",
+      "look": "サングラスをかけたカエル",
+      "color": "#7cc576",
+      "scarf": "#f4a7a0",
+      "item": "sunglasses",
+      "seat": 2,
+      "last_work": {
+        "date": "2026-10-10",
+        "title": "ふすまリサーチ 0件",
+        "file": "報告/2026-10-10_ふすまリサーチ.md",
+        "speech": "せな社長、今日は新しいニュースはなかったです！"
+      }
+    },
+    {
+      "id": "planner",
+      "agent": "ai-planner",
+      "name": "ケロ助",
+      "role": "企画担当",
+      "schedule": "毎月1日",
+      "look": "普通のカエル（黄色いスカーフ）",
+      "color": "#7cc576",
+      "scarf": "#f6d58a",
+      "item": "none",
+      "seat": 3,
+      "last_work": {
+        "date": "2026-10-10",
+        "title": "10月の企画 3案",
+        "file": "企画/2026-10_企画提案.md",
+        "speech": "せな社長、今月の企画できたで〜！3つ考えたで！"
+      }
+    },
+    {
+      "id": "sales",
+      "agent": "ai-sales",
+      "name": "ケロ吉",
+      "role": "トップ営業",
+      "schedule": "毎週月曜",
+      "look": "カエル（赤いスカーフ）",
+      "color": "#86c96a",
+      "scarf": "#e5675c",
+      "item": "none",
+      "seat": 4,
+      "last_work": null
+    },
+    {
+      "id": "english",
+      "agent": "ai-english",
+      "name": "ケリー（Kerry）",
+      "role": "英語発信担当",
+      "schedule": "毎週水曜",
+      "look": "カエル（青いスカーフ）",
+      "color": "#74c08a",
+      "scarf": "#5aa6e0",
+      "item": "none",
+      "seat": 5,
+      "last_work": null
+    },
+    {
+      "id": "support",
+      "agent": "ai-support",
+      "name": "ピョン太",
+      "role": "応援・助成金さがし担当",
+      "schedule": "毎週金曜",
+      "look": "カエル（オレンジのスカーフ）",
+      "color": "#8ccf74",
+      "scarf": "#f29a4a",
+      "item": "none",
+      "seat": 6,
+      "last_work": null
+    },
+    {
+      "id": "accounting",
+      "agent": "ai-accounting",
+      "name": "ケロ美",
+      "role": "経理担当",
+      "schedule": "毎月1日",
+      "look": "カエル（ピンクのリボン）",
+      "color": "#7cc576",
+      "scarf": "#f4a7c4",
+      "item": "ribbon",
+      "seat": 7,
+      "last_work": null
+    },
+    {
+      "id": "finance",
+      "agent": "ai-finance",
+      "name": "ケロ蔵",
+      "role": "財務担当",
+      "schedule": "毎月1日",
+      "look": "カエル（むらさきのスカーフ・メガネ）",
+      "color": "#6fb07a",
+      "scarf": "#9a7fd1",
+      "item": "glasses",
+      "seat": 8,
+      "last_work": null
+    },
+    {
+      "id": "hr",
+      "agent": "ai-hr",
+      "name": "ケロ子",
+      "role": "人事担当",
+      "schedule": "社長に呼ばれたとき",
+      "look": "カエル（ミントのスカーフ）",
+      "color": "#86c96a",
+      "scarf": "#8fd4bd",
+      "item": "none",
+      "seat": 9,
+      "last_work": null
+    },
+    {
+      "id": "labor",
+      "agent": "ai-labor",
+      "name": "ケロ平",
+      "role": "労務担当",
+      "schedule": "社長に呼ばれたとき",
+      "look": "カエル（茶色のスカーフ）",
+      "color": "#7aba64",
+      "scarf": "#a87850",
+      "item": "none",
+      "seat": 10,
+      "last_work": null
+    },
+    {
+      "id": "general",
+      "agent": "ai-general",
+      "name": "ケロ丸",
+      "role": "総務担当",
+      "schedule": "社長に呼ばれたとき",
+      "look": "カエル（灰色のスカーフ）",
+      "color": "#74c08a",
+      "scarf": "#9aa4b1",
+      "item": "none",
+      "seat": 11,
+      "last_work": null
+    }
+  ]
+}
