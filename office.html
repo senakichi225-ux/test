@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>たなかAIカンパニー オフィス</title>
+<style>
+  :root {
+    --cream: #fff7ec;
+    --paper: #fffdf8;
+    --shiba: #e8a35c;
+    --shiba-deep: #c97c35;
+    --ink: #4a3426;
+    --ink-soft: #8a6e5a;
+    --mint: #8fd4bd;
+    --mint-deep: #4fae92;
+    --rose: #f4a7a0;
+    --sky: #9fd6f5;
+    --shadow: 0 8px 24px rgba(90, 60, 30, .18);
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body {
+    background: radial-gradient(circle at 30% 20%, #fff3e2, #f6dcc0 70%);
+    color: var(--ink);
+    font-family: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  }
+  #stage { position: fixed; inset: 0; }
+  #stage canvas { display: block; touch-action: none; }
+
+  /* ---- 隅の小さな情報 ---- */
+  #hud {
+    position: fixed; left: 16px; bottom: 16px; z-index: 5;
+    background: rgba(255, 253, 248, .92); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 12px 16px; min-width: 200px;
+    border: 2px solid #f3dcc2;
+  }
+  #hud .co { font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+  #hud .date { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  #hud .count {
+    margin-top: 8px; display: flex; align-items: baseline; gap: 6px;
+    background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer;
+  }
+  #hud .count b { font-size: 30px; color: var(--shiba-deep); line-height: 1; }
+  #hud .count span { font-size: 12px; color: var(--ink-soft); }
+  #week { display: flex; gap: 6px; margin-top: 8px; }
+  #week i {
+    width: 14px; height: 14px; border-radius: 50%; background: #eadfd3;
+    display: block; border: 2px solid #fff; box-shadow: 0 0 0 1px #e2d2c0;
+  }
+  #week i.on { background: var(--shiba); box-shadow: 0 0 0 1px var(--shiba-deep); }
+  #week i.today { outline: 2px dashed var(--mint-deep); outline-offset: 2px; }
+  #hint {
+    position: fixed; right: 16px; bottom: 16px; z-index: 5; font-size: 12px;
+    color: var(--ink-soft); background: rgba(255,253,248,.8); padding: 6px 10px; border-radius: 999px;
+  }
+
+  /* ---- 名札と吹き出し ---- */
+  .tag {
+    position: fixed; z-index: 4; transform: translate(-50%, -100%); pointer-events: none;
+    white-space: nowrap; transition: opacity .2s;
+  }
+  #nametag {
+    background: var(--shiba); color: #fff; font-weight: 800; font-size: 13px;
+    padding: 4px 12px; border-radius: 999px; border: 2px solid #fff; box-shadow: var(--shadow);
+  }
+  #bubble {
+    background: #fff; color: var(--ink); font-weight: 700; font-size: 14px;
+    padding: 8px 14px; border-radius: 16px; box-shadow: var(--shadow);
+    transform: translate(10%, -100%);
+    white-space: normal; width: max-content; max-width: min(320px, 60vw);
+  }
+  #bubble.flip { transform: translate(-90%, -100%); }
+  #bubble.flip::after { left: auto; right: 14px; }
+  #bubble::after {
+    content: ""; position: absolute; left: 14px; bottom: -8px;
+    border: 8px solid transparent; border-top-color: #fff; border-bottom: 0;
+  }
+
+  /* ---- ポップアップ（ニュースカード・社員証） ---- */
+  .modal {
+    position: fixed; inset: 0; z-index: 10; display: none;
+    align-items: center; justify-content: center; padding: 16px;
+    background: rgba(74, 52, 38, .28);
+  }
+  .modal.open { display: flex; }
+  .panel {
+    background: var(--paper); border-radius: 22px; box-shadow: var(--shadow);
+    width: min(520px, 100%); max-height: calc(100vh - 32px); overflow: auto;
+    padding: 20px; position: relative; border: 3px solid #f3dcc2;
+  }
+  .close {
+    position: absolute; top: 10px; right: 12px; border: 0; background: #f6e8d8;
+    width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--ink);
+  }
+  .panel h2 { margin: 0 0 12px; font-size: 18px; display: flex; gap: 8px; align-items: center; }
+  .cards { display: grid; gap: 10px; }
+  .card {
+    display: grid; grid-template-columns: 48px 1fr; gap: 12px; align-items: center;
+    background: #fff; border-radius: 14px; padding: 12px; border: 2px solid #f1e2d2;
+  }
+  .card .ic {
+    width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+    font-size: 26px; background: var(--cream);
+  }
+  .card .hl { font-weight: 800; font-size: 15px; line-height: 1.35; }
+  .card a.src { font-size: 12px; color: var(--mint-deep); text-decoration: none; word-break: break-all; }
+  .card a.src:hover { text-decoration: underline; }
+  .empty { text-align: center; padding: 18px 8px; color: var(--ink-soft); font-weight: 700; }
+  .btn {
+    display: block; width: 100%; margin-top: 14px; text-align: center; text-decoration: none;
+    background: var(--shiba); color: #fff; font-weight: 800; padding: 12px; border-radius: 14px;
+    border: 0; font-size: 15px; font-family: inherit; cursor: pointer;
+  }
+  .btn:hover { background: var(--shiba-deep); }
+
+  /* 社員証 */
+  .idcard { padding: 0; overflow: hidden; width: min(360px, 100%); }
+  .idcard .band {
+    background: linear-gradient(135deg, var(--shiba), #f2c08a); color: #fff;
+    padding: 12px 18px; font-weight: 800; font-size: 13px; letter-spacing: .05em;
+  }
+  .idcard .body { padding: 18px; display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; }
+  .idcard .face { width: 96px; height: 96px; border-radius: 18px; background: #fdebd6; display: grid; place-items: center; }
+  .idcard .name { font-size: 22px; font-weight: 800; }
+  .idcard dl { margin: 6px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 13px; }
+  .idcard dt { color: var(--ink-soft); }
+  .idcard dd { margin: 0; font-weight: 700; }
+  .idcard .state {
+    margin: 0 18px 18px; padding: 10px; border-radius: 12px; text-align: center;
+    font-weight: 800; background: #eaf7f2; color: var(--mint-deep);
+  }
+
+  /* ---- 3Dが使えないとき ---- */
+  #fallback {
+    display: none; position: fixed; inset: 0; z-index: 3; overflow: auto;
+    padding: 24px 16px 140px;
+  }
+  body.no3d #fallback { display: block; }
+  body.no3d #hint { display: none; }
+  @media (max-width: 600px) { #hint { top: 16px; bottom: auto; } }
+  #fallback .wrap { max-width: 560px; margin: 0 auto; }
+  #fallback .top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  #fallback .big { font-size: 44px; font-weight: 800; color: var(--shiba-deep); line-height: 1; }
+  #fallback .note { font-size: 12px; color: var(--ink-soft); margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<div id="stage" aria-label="3Dオフィス"></div>
+
+<!-- 3Dが読み込めないときの簡易表示 -->
+<div id="fallback">
+  <div class="wrap">
+    <div class="top">
+      <div class="face-mini"></div>
+      <div>
+        <div style="font-weight:800" id="fb-co"></div>
+        <div><span class="big" id="fb-count">0</span> <span id="fb-label">件</span></div>
+      </div>
+    </div>
+    <div class="cards" id="fb-cards"></div>
+    <a class="btn" id="fb-report" href="#">報告ファイルを開く</a>
+    <div class="note">3D表示を読み込めなかったため、簡易表示にしています（インターネット接続を確認してください）。</div>
+  </div>
+</div>
+
+<div id="hud">
+  <div class="co">🐾 <span id="hud-co"></span></div>
+  <div class="date" id="hud-date"></div>
+  <button class="count" id="hud-count" type="button" title="今日のニュースを見る"><b id="hud-num">0</b><span id="hud-label">件</span></button>
+  <div id="week" aria-label="直近7日の出勤"></div>
+</div>
+<div id="hint">🖱 ドラッグで回転・ホイールで拡大</div>
+
+<div class="tag" id="nametag">ニュースくん</div>
+<div class="tag" id="bubble"></div>
+
+<div class="modal" id="news-modal" role="dialog" aria-modal="true">
+  <div class="panel">
+    <button class="close" data-close aria-label="閉じる">×</button>
+    <h2 id="news-title">📄 今日の報告</h2>
+    <div class="cards" id="news-cards"></div>
+    <a class="btn" id="news-report" href="#">📂 報告ファイルを開く</a>
+  </div>
+</div>
+
+<div class="modal" id="id-modal" role="dialog" aria-modal="true">
+  <div class="panel idcard">
+    <button class="close" data-close aria-label="閉じる" style="background:rgba(255,255,255,.6)">×</button>
+    <div class="band" id="id-co">社員証</div>
+    <div class="body">
+      <div class="face" id="id-face"></div>
+      <div>
+        <div class="name" id="id-name"></div>
+        <dl>
+          <dt>仕事</dt><dd id="id-role"></dd>
+          <dt>勤務</dt><dd id="id-hours"></dd>
+          <dt>見た目</dt><dd id="id-look"></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="state" id="id-state"></div>
+  </div>
+</div>
+
+<!--
+  ニュースと出勤の記録。data/news.json と全く同じ内容をここに入れる。
+  （ダブルクリックで開いたときにも読めるよう、HTMLの中に埋め込んでいる）
+-->
+<!-- NEWS_DATA_START -->
+<script id="news-data" type="application/json">
+{
+  "company": "たなかAIカンパニー",
+  "employee": {
+    "name": "ニュースくん",
+    "role": "AIニュース担当",
+    "look": "メガネをかけた柴犬",
+    "hours": "毎朝7:00（日本時間）"
+  },
+  "updated_at": "2026-10-10T11:16:00+09:00",
+  "days": [
+    {
+      "date": "2026-10-10",
+      "status": "reported",
+      "checked_at": "2026-10-10T11:16:00+09:00",
+      "count": 3,
+      "speech": "社長！今日は3件です！",
+      "report_file": "報告/2026-10-10_AIニュース.md",
+      "items": [
+        {
+          "no": 1,
+          "headline": "Claudeの利用ルールが改定",
+          "category": "Claude",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "Anthropic公式ニュース",
+          "url": "https://www.anthropic.com/news/2026-usage-policy-update",
+          "check": "公式ページで確認"
+        },
+        {
+          "no": 2,
+          "headline": "Googleが仕事用AI代理人を発表",
+          "category": "仕事効率化",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "Google公式ブログ（報道で裏付け）",
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+          "check": "公式ページは開けず、Bloomberg・9to5Googleの報道で裏付け"
+        },
+        {
+          "no": 3,
+          "headline": "ChatGPTの最上位AIに超高速版",
+          "category": "ChatGPT",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "OpenAI Developers公式X",
+          "url": "https://x.com/OpenAIDevs/status/2108262812489531498",
+          "check": "公式サイトは開けず、公式X・AWS公式・Neowinの内容を検索結果で確認"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- NEWS_DATA_END -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/OrbitControls.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ================= データと日付 ================= */
+  var DATA = {};
+  try { DATA = JSON.parse(document.getElementById("news-data").textContent); } catch (e) { DATA = {}; }
+  var days = Array.isArray(DATA.days) ? DATA.days : [];
+  var emp = DATA.employee || { name: "ニュースくん", role: "AIニュース担当", look: "メガネをかけた柴犬", hours: "毎朝7:00（日本時間）" };
+  var companyName = DATA.company || "たなかAIカンパニー";
+
+  var params = new URLSearchParams(location.search);
+  // 日本時間の「今」。?hour=18 のように指定すると時間帯の見た目を試せる
+  function jstNow() {
+    var d = new Date(Date.now() + 9 * 3600 * 1000);
+    if (params.has("hour")) d.setUTCHours(Number(params.get("hour")) || 0);
+    return d;
+  }
+  function ymd(d) {
+    return d.getUTCFullYear() + "-" + String(d.getUTCMonth() + 1).padStart(2, "0") + "-" + String(d.getUTCDate()).padStart(2, "0");
+  }
+  var todayStr = params.get("date") || ymd(jstNow());
+  var today = null;
+  for (var i = 0; i < days.length; i++) if (days[i].date === todayStr) { today = days[i]; break; }
+  // state: reported / no_news / search_failed / before（出社前）
+  var state = today ? today.status : "before";
+  var items = (today && Array.isArray(today.items)) ? today.items : [];
+  var count = items.length;
+  var reportFile = today && today.report_file ? today.report_file : ("報告/" + todayStr + "_AIニュース.md");
+
+  var ICONS = { "ChatGPT": "💬", "Claude": "🤖", "画像生成": "🎨", "仕事効率化": "⚡", "その他": "📰" };
+  var STATE_TEXT = {
+    reported: "出勤済み・" + count + "件報告",
+    no_news: "出勤済み・異常なし",
+    search_failed: "出勤済み・検索できず困り中",
+    before: "出社前"
+  };
+  var SPEECH = {
+    reported: "社長！今日は" + count + "件です！",
+    no_news: "社長、今日は異常なしです！",
+    search_failed: "社長、すみません…今日は調べられませんでした",
+    before: ""
+  };
+  var speech = (today && today.speech) || SPEECH[state] || "";
+
+  /* ================= 画面の文字（HUD・カード・社員証） ================= */
+  var $ = function (id) { return document.getElementById(id); };
+  var WD = ["日", "月", "火", "水", "木", "金", "土"];
+  var td = new Date(todayStr + "T00:00:00Z");
+  $("hud-co").textContent = companyName;
+  $("hud-date").textContent = todayStr.replace(/-/g, "/") + "（" + WD[td.getUTCDay()] + "）";
+  var countLabel = state === "before" ? "件・出社前" : state === "search_failed" ? "件・検索できず" : state === "no_news" ? "件・異常なし" : "件";
+  $("hud-num").textContent = count;
+  $("hud-label").textContent = countLabel;
+
+  // 直近7日の出勤（出社した日だけ色が付く）
+  var attended = {};
+  days.forEach(function (d) { attended[d.date] = true; });
+  for (var k = 6; k >= 0; k--) {
+    var dd = new Date(td.getTime() - k * 86400000);
+    var ds = ymd(dd);
+    var dot = document.createElement("i");
+    if (attended[ds]) dot.className = "on";
+    if (k === 0) dot.className += " today";
+    dot.title = ds.slice(5).replace("-", "/") + (attended[ds] ? " 出勤" : " -");
+    $("week").appendChild(dot);
+  }
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function safeUrl(u) { return /^https?:\/\//.test(u || "") ? u : "#"; }
+  function cardsHtml() {
+    if (!count) {
+      var msg = state === "before" ? "まだ出社前です。朝7時の報告をお待ちください。"
+        : state === "search_failed" ? "今日は検索がうまくいきませんでした。"
+        : "今日は報告するニュースはありませんでした（異常なし）。";
+      return '<div class="empty">' + esc(msg) + "</div>";
+    }
+    return items.map(function (it) {
+      return '<div class="card"><div class="ic">' + (ICONS[it.category] || "📰") + '</div><div>' +
+        '<div class="hl">' + esc(it.headline) + '</div>' +
+        '<a class="src" href="' + esc(safeUrl(it.url)) + '" target="_blank" rel="noopener">出典：' + esc(it.source) + " ↗</a>" +
+        "</div></div>";
+    }).join("");
+  }
+  $("news-title").textContent = "📄 今日の報告 " + count + "件";
+  $("news-cards").innerHTML = cardsHtml();
+  $("news-report").href = encodeURI(reportFile);
+  $("news-report").style.display = state === "before" ? "none" : "";
+
+  // 3Dなしの簡易表示
+  $("fb-co").textContent = companyName + "　" + todayStr.replace(/-/g, "/");
+  $("fb-count").textContent = count;
+  $("fb-label").textContent = countLabel;
+  $("fb-cards").innerHTML = cardsHtml();
+  $("fb-report").href = encodeURI(reportFile);
+  $("fb-report").style.display = state === "before" ? "none" : "";
+
+  // 社員証
+  var faceSvg =
+    '<svg viewBox="0 0 100 100" width="84" height="84" aria-hidden="true">' +
+    '<path d="M22 40 L28 10 L46 30 Z M78 40 L72 10 L54 30 Z" fill="#e8a35c"/>' +
+    '<path d="M28 34 L30 18 L40 30 Z M72 34 L70 18 L60 30 Z" fill="#fff3e0"/>' +
+    '<ellipse cx="50" cy="56" rx="34" ry="32" fill="#e8a35c"/>' +
+    '<ellipse cx="50" cy="70" rx="24" ry="18" fill="#fff3e0"/>' +
+    '<ellipse cx="38" cy="38" rx="4" ry="2.5" fill="#fff3e0"/><ellipse cx="62" cy="38" rx="4" ry="2.5" fill="#fff3e0"/>' +
+    '<circle cx="38" cy="52" r="4" fill="#3b2a20"/><circle cx="62" cy="52" r="4" fill="#3b2a20"/>' +
+    '<circle cx="38" cy="52" r="10" fill="none" stroke="#5b3a29" stroke-width="3"/><circle cx="62" cy="52" r="10" fill="none" stroke="#5b3a29" stroke-width="3"/>' +
+    '<path d="M48 52 H52" stroke="#5b3a29" stroke-width="3"/>' +
+    '<ellipse cx="50" cy="64" rx="5" ry="3.5" fill="#3b2a20"/>' +
+    '<path d="M43 71 Q50 77 57 71" fill="none" stroke="#3b2a20" stroke-width="2.5" stroke-linecap="round"/>' +
+    "</svg>";
+  $("id-co").textContent = companyName + "　社員証";
+  $("id-face").innerHTML = faceSvg;
+  $("id-name").textContent = emp.name;
+  $("id-role").textContent = emp.role;
+  $("id-hours").textContent = emp.hours;
+  $("id-look").textContent = emp.look;
+  $("id-state").textContent = "今日：" + STATE_TEXT[state];
+  if (state === "before") { $("id-state").style.background = "#f3ece4"; $("id-state").style.color = "#8a6e5a"; }
+  if (state === "search_failed") { $("id-state").style.background = "#fdeceb"; $("id-state").style.color = "#c0605a"; }
+  var faceMini = document.querySelector(".face-mini");
+  if (faceMini) faceMini.innerHTML = faceSvg;
+
+  function openModal(id) { $(id).classList.add("open"); }
+  document.querySelectorAll(".modal").forEach(function (m) {
+    m.addEventListener("click", function (e) { if (e.target === m || e.target.hasAttribute("data-close")) m.classList.remove("open"); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") document.querySelectorAll(".modal.open").forEach(function (m) { m.classList.remove("open"); });
+  });
+  $("hud-count").addEventListener("click", function () { openModal("news-modal"); });
+
+  var nametag = $("nametag"), bubble = $("bubble");
+  nametag.style.opacity = "0"; bubble.style.opacity = "0";
+  bubble.textContent = speech;
+
+  /* ================= 3D ================= */
+  if (typeof THREE === "undefined") { document.body.classList.add("no3d"); return; }
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) { document.body.classList.add("no3d"); return; }
+
+  var stage = $("stage");
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.appendChild(renderer.domElement);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(34, window.innerWidth / window.innerHeight, 0.1, 200);
+  var TARGET = new THREE.Vector3(0, 1.2, -0.6);
+  camera.position.set(10.5, 8.6, 11.5);
+  camera.lookAt(TARGET);
+  // 縦長の画面（スマホ）でも部屋全体が入るよう、カメラの距離を画面の形に合わせる
+  var BASE_DIST = camera.position.distanceTo(TARGET);
+  function fitDistance() {
+    var a = window.innerWidth / window.innerHeight;
+    return BASE_DIST * (a < 1.3 ? Math.pow(1.3 / a, 0.85) : 1);
+  }
+  camera.position.sub(TARGET).setLength(fitDistance()).add(TARGET);
+
+  // トゥーン調の陰影（3段階）
+  var gradTex = (function () {
+    var data = new Uint8Array([150, 150, 150, 210, 210, 210, 255, 255, 255]);
+    var t = new THREE.DataTexture(data, 3, 1, THREE.RGBFormat);
+    t.minFilter = t.magFilter = THREE.NearestFilter; t.generateMipmaps = false; t.needsUpdate = true;
+    return t;
+  })();
+  var matCache = {};
+  function toon(color, extra) {
+    var key = color + (extra ? JSON.stringify(extra) : "");
+    if (!matCache[key]) {
+      var o = { color: new THREE.Color(color), gradientMap: gradTex };
+      if (extra) for (var p in extra) o[p] = extra[p];
+      matCache[key] = new THREE.MeshToonMaterial(o);
+    }
+    return matCache[key];
+  }
+  function mesh(geo, mat, x, y, z, parent) {
+    var m = new THREE.Mesh(geo, mat);
+    m.position.set(x || 0, y || 0, z || 0);
+    m.castShadow = true; m.receiveShadow = true;
+    if (parent) parent.add(m);
+    return m;
+  }
+  function box(w, h, d, color, x, y, z, parent) { return mesh(new THREE.BoxGeometry(w, h, d), toon(color), x, y, z, parent); }
+  function ball(r, color, x, y, z, parent) { return mesh(new THREE.SphereGeometry(r, 24, 18), toon(color), x, y, z, parent); }
+  function cyl(rt, rb, h, color, x, y, z, parent, seg) { return mesh(new THREE.CylinderGeometry(rt, rb, h, seg || 24), toon(color), x, y, z, parent); }
+
+  function canvasTex(w, h, draw) {
+    var c = document.createElement("canvas"); c.width = w; c.height = h;
+    draw(c.getContext("2d"), w, h);
+    var t = new THREE.CanvasTexture(c); t.anisotropy = 4;
+    return t;
+  }
+  function roundRect(g, x, y, w, h, r) {
+    g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+  }
+  var FONT = '"Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif';
+
+  // 立て札（文字入りの小さな看板）
+  function makeSign(text, bg, fg, w) {
+    w = w || 0.9;
+    var g = new THREE.Group();
+    var tex = canvasTex(512, 256, function (c, W, H) {
+      c.fillStyle = "#fff"; roundRect(c, 0, 0, W, H, 60); c.fill();
+      c.fillStyle = bg; roundRect(c, 14, 14, W - 28, H - 28, 48); c.fill();
+      c.fillStyle = fg; c.font = "800 " + (text.length > 4 ? 84 : 108) + "px " + FONT;
+      c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(text, W / 2, H / 2 + 6);
+    });
+    // 表と裏の2枚にして、どちらから見ても文字が正しく読めるようにする
+    [0, Math.PI].forEach(function (ry) {
+      var board = new THREE.Mesh(new THREE.PlaneGeometry(w, w / 2), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+      board.position.y = w / 4 + 0.18; board.rotation.y = ry;
+      g.add(board);
+    });
+    cyl(0.025, 0.025, 0.2, "#b98a5e", 0, 0.09, -0.01, g);
+    cyl(0.12, 0.14, 0.04, "#b98a5e", 0, 0.02, 0, g);
+    return g;
+  }
+
+  /* ---- 部屋 ---- */
+  var W = 12, D = 10, H = 5, WALL_T = 0.3;
+  var floorTex = canvasTex(512, 512, function (c, Wd, Hd) {
+    var cols = ["#e9c39a", "#e2b98d", "#eccaa4", "#ddb285"];
+    var rows = 8, ph = Hd / rows;
+    for (var r = 0; r < rows; r++) {
+      var off = (r % 2) * 128;
+      for (var x = -off; x < Wd; x += 256) {
+        c.fillStyle = cols[(r * 3 + Math.floor((x + off) / 256)) % cols.length];
+        c.fillRect(x, r * ph, 256, ph);
+        c.fillStyle = "rgba(140,90,50,.25)"; c.fillRect(x, r * ph, 2, ph);
+      }
+      c.fillStyle = "rgba(140,90,50,.3)"; c.fillRect(0, r * ph, Wd, 2);
+    }
+  });
+  floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(2, 2);
+  var floor = new THREE.Mesh(new THREE.BoxGeometry(W, 0.3, D), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: gradTex }));
+  floor.position.y = -0.15; floor.receiveShadow = true; scene.add(floor);
+
+  // 丸いラグ
+  var rug = cyl(2.6, 2.6, 0.03, "#cfeee2", 0.6, 0.016, 0.2, scene, 48); rug.castShadow = false;
+  var rug2 = cyl(2.2, 2.2, 0.035, "#e5f6ef", 0.6, 0.02, 0.2, scene, 48); rug2.castShadow = false;
+
+  var WALL = "#fdeedd", WAINSCOT = "#f2cfae", TRIM = "#ffffff";
+  // 奥の壁（z = -D/2）
+  var backWall = new THREE.Group(); scene.add(backWall);
+  box(W, H, WALL_T, WALL, 0, H / 2, -D / 2 - WALL_T / 2, backWall);
+  box(W, 1.1, 0.06, WAINSCOT, 0, 0.55, -D / 2 + 0.03, backWall);
+  box(W, 0.08, 0.1, TRIM, 0, 1.12, -D / 2 + 0.05, backWall);
+  // 左の壁（x = -W/2）窓の穴あき
+  var leftWall = new THREE.Group(); scene.add(leftWall);
+  var WIN_Z = 0.2, WIN_W = 3.2, WIN_Y = 2.7, WIN_H = 2.0, LX = -W / 2 - WALL_T / 2;
+  var zA = -D / 2, zB = WIN_Z - WIN_W / 2, zC = WIN_Z + WIN_W / 2, zD = D / 2;
+  box(WALL_T, H, zB - zA, WALL, LX, H / 2, (zA + zB) / 2, leftWall);
+  box(WALL_T, H, zD - zC, WALL, LX, H / 2, (zC + zD) / 2, leftWall);
+  box(WALL_T, WIN_Y - WIN_H / 2, WIN_W, WALL, LX, (WIN_Y - WIN_H / 2) / 2, WIN_Z, leftWall);
+  box(WALL_T, H - (WIN_Y + WIN_H / 2), WIN_W, WALL, LX, (H + WIN_Y + WIN_H / 2) / 2, WIN_Z, leftWall);
+  box(0.06, 1.1, zB - zA, WAINSCOT, -W / 2 + 0.03, 0.55, (zA + zB) / 2, leftWall);
+  box(0.06, 1.1, zD - zC, WAINSCOT, -W / 2 + 0.03, 0.55, (zC + zD) / 2, leftWall);
+  box(0.06, WIN_Y - WIN_H / 2 > 1.1 ? 1.1 : WIN_Y - WIN_H / 2, WIN_W, WAINSCOT, -W / 2 + 0.03, 0.55, WIN_Z, leftWall);
+  // 窓枠
+  var FR = "#ffffff";
+  box(0.2, 0.12, WIN_W + 0.24, FR, -W / 2 + 0.02, WIN_Y + WIN_H / 2 + 0.06, WIN_Z, leftWall);
+  box(0.36, 0.12, WIN_W + 0.36, FR, -W / 2 + 0.08, WIN_Y - WIN_H / 2 - 0.06, WIN_Z, leftWall);
+  box(0.2, WIN_H, 0.12, FR, -W / 2 + 0.02, WIN_Y, zB - 0.06, leftWall);
+  box(0.2, WIN_H, 0.12, FR, -W / 2 + 0.02, WIN_Y, zC + 0.06, leftWall);
+  box(0.12, WIN_H, 0.08, FR, -W / 2 - 0.05, WIN_Y, WIN_Z, leftWall);
+  box(0.12, 0.08, WIN_W, FR, -W / 2 - 0.05, WIN_Y, WIN_Z, leftWall);
+  // 窓の外の空（日本時間で色が変わる）
+  var skyCanvas = document.createElement("canvas"); skyCanvas.width = 256; skyCanvas.height = 256;
+  var skyTex = new THREE.CanvasTexture(skyCanvas);
+  var sky = new THREE.Mesh(new THREE.PlaneGeometry(WIN_W + 1, WIN_H + 1), new THREE.MeshBasicMaterial({ map: skyTex }));
+  sky.rotation.y = Math.PI / 2; sky.position.set(-W / 2 - 0.9, WIN_Y, WIN_Z); leftWall.add(sky);
+  var sun = new THREE.Mesh(new THREE.SphereGeometry(0.28, 24, 16), new THREE.MeshBasicMaterial({ color: 0xffe08a }));
+  sun.position.set(-W / 2 - 0.7, WIN_Y + 0.4, WIN_Z - 0.7); leftWall.add(sun);
+  // 外の小さな丘と雲
+  var hill = new THREE.Mesh(new THREE.SphereGeometry(1.4, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0x9fd8a8 }));
+  hill.position.set(-W / 2 - 0.85, WIN_Y - WIN_H / 2 - 0.5, WIN_Z + 0.6); hill.scale.set(0.3, 0.6, 1); leftWall.add(hill);
+  var clouds = new THREE.Group(); leftWall.add(clouds);
+  [[0.5, 0.45, 0.5], [0.75, 0.5, 0.35], [0.95, 0.45, 0.3]].forEach(function (c) {
+    var m = new THREE.Mesh(new THREE.SphereGeometry(c[2], 16, 12), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+    m.position.set(-W / 2 - 0.75, WIN_Y + c[1], WIN_Z + c[0]); m.scale.x = 0.3; clouds.add(m);
+  });
+
+  // 会社の看板
+  var signTex = canvasTex(1024, 256, function (c, Wd, Hd) {
+    c.fillStyle = "#c98d58"; roundRect(c, 0, 0, Wd, Hd, 70); c.fill();
+    c.fillStyle = "#fff7ec"; roundRect(c, 16, 16, Wd - 32, Hd - 32, 58); c.fill();
+    c.fillStyle = "#5a3d2b"; c.font = "800 " + Math.min(96, Math.floor(1700 / (companyName.length + 2))) + "px " + FONT; c.textAlign = "center"; c.textBaseline = "middle";
+    c.fillText("🐾 " + companyName, Wd / 2, Hd / 2 + 6);
+  });
+  var signBoard = new THREE.Mesh(new THREE.PlaneGeometry(4.4, 1.1), new THREE.MeshBasicMaterial({ map: signTex, transparent: true }));
+  signBoard.position.set(-1.6, 3.85, -D / 2 + 0.02); backWall.add(signBoard);
+
+  // 壁時計（日本時間）
+  var clock = new THREE.Group(); clock.position.set(3.4, 3.7, -D / 2 + 0.06); backWall.add(clock);
+  var rim = cyl(0.62, 0.62, 0.1, "#e8a35c", 0, 0, 0, clock, 40); rim.rotation.x = Math.PI / 2;
+  var face = cyl(0.54, 0.54, 0.12, "#fffdf8", 0, 0, 0.01, clock, 40); face.rotation.x = Math.PI / 2;
+  for (var hmk = 0; hmk < 12; hmk++) {
+    var a = hmk / 12 * Math.PI * 2;
+    var mk = box(hmk % 3 === 0 ? 0.06 : 0.035, hmk % 3 === 0 ? 0.14 : 0.08, 0.02, "#8a6e5a", Math.sin(a) * 0.44, Math.cos(a) * 0.44, 0.08, clock);
+    mk.rotation.z = -a;
+  }
+  function hand(len, wid, color, z) {
+    var p = new THREE.Group(); p.position.z = z; clock.add(p);
+    box(wid, len, 0.02, color, 0, len / 2 - 0.05, 0, p); return p;
+  }
+  var hourHand = hand(0.3, 0.06, "#4a3426", 0.09), minHand = hand(0.44, 0.04, "#4a3426", 0.1), secHand = hand(0.46, 0.015, "#e07b6a", 0.11);
+  ball(0.04, "#e07b6a", 0, 0, 0.12, clock);
+
+  // 観葉植物
+  function plant(x, z, s) {
+    var g = new THREE.Group(); g.position.set(x, 0, z); g.scale.setScalar(s); scene.add(g);
+    cyl(0.32, 0.24, 0.55, "#f6f1ea", 0, 0.275, 0, g);
+    cyl(0.33, 0.33, 0.07, "#8fd4bd", 0, 0.5, 0, g);
+    cyl(0.29, 0.29, 0.03, "#7a5236", 0, 0.54, 0, g);
+    cyl(0.04, 0.05, 0.6, "#7f9a5a", 0, 0.85, 0, g);
+    [[0, 1.35, 0, 0.42], [-0.25, 1.15, 0.1, 0.3], [0.25, 1.12, -0.05, 0.32], [0.05, 1.05, 0.28, 0.28], [-0.05, 1.1, -0.28, 0.28]].forEach(function (l, idx) {
+      ball(l[3], idx % 2 ? "#7cc59a" : "#62b385", l[0], l[1], l[2], g);
+    });
+    return g;
+  }
+  var plants = [plant(-5.2, -4.2, 1.15), plant(5.1, -4.2, 0.95), plant(-5.1, 4.1, 0.8)];
+
+  // 本棚（奥の壁ぎわ）
+  var shelf = new THREE.Group(); shelf.position.set(-4.3, 0, -4.55); backWall.add(shelf);
+  box(1.4, 1.6, 0.6, "#d7a77a", 0, 0.8, 0, shelf);
+  box(1.25, 0.06, 0.5, "#c5946a", 0, 0.8, 0.06, shelf);
+  ["#8fd4bd", "#f4a7a0", "#9fd6f5", "#f6d58a", "#c9b6e8"].forEach(function (c, idx) {
+    box(0.16, 0.5 - (idx % 2) * 0.08, 0.38, c, -0.45 + idx * 0.2, 1.1 - (idx % 2) * 0.04, 0.08, shelf);
+    box(0.16, 0.48 - (idx % 3) * 0.06, 0.38, c, 0.45 - idx * 0.2, 0.32, 0.08, shelf);
+  });
+
+  /* ---- 机・ノートPC・椅子 ---- */
+  var clickables = [];
+  function desk(x, z, w, top, label) {
+    var g = new THREE.Group(); g.position.set(x, 0, z); scene.add(g);
+    box(w, 0.1, 1.2, top, 0, 0.88, 0, g);
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(function (p) {
+      cyl(0.05, 0.05, 0.84, "#b98a5e", p[0] * (w / 2 - 0.12), 0.42, p[1] * 0.48, g, 12);
+    });
+    box(w - 0.3, 0.5, 0.04, "#f3dcc2", 0, 0.6, 0.52, g);
+    if (label) {
+      var pw = 0.3 + label.length * 0.16;
+      var t = canvasTex(Math.round(pw * 400), 96, function (c, Wd, Hd) {
+        c.fillStyle = "#fff7ec"; roundRect(c, 0, 0, Wd, Hd, 30); c.fill();
+        c.fillStyle = "#5a3d2b"; c.font = "800 52px " + FONT; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(label, Wd / 2, Hd / 2 + 3);
+      });
+      var plate = new THREE.Mesh(new THREE.PlaneGeometry(pw, 0.23), new THREE.MeshBasicMaterial({ map: t, transparent: true }));
+      plate.position.set(0, 0.62, 0.55); g.add(plate);
+    }
+    return g;
+  }
+  function laptop(parent, x, z, glow) {
+    var g = new THREE.Group(); g.position.set(x, 0.93, z); parent.add(g);
+    box(0.7, 0.04, 0.48, "#d9dde3", 0, 0, 0, g);
+    box(0.6, 0.01, 0.26, "#aab0ba", 0, 0.025, -0.04, g);
+    var lid = new THREE.Group(); lid.position.set(0, 0.02, 0.24); lid.rotation.x = -0.25; g.add(lid);
+    box(0.7, 0.46, 0.03, "#d9dde3", 0, 0.23, 0, lid);
+    var scr = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.38), new THREE.MeshBasicMaterial({ color: glow ? 0xbfeee0 : 0x3a4250 }));
+    scr.position.set(0, 0.23, -0.017); scr.rotation.y = Math.PI; lid.add(scr);
+    ball(0.035, "#ffffff", 0, 0.23, 0.02, lid);
+    return { group: g, screen: scr };
+  }
+  function chair(x, z, color) {
+    var g = new THREE.Group(); g.position.set(x, 0, z); scene.add(g);
+    cyl(0.36, 0.36, 0.12, color, 0, 0.55, 0, g, 28);
+    box(0.7, 0.62, 0.12, color, 0, 0.98, -0.32, g).rotation.x = -0.08;
+    cyl(0.04, 0.04, 0.45, "#9aa0a8", 0, 0.28, 0, g, 10);
+    for (var s = 0; s < 5; s++) {
+      var a2 = s / 5 * Math.PI * 2, leg = box(0.05, 0.04, 0.34, "#9aa0a8", Math.sin(a2) * 0.17, 0.06, Math.cos(a2) * 0.17, g);
+      leg.rotation.y = a2; ball(0.05, "#5f6670", Math.sin(a2) * 0.32, 0.04, Math.cos(a2) * 0.32, g);
+    }
+    return g;
+  }
+
+  // 社長の席
+  var PRES = { x: -2.7, z: -2.2 };
+  var presDesk = desk(PRES.x, PRES.z, 2.8, "#d9a877", "社長");
+  laptop(presDesk, -0.55, -0.15, false);
+  chair(PRES.x, PRES.z - 1.05, "#f4a7a0");
+  // マグカップ
+  var mug = cyl(0.08, 0.07, 0.16, "#8fd4bd", -1.15, 1.01, 0.15, presDesk, 16);
+  // 報告書トレイと報告書（件数分）
+  var tray = new THREE.Group(); tray.position.set(0.7, 0.93, 0.05); presDesk.add(tray);
+  box(0.62, 0.04, 0.46, "#c98d58", 0, 0, 0, tray);
+  box(0.62, 0.1, 0.03, "#c98d58", 0, 0.05, 0.22, tray);
+  box(0.62, 0.1, 0.03, "#c98d58", 0, 0.05, -0.22, tray);
+  var paperMat = new THREE.MeshToonMaterial({ color: 0xffffff, gradientMap: gradTex, emissive: 0x000000 });
+  var papers = [];
+  for (var pi = 0; pi < count; pi++) {
+    var p = new THREE.Mesh(new THREE.BoxGeometry(0.52, 0.06, 0.4), paperMat);
+    p.position.set((Math.random() - .5) * 0.05, 0.05 + pi * 0.07, (Math.random() - .5) * 0.04);
+    p.rotation.y = (Math.random() - .5) * 0.25; p.castShadow = true; tray.add(p); papers.push(p);
+    var line = box(0.3, 0.002, 0.03, "#f4a7a0", 0, 0.031, -0.1, p); line.castShadow = false;
+    var line2 = box(0.36, 0.002, 0.02, "#d8d0c6", 0, 0.031, 0.0, p); line2.castShadow = false;
+    var line3 = box(0.36, 0.002, 0.02, "#d8d0c6", 0, 0.031, 0.07, p); line3.castShadow = false;
+  }
+  // 「ここをクリック」の目印（報告がある日だけ）
+  var marker = new THREE.Group();
+  if (count > 0) {
+    var cone = mesh(new THREE.ConeGeometry(0.12, 0.24, 20), toon("#e8a35c"), 0, 0, 0, marker);
+    cone.rotation.x = Math.PI;
+    marker.position.set(0.7, 1.45 + count * 0.07, 0.05); presDesk.add(marker);
+  }
+  var trayHit = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.5 + count * 0.07, 0.6), new THREE.MeshBasicMaterial({ visible: false }));
+  trayHit.position.set(0.7, 1.1, 0.05); presDesk.add(trayHit);
+  trayHit.userData.action = "news"; clickables.push(trayHit);
+
+  // 社員の席
+  var EMP = { x: 1.0, z: -2.2 };
+  var empDesk = desk(EMP.x, EMP.z, 2.2, "#e2b98d", emp.name);
+  var empLaptop = laptop(empDesk, 0, -0.1, state !== "before");
+  chair(EMP.x, EMP.z - 1.05, "#8fd4bd");
+  cyl(0.07, 0.06, 0.13, "#f4a7a0", 0.8, 0.995, 0.2, empDesk, 16);
+
+  // 募集中の席
+  var REC = { x: 3.4, z: 1.6 };
+  var recDesk = desk(REC.x, REC.z, 2.0, "#e9c39a", null);
+  laptop(recDesk, 0, -0.1, false);
+  var recChair = chair(REC.x, REC.z - 1.05, "#c9d2dc");
+  var recSign = makeSign("募集中", "#9fd6f5", "#ffffff", 0.9); recSign.position.set(0.15, 0.93, 0.3); recSign.rotation.y = -0.25; recDesk.add(recSign);
+
+  /* ---- ニュースくん（メガネの柴犬） ---- */
+  var ORANGE = "#e8a35c", CREAM = "#fff3e0", DARK = "#3b2a20";
+  var dog = new THREE.Group(); dog.position.set(EMP.x, 0.6, EMP.z - 1.0); scene.add(dog);
+  var torso = new THREE.Group(); dog.add(torso);
+  var body = ball(0.42, ORANGE, 0, 0.42, 0, torso); body.scale.set(1, 1.1, 0.88);
+  var belly = ball(0.32, CREAM, 0, 0.38, 0.17, torso); belly.scale.set(0.9, 1.05, 0.6);
+  // ミントのスカーフ
+  var scarf = mesh(new THREE.TorusGeometry(0.27, 0.07, 12, 28), toon("#8fd4bd"), 0, 0.8, 0, torso); scarf.rotation.x = Math.PI / 2;
+  var knot = mesh(new THREE.ConeGeometry(0.1, 0.18, 12), toon("#6cc3a6"), 0, 0.7, 0.27, torso); knot.rotation.x = Math.PI;
+  // 足（机の下）
+  [-0.16, 0.16].forEach(function (lx) {
+    var leg = cyl(0.11, 0.11, 0.42, ORANGE, lx, 0.06, 0.25, dog, 14); leg.rotation.x = Math.PI / 2;
+    ball(0.12, CREAM, lx, 0.06, 0.48, dog);
+  });
+  // しっぽ（くるん）
+  var tail = new THREE.Group(); tail.position.set(0, 0.42, -0.36); torso.add(tail);
+  var tailRing = mesh(new THREE.TorusGeometry(0.14, 0.07, 12, 24, Math.PI * 1.6), toon(ORANGE), 0, 0.12, -0.04, tail);
+  tailRing.rotation.y = Math.PI / 2;
+  ball(0.075, CREAM, 0, 0.0, -0.0, tail);
+  // 頭
+  var head = new THREE.Group(); head.position.set(0, 1.18, 0.04); torso.add(head);
+  var skull = ball(0.42, ORANGE, 0, 0, 0, head); skull.scale.set(1.05, 0.95, 0.95);
+  var muzzle = ball(0.2, CREAM, 0, -0.1, 0.32, head); muzzle.scale.set(1.25, 0.85, 1);
+  [-1, 1].forEach(function (sx) { var ch = ball(0.15, CREAM, sx * 0.2, -0.13, 0.24, head); ch.scale.set(1, 0.8, 0.8); });
+  ball(0.06, DARK, 0, -0.04, 0.52, head);
+  [-1, 1].forEach(function (sx) {
+    var ear = mesh(new THREE.ConeGeometry(0.15, 0.32, 16), toon(ORANGE), sx * 0.24, 0.38, -0.02, head);
+    ear.rotation.z = -sx * 0.35;
+    var inner = mesh(new THREE.ConeGeometry(0.09, 0.2, 14), toon(CREAM), sx * 0.235, 0.36, 0.05, head);
+    inner.rotation.z = -sx * 0.35;
+  });
+  var eyes = [], brows = [];
+  [-1, 1].forEach(function (sx) {
+    var eye = ball(0.055, DARK, sx * 0.15, 0.06, 0.36, head); eye.scale.z = 0.6; eyes.push(eye);
+    var hl = new THREE.Mesh(new THREE.SphereGeometry(0.016, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+    hl.position.set(0.018, 0.022, 0.035); eye.add(hl);
+    // 柴犬の麻呂まゆ
+    var brow = ball(0.045, CREAM, sx * 0.15, 0.18, 0.34, head); brow.scale.set(1.4, 0.8, 0.6); brows.push(brow);
+    // メガネ
+    var lens = mesh(new THREE.TorusGeometry(0.105, 0.017, 10, 32), toon("#5b3a29"), sx * 0.155, 0.06, 0.4, head);
+    var glass = new THREE.Mesh(new THREE.CircleGeometry(0.1, 24), new THREE.MeshBasicMaterial({ color: 0xdff4ff, transparent: true, opacity: 0.25 }));
+    glass.position.set(sx * 0.155, 0.06, 0.398); head.add(glass);
+    var arm = cyl(0.012, 0.012, 0.32, "#5b3a29", sx * 0.27, 0.07, 0.25, head, 8); arm.rotation.x = Math.PI / 2;
+  });
+  var bridge = cyl(0.014, 0.014, 0.1, "#5b3a29", 0, 0.08, 0.41, head, 8); bridge.rotation.z = Math.PI / 2;
+  // 口（にっこり／困り）
+  var mouth = mesh(new THREE.TorusGeometry(0.06, 0.013, 8, 20, Math.PI), toon(DARK), 0, -0.13, 0.48, head);
+  mouth.rotation.z = Math.PI;
+  // 汗（困ったとき）
+  var sweat = new THREE.Group(); sweat.position.set(0.38, 0.2, 0.15); head.add(sweat);
+  var drop = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16, 12), new THREE.MeshToonMaterial({ color: 0x9fd6f5, gradientMap: gradTex }));
+  sweat.add(drop);
+  var tip = new THREE.Mesh(new THREE.ConeGeometry(0.058, 0.1, 16), drop.material); tip.position.y = 0.07; sweat.add(tip);
+  sweat.visible = false;
+  // 腕（キーボードを打つ）
+  var arms = [];
+  [-1, 1].forEach(function (sx) {
+    var pivot = new THREE.Group(); pivot.position.set(sx * 0.36, 0.66, 0.06); torso.add(pivot);
+    var upper = cyl(0.085, 0.085, 0.5, ORANGE, 0, -0.25, 0, pivot, 14);
+    ball(0.1, CREAM, 0, -0.5, 0, pivot);
+    pivot.rotation.x = -1.15; pivot.rotation.z = sx * 0.12;
+    arms.push(pivot);
+  });
+  dog.traverse(function (o) { if (o.isMesh) { o.userData.action = "id"; clickables.push(o); } });
+
+  // 今日の状態をオフィスの様子で見せる
+  var emptyEmpSign = null, okSign = null;
+  if (state === "before") {
+    dog.visible = false;
+    dog.traverse(function (o) { var ix = clickables.indexOf(o); if (ix >= 0) clickables.splice(ix, 1); });
+    emptyEmpSign = makeSign("出社前", "#f6d58a", "#7a5236", 0.9);
+    emptyEmpSign.position.set(0.55, 0.93, 0.25); emptyEmpSign.rotation.y = -0.2; empDesk.add(emptyEmpSign);
+    // 出社前でも空席の札をクリックすると社員証が見られる
+    emptyEmpSign.traverse(function (o) { if (o.isMesh) { o.userData.action = "id"; clickables.push(o); } });
+  }
+  if (state === "no_news") {
+    okSign = makeSign("異常なし", "#8fd4bd", "#ffffff", 0.95);
+    okSign.position.set(-0.75, 0.93, 0.3); okSign.rotation.y = 0.2; empDesk.add(okSign);
+  }
+  if (state === "search_failed") {
+    sweat.visible = true;
+    mouth.rotation.z = 0; mouth.position.y = -0.17;
+    brows[0].rotation.z = -0.5; brows[1].rotation.z = 0.5;
+    brows[0].position.y = brows[1].position.y = 0.2;
+    empLaptop.screen.material.color.set(0xf4b6ae);
+  }
+
+  /* ---- 光 ---- */
+  var hemi = new THREE.HemisphereLight(0xfff6e8, 0xd9b48f, 0.55); scene.add(hemi);
+  var sunLight = new THREE.DirectionalLight(0xfff1dc, 0.75);
+  sunLight.position.set(-8, 12, 6); sunLight.castShadow = true;
+  sunLight.shadow.mapSize.set(2048, 2048);
+  var sc = sunLight.shadow.camera; sc.left = -9; sc.right = 9; sc.top = 9; sc.bottom = -9; sc.near = 1; sc.far = 40;
+  sunLight.shadow.bias = -0.0008;
+  scene.add(sunLight);
+  var fill = new THREE.DirectionalLight(0xffe2c4, 0.2); fill.position.set(10, 8, 10); scene.add(fill);
+  var lamp = new THREE.PointLight(0xffc98a, 0, 10); lamp.position.set(-0.6, 2.4, -1.8); scene.add(lamp);
+  // 社長の机のデスクライト
+  var deskLamp = new THREE.Group(); deskLamp.position.set(-1.1, 0.93, -0.35); presDesk.add(deskLamp);
+  cyl(0.14, 0.16, 0.05, "#8fd4bd", 0, 0.025, 0, deskLamp, 20);
+  var lampArm = cyl(0.025, 0.025, 0.6, "#8fd4bd", 0, 0.3, 0, deskLamp, 8);
+  var shade = mesh(new THREE.ConeGeometry(0.2, 0.22, 20, 1, true), toon("#8fd4bd", { side: THREE.DoubleSide }), 0.12, 0.62, 0.06, deskLamp);
+  shade.rotation.z = -0.5;
+  var bulb = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 12), new THREE.MeshBasicMaterial({ color: 0xfff1cc })); bulb.position.set(0.15, 0.56, 0.06); deskLamp.add(bulb);
+
+  /* ---- 時間帯（日本時間）で空の色を変える ---- */
+  var PHASES = {
+    morning: { top: "#ffd8b0", bottom: "#fff3d6", sun: 0xffe7a0, sunY: 0.0, light: 0.42, hemi: 0.48, lamp: 0, stars: false },
+    day:     { top: "#7cc6f2", bottom: "#d8f0ff", sun: 0xfff1a8, sunY: 0.45, light: 0.45, hemi: 0.5, lamp: 0, stars: false },
+    evening: { top: "#f49a7c", bottom: "#ffd7a1", sun: 0xff9b6a, sunY: -0.2, light: 0.36, hemi: 0.45, lamp: 0.4, stars: false },
+    night:   { top: "#26305e", bottom: "#4f5b93", sun: 0xf7f3d0, sunY: 0.4, light: 0.15, hemi: 0.4, lamp: 1.1, stars: true }
+  };
+  var currentPhase = null;
+  function phaseOf(h) { return h >= 5 && h < 10 ? "morning" : h >= 10 && h < 16 ? "day" : h >= 16 && h < 19 ? "evening" : "night"; }
+  function applyPhase(name) {
+    if (name === currentPhase) return; currentPhase = name;
+    var P = PHASES[name], g = skyCanvas.getContext("2d");
+    var gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, P.top); gr.addColorStop(1, P.bottom);
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+    if (P.stars) { g.fillStyle = "#fffbe0"; for (var s = 0; s < 40; s++) { g.beginPath(); g.arc(Math.random() * 256, Math.random() * 170, Math.random() * 1.6 + 0.4, 0, 7); g.fill(); } }
+    skyTex.needsUpdate = true;
+    sun.material.color.set(P.sun); sun.position.y = WIN_Y + P.sunY;
+    if (name === "night") { sun.scale.setScalar(0.8); } else { sun.scale.setScalar(1); }
+    clouds.visible = name !== "night";
+    hill.material.color.set(name === "night" ? 0x3f5a6e : name === "evening" ? 0xc9a882 : 0x9fd8a8);
+    sunLight.intensity = P.light; hemi.intensity = P.hemi; lamp.intensity = P.lamp;
+    bulb.material.color.set(P.lamp > 0 ? 0xffe2a0 : 0xfff6e6);
+    document.body.style.background = name === "night"
+      ? "radial-gradient(circle at 30% 20%, #4a4f78, #262a48 70%)"
+      : name === "evening" ? "radial-gradient(circle at 30% 20%, #ffe3cc, #f2b99a 70%)"
+      : "radial-gradient(circle at 30% 20%, #fff3e2, #f6dcc0 70%)";
+  }
+  function updateClock() {
+    var n = jstNow();
+    var hh = n.getUTCHours(), mm = n.getUTCMinutes(), ss = n.getUTCSeconds() + n.getUTCMilliseconds() / 1000;
+    secHand.rotation.z = -ss / 60 * Math.PI * 2;
+    minHand.rotation.z = -(mm + ss / 60) / 60 * Math.PI * 2;
+    hourHand.rotation.z = -((hh % 12) + mm / 60) / 12 * Math.PI * 2;
+    applyPhase(phaseOf(hh));
+  }
+
+  /* ---- 操作（ドラッグで回転・ホイールで拡大・自動でゆっくり回る） ---- */
+  var controls = null, idleUntil = 0, sph = null;
+  if (THREE.OrbitControls) {
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target.copy(TARGET);
+    controls.enableDamping = true; controls.dampingFactor = 0.08;
+    controls.enablePan = false;
+    controls.minDistance = 8; controls.maxDistance = Math.max(32, fitDistance() * 1.5);
+    controls.minPolarAngle = 0.25; controls.maxPolarAngle = 1.3;
+    controls.autoRotate = true; controls.autoRotateSpeed = 0.5;
+    controls.addEventListener("start", function () { controls.autoRotate = false; idleUntil = Infinity; });
+    controls.addEventListener("end", function () { idleUntil = performance.now() + 5000; });
+    controls.update();
+  } else {
+    // OrbitControls が読み込めなかったときの簡易操作（同じ動き）
+    sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(TARGET));
+    var dragging = false, lx = 0, ly = 0;
+    renderer.domElement.addEventListener("pointerdown", function (e) { dragging = true; lx = e.clientX; ly = e.clientY; idleUntil = Infinity; });
+    window.addEventListener("pointerup", function () { if (dragging) { dragging = false; idleUntil = performance.now() + 5000; } });
+    window.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      sph.theta -= (e.clientX - lx) * 0.008; sph.phi -= (e.clientY - ly) * 0.008; lx = e.clientX; ly = e.clientY;
+      sph.phi = Math.max(0.25, Math.min(1.3, sph.phi));
+    });
+    renderer.domElement.addEventListener("wheel", function (e) {
+      e.preventDefault(); sph.radius = Math.max(8, Math.min(Math.max(32, fitDistance() * 1.5), sph.radius * (1 + Math.sign(e.deltaY) * 0.08)));
+    }, { passive: false });
+    controls = {
+      update: function () {
+        if (!dragging && performance.now() > idleUntil) sph.theta += 0.0012;
+        camera.position.copy(new THREE.Vector3().setFromSpherical(sph).add(TARGET)); camera.lookAt(TARGET);
+      }
+    };
+  }
+
+  /* ---- クリック ---- */
+  var ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), downAt = null, hovered = null;
+  function pick(e) {
+    var r = renderer.domElement.getBoundingClientRect();
+    ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1; ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+    ray.setFromCamera(ndc, camera);
+    var hits = ray.intersectObjects(clickables.filter(function (o) { var v = true; o.traverseAncestors(function (a) { if (!a.visible) v = false; }); return v && (o.visible || o === trayHit); }), false);
+    return hits.length ? hits[0].object.userData.action : null;
+  }
+  renderer.domElement.addEventListener("pointerdown", function (e) { downAt = { x: e.clientX, y: e.clientY }; });
+  renderer.domElement.addEventListener("pointerup", function (e) {
+    if (!downAt || Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 6) return;
+    var act = pick(e);
+    if (act === "news") openModal("news-modal");
+    if (act === "id") openModal("id-modal");
+  });
+  renderer.domElement.addEventListener("pointermove", function (e) {
+    var act = pick(e); hovered = act;
+    renderer.domElement.style.cursor = act ? "pointer" : "grab";
+  });
+
+  /* ---- 名札・吹き出しの位置 ---- */
+  var tmp = new THREE.Vector3();
+  function placeTag(el, obj, offY, show) {
+    if (!show) { el.style.opacity = "0"; return; }
+    obj.getWorldPosition(tmp); tmp.y += offY; tmp.project(camera);
+    if (tmp.z > 1) { el.style.opacity = "0"; return; }
+    el.style.left = ((tmp.x + 1) / 2 * window.innerWidth) + "px";
+    // 吹き出しは名札のすぐ上に置く
+    el.style.top = ((1 - tmp.y) / 2 * window.innerHeight - (el === bubble ? nametag.offsetHeight + 10 : 0)) + "px";
+    el.style.opacity = "1";
+    if (el === bubble) {
+      var x = (tmp.x + 1) / 2 * window.innerWidth;
+      el.classList.toggle("flip", x + el.offsetWidth * 1.1 > window.innerWidth - 8);
+    }
+  }
+
+  /* ---- 動き ---- */
+  var clockT = new THREE.Clock(), nextBlink = 1.5, blinkEnd = 0;
+  var typingSpeed = state === "reported" ? 14 : state === "no_news" ? 6 : 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    var t = clockT.getElapsedTime();
+
+    if (controls.autoRotate === false && performance.now() > idleUntil) controls.autoRotate = true;
+    controls.update();
+
+    // 視点が壁の外側に回ったら、その壁を隠して中が見えるようにする
+    backWall.visible = camera.position.z > -D / 2 + 0.5;
+    leftWall.visible = camera.position.x > -W / 2 + 0.5;
+
+    if (dog.visible) {
+      // キーボード
+      if (typingSpeed) {
+        arms[0].rotation.x = -1.15 + Math.sin(t * typingSpeed) * 0.09;
+        arms[1].rotation.x = -1.15 + Math.sin(t * typingSpeed + Math.PI) * 0.09;
+      } else {
+        arms[0].rotation.x = arms[1].rotation.x = -0.9;
+      }
+      // 頭と体
+      if (state === "search_failed") {
+        head.rotation.z = 0.18 + Math.sin(t * 1.2) * 0.04; head.rotation.x = 0.12;
+        sweat.position.y = 0.2 - (t * 0.25 % 0.2);
+      } else {
+        head.rotation.z = Math.sin(t * 1.6) * 0.05; head.rotation.x = Math.sin(t * 0.8) * 0.03 + 0.05;
+      }
+      torso.position.y = Math.abs(Math.sin(t * (typingSpeed || 2) / 2)) * 0.015;
+      tail.rotation.y = Math.sin(t * (state === "search_failed" ? 2 : 7)) * 0.35;
+      // まばたき
+      if (t > nextBlink) { blinkEnd = t + 0.13; nextBlink = t + 2.2 + Math.random() * 2.8; }
+      var sy = t < blinkEnd ? 0.12 : 1;
+      eyes[0].scale.y = eyes[1].scale.y = sy;
+    }
+    // 報告書の目印
+    if (marker.children.length) {
+      marker.position.y = 1.45 + count * 0.07 + Math.sin(t * 3) * 0.06;
+      marker.rotation.y = t * 1.5;
+    }
+    paperMat.emissive.setHex(hovered === "news" ? 0x332211 : 0x000000);
+    if (state !== "before") empLaptop.screen.material.color.offsetHSL(0, 0, 0);
+    plants.forEach(function (p, idx) { p.rotation.z = Math.sin(t * 0.9 + idx) * 0.015; });
+
+    updateClock();
+    renderer.render(scene, camera);
+    placeTag(nametag, head, 0.85, dog.visible);
+    placeTag(bubble, head, 0.85, dog.visible && !!speech);
+  }
+  animate();
+
+  window.addEventListener("resize", function () {
+    camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    if (controls.object) { controls.maxDistance = Math.max(32, fitDistance() * 1.5); camera.position.sub(controls.target).setLength(fitDistance()).add(controls.target); }
+    else if (sph) sph.radius = fitDistance();
+  });
+})();
+</script>
+</body>
+</html>

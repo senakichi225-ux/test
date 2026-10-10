@@ -1,0 +1,49 @@
+{
+  "company": "たなかAIカンパニー",
+  "employee": {
+    "name": "ニュースくん",
+    "role": "AIニュース担当",
+    "look": "メガネをかけた柴犬",
+    "hours": "毎朝7:00（日本時間）"
+  },
+  "updated_at": "2026-10-10T11:16:00+09:00",
+  "days": [
+    {
+      "date": "2026-10-10",
+      "status": "reported",
+      "checked_at": "2026-10-10T11:16:00+09:00",
+      "count": 3,
+      "speech": "社長！今日は3件です！",
+      "report_file": "報告/2026-10-10_AIニュース.md",
+      "items": [
+        {
+          "no": 1,
+          "headline": "Claudeの利用ルールが改定",
+          "category": "Claude",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "Anthropic公式ニュース",
+          "url": "https://www.anthropic.com/news/2026-usage-policy-update",
+          "check": "公式ページで確認"
+        },
+        {
+          "no": 2,
+          "headline": "Googleが仕事用AI代理人を発表",
+          "category": "仕事効率化",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "Google公式ブログ（報道で裏付け）",
+          "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+          "check": "公式ページは開けず、Bloomberg・9to5Googleの報道で裏付け"
+        },
+        {
+          "no": 3,
+          "headline": "ChatGPTの最上位AIに超高速版",
+          "category": "ChatGPT",
+          "published": "米国時間2026-10-08（日本時間2026-10-09）",
+          "source": "OpenAI Developers公式X",
+          "url": "https://x.com/OpenAIDevs/status/2108262812489531498",
+          "check": "公式サイトは開けず、公式X・AWS公式・Neowinの内容を検索結果で確認"
+        }
+      ]
+    }
+  ]
+}
