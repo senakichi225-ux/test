@@ -100,7 +100,8 @@
       },
       "illustration": "pair",
       "images": [],
-      "priceJpy": null
+      "priceJpy": null,
+      "idiomList": true
     }
   ]
 }

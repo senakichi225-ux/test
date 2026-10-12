@@ -34,6 +34,8 @@ export const workSchema = z
     images: z.array(z.object({ src: z.string().startsWith("/"), alt: localized })),
     /** 円。null のときは「Price on request」。構想・試作中は必ず null（価格は仮説のため） */
     priceJpy: z.number().int().positive().nullable(),
+    /** true なら、作品ページに四字熟語の一覧（content/idioms.json）を出す */
+    idiomList: z.boolean().default(false),
   })
   .refine((w) => (w.kind === "edition") === (w.editionSize !== null), {
     message: "限定作品（edition）だけが editionSize を持つ",

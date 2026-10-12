@@ -1,0 +1,161 @@
+{
+  "note": "四字熟語ペアの一覧（docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。",
+  "groups": [
+    {
+      "id": "hospitality",
+      "label": {
+        "en": "Hospitality",
+        "ja": "おもてなし"
+      },
+      "idioms": [
+        {
+          "text": "一期一会",
+          "reading": "いちごいちえ",
+          "romaji": "ichigo ichie",
+          "meaning": {
+            "ja": "一生に一度の出会いを大切にする",
+            "en": "One time, one meeting — treasure every encounter."
+          },
+          "checked": false
+        },
+        {
+          "text": "以心伝心",
+          "reading": "いしんでんしん",
+          "romaji": "ishin denshin",
+          "meaning": {
+            "ja": "言葉がなくても、心が通じ合う",
+            "en": "Heart to heart, understood without words."
+          },
+          "checked": false
+        },
+        {
+          "text": "千客万来",
+          "reading": "せんきゃくばんらい",
+          "romaji": "senkyaku banrai",
+          "meaning": {
+            "ja": "たくさんのお客さんが次々に訪れる",
+            "en": "Guests arriving one after another — a place that thrives."
+          },
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "nature",
+      "label": {
+        "en": "Nature and seasons",
+        "ja": "自然・季節"
+      },
+      "idioms": [
+        {
+          "text": "花鳥風月",
+          "reading": "かちょうふうげつ",
+          "romaji": "kachō fūgetsu",
+          "meaning": {
+            "ja": "花・鳥・風・月。自然の美しさ",
+            "en": "The beauty of nature: flower, bird, wind and moon."
+          },
+          "checked": false
+        },
+        {
+          "text": "春夏秋冬",
+          "reading": "しゅんかしゅうとう",
+          "romaji": "shunka shūtō",
+          "meaning": {
+            "ja": "春・夏・秋・冬、四つの季節",
+            "en": "Spring, summer, autumn and winter."
+          },
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "wishes",
+      "label": {
+        "en": "Wishes",
+        "ja": "願い"
+      },
+      "idioms": [
+        {
+          "text": "笑門来福",
+          "reading": "しょうもんらいふく",
+          "romaji": "shōmon raifuku",
+          "meaning": {
+            "ja": "笑う人のところに福が来る",
+            "en": "Good fortune comes to a home full of laughter."
+          },
+          "checked": false
+        },
+        {
+          "text": "身体健康",
+          "reading": "しんたいけんこう",
+          "romaji": "shintai kenkō",
+          "meaning": {
+            "ja": "体がじょうぶで元気であること",
+            "en": "A strong and healthy body."
+          },
+          "checked": false
+        },
+        {
+          "text": "商売繁盛",
+          "reading": "しょうばいはんじょう",
+          "romaji": "shōbai hanjō",
+          "meaning": {
+            "ja": "商売がうまくいって栄える",
+            "en": "A thriving business."
+          },
+          "checked": false
+        },
+        {
+          "text": "福徳円満",
+          "reading": "ふくとくえんまん",
+          "romaji": "fukutoku enman",
+          "meaning": {
+            "ja": "幸せと豊かさに恵まれ、満ち足りている",
+            "en": "Fortune and virtue — a life full and complete."
+          },
+          "checked": false
+        },
+        {
+          "text": "交通安全",
+          "reading": "こうつうあんぜん",
+          "romaji": "kōtsū anzen",
+          "meaning": {
+            "ja": "事故なく、安全に行き来できるように",
+            "en": "Safe travels on every road."
+          },
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "label": {
+        "en": "Energy",
+        "ja": "勢い"
+      },
+      "idioms": [
+        {
+          "text": "天下無双",
+          "reading": "てんかむそう",
+          "romaji": "tenka musō",
+          "meaning": {
+            "ja": "世の中に並ぶものがないほど、すぐれている",
+            "en": "Without equal under heaven."
+          },
+          "checked": false
+        },
+        {
+          "text": "疾風迅雷",
+          "reading": "しっぷうじんらい",
+          "romaji": "shippū jinrai",
+          "meaning": {
+            "ja": "風や雷のように、すばやく力強い",
+            "en": "Swift as the wind, sudden as thunder."
+          },
+          "checked": false
+        }
+      ]
+    }
+  ]
+}
