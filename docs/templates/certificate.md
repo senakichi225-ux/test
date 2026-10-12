@@ -10,7 +10,7 @@
 | | |
 |---|---|
 | Title ／ 作品名 | [English title] ／ [日本語の作品名] |
-| Work No. ／ 作品番号 | [WADO-2026-ICHI-U001] |
+| Work No. ／ 作品番号 | [WADO-2026-NAME-U001] |
 | Type ／ 種類 | [Unique ／ 一点物] または [Limited edition 3/30 ／ 限定作品 3/30] |
 | Year ／ 制作年 | [2026] |
 | Medium ／ 素材と技法 | [Sumi ink on washi; fusuma construction (wooden lattice, layered paper), wooden edge, hikite] ／ [和紙に墨、襖の構造（木の骨・下張り）、木の縁、引手] |

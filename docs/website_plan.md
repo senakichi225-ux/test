@@ -11,7 +11,7 @@
 | パス | ページ | 役割 | 主な中身 | 公開時期 |
 |---|---|---|---|---|
 | `/{en,ja}` | **Home** | 世界観と入口 | タグライン「Beyond the Frame.」、代表作のビジュアル、使命、シリーズ紹介、襖の構造、名前の意味、ウェイティングリスト | 今 |
-| `/{en,ja}/works` | **Works** | 作品の一覧 | シリーズ（ICHI／TSUI／MA）と作品。状態（構想・試作中・販売中・売約済み）を表示 | 今（構想として） |
+| `/{en,ja}/works` | **Works** | 作品の一覧 | 種類（名前アート／言葉アート／四字熟語ペア）と作品。状態（構想・試作中・販売中・売約済み）を表示 | 今（構想として） |
 | `/{en,ja}/works/[slug]` | **作品ページ** | 1作品の詳細 | 美術館のキャプション形式（作品名・制作年・素材と技法・寸法 cm/in・一点物か限定か・証明書）、価格または Price on request、問い合わせボタン | 今（構想として） |
 | `/{en,ja}/story` | **Story** | ブランドの物語 | 使命・コンセプト、Beyond the Frame の意味、SPIRIT／ORIGIN／NEW（ブランド独自のコンセプトと明記）、制作の流れ | 今 |
 | `/{en,ja}/commissions` | **Commissions** | 建築家・デザイナー向け | 襖アートドア（将来の商品）の考え方、特注の流れ（予定）、問い合わせ | 今（予告として） |
@@ -93,14 +93,14 @@
 ### Home
 1. **Hero**：「Beyond the Frame.」＋1行の説明（Fusuma, reimagined as contemporary art.）＋代表作のイラスト（写真ができたら差し替え）
 2. **Statement**：使命の一文（日本の襖を、世界で認められる現代アートへ）
-3. **First collection**：ICHI／TSUI／MA の3シリーズ（状態：構想・試作中）→ Works へ
+3. **First collection**：名前アート／言葉アート／四字熟語ペアの3種類（オーダーメイド。状態：構想・試作中）→ Works へ
 4. **Built like a fusuma**：襖の構造の図（骨・下張り・上張り・縁・引手）。額縁との違い
-5. **The name**：SPIRIT／ORIGIN／NEW（「ブランド独自のコンセプト」と注記）
+5. **The name**：和＝Harmony／道＝The Way（「ブランド独自の解釈」と注記）
 6. **Waitlist**：最初の作品の公開をお知らせ
 
 ### 作品ページ（キャプションの形）
 ```
-ICHI — “Ma”                      ← 作品名
+Word Art — “Wa”                  ← 作品名
 2026                             ← 制作年
 Sumi ink on washi; fusuma construction, cedar edge   ← 素材と技法
 60 × 90 × 2 cm / 23.6 × 35.4 × 0.8 in               ← 寸法

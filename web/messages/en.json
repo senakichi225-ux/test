@@ -47,8 +47,8 @@
     },
     "collection": {
       "label": "First collection",
-      "title": "Three series, in development",
-      "lead": "The first works are being designed and prototyped now. Sizes are planned sizes.",
+      "title": "Written for you",
+      "lead": "A name, a word, a four-character idiom. All three are made to order. The first pieces are being designed and prototyped now. Sizes are planned sizes.",
       "link": "View all works"
     },
     "structure": {
@@ -91,7 +91,7 @@
     "workNo": "Work no.",
     "workNoPending": "Assigned when the work is completed",
     "about": "About this work",
-    "inquireNote": "Interested in this series? Ask about the first works, or join the waitlist to hear when they are ready."
+    "inquireNote": "Interested in this work? Ask us about an order, or join the waitlist to hear when orders open."
   },
   "story": {
     "title": "Story",
@@ -235,11 +235,11 @@
     "rolePlaceholder": "Select one",
     "country": "Country",
     "countryPlaceholder": "e.g. United States",
-    "interest": "Which series interests you most?",
+    "interest": "Which kind of work interests you most?",
     "interestOptions": {
-      "ichi": "ICHI",
-      "tsui": "TSUI",
-      "ma": "MA",
+      "name": "Name Art",
+      "word": "Word Art",
+      "pair": "Four-Word Pair",
       "door": "Doors",
       "unsure": "Not sure yet"
     },
@@ -276,7 +276,7 @@
     "updated": "Last updated: [TBD]",
     "sections": [
       { "title": "Who we are", "body": "WADŌ is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]." },
-      { "title": "What we collect", "body": "Waitlist: your email address, your role, and — if you choose — your country, the series you are interested in and a message. Contact form: your email address, the topic, your message, and — if you choose — your name, your country and the work you are asking about. We also record the page language and the time you agreed to this policy." },
+      { "title": "What we collect", "body": "Waitlist: your email address, your role, and — if you choose — your country, the kind of work you are interested in and a message. Contact form: your email address, the topic, your message, and — if you choose — your name, your country and the work you are asking about. We also record the page language and the time you agreed to this policy." },
       { "title": "Why we use it", "body": "To reply to your message, and to send you news about WADŌ if you joined the waitlist. We do not sell or share your data." },
       { "title": "Where it is stored", "body": "Your data is stored on a computer managed by the operator. It is not sent to any third-party service." },
       { "title": "Your choices", "body": "You can ask us at any time to see, correct or delete your data, or to stop sending you emails, by contacting [TBD]." }

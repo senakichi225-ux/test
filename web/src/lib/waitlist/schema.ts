@@ -2,7 +2,7 @@ import { z } from "zod";
 import { locales } from "@/i18n/config";
 
 export const roles = ["designer", "architect", "homeowner", "hotel", "other"] as const;
-export const interests = ["ichi", "tsui", "ma", "door", "unsure"] as const;
+export const interests = ["name", "word", "pair", "door", "unsure"] as const;
 
 export type Role = (typeof roles)[number];
 export type Interest = (typeof interests)[number];

@@ -75,7 +75,7 @@ export function ArtworkIllustration({
     </div>
   ) : null;
 
-  if (kind === "tsui") {
+  if (kind === "pair") {
     return (
       <div role="img" aria-label={label} className={`relative flex gap-[4%] ${className}`}>
         <Panel className="aspect-[1/2] w-[48%]">
@@ -91,7 +91,7 @@ export function ArtworkIllustration({
     );
   }
 
-  if (kind === "ma") {
+  if (kind === "name") {
     return (
       <div role="img" aria-label={label} className={`relative ${className}`}>
         <Panel className="aspect-square w-full">

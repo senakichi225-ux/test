@@ -40,14 +40,14 @@ test.describe("ページ", () => {
   for (const [path, h1] of [
     ["/en", "Beyond the Frame."],
     ["/en/works", "Works"],
-    ["/en/works/ichi", "ICHI — One"],
-    ["/en/works/tsui", "TSUI — Pair"],
-    ["/en/works/ma", "MA — Interval"],
+    ["/en/works/word-art", "Word Art"],
+    ["/en/works/four-word-pair", "Four-Word Pair"],
+    ["/en/works/name-art", "Name Art"],
     ["/en/story", "Story"],
     ["/en/commissions", "Commissions"],
     ["/en/contact", "Contact"],
     ["/en/shipping-care", "Shipping & Care"],
-    ["/ja/works/ma", "MA（間）"],
+    ["/ja/works/name-art", "名前アート"],
   ] as const) {
     test(`${path} が表示され、横にはみ出さない`, async ({ page }) => {
       await page.goto(path);
@@ -63,7 +63,7 @@ test.describe("ページ", () => {
   });
 
   test("構想中の作品は価格を出さず、作品番号は未定と表示する", async ({ page }) => {
-    await page.goto("/en/works/ichi");
+    await page.goto("/en/works/word-art");
     await expect(page.getByText("Not yet available")).toBeVisible();
     await expect(page.getByText("Assigned when the work is completed")).toBeVisible();
     await expect(page.getByText("60 × 90 × 2 cm / 23.6 × 35.4 × 0.8 in", { exact: false })).toBeVisible();
@@ -92,8 +92,8 @@ test.describe("ウェイティングリスト", () => {
       await page.goto(`/en?round=${round}#waitlist`);
       await page.getByLabel("Email", { exact: true }).fill(email);
       await page.getByLabel("I am a…").selectOption("architect");
-      await page.getByRole("group", { name: /Which series/ }).getByText("MA", { exact: true }).click();
-      await expect(page.getByRole("radio", { name: "MA" })).toBeChecked();
+      await page.getByRole("group", { name: /Which kind of work/ }).getByText("Name Art", { exact: true }).click();
+      await expect(page.getByRole("radio", { name: "Name Art" })).toBeChecked();
       await page.getByRole("checkbox").check();
       await page.getByRole("button", { name: "Join the waitlist", exact: true }).click();
       await expect(page.getByRole("status")).toHaveText(expected);
@@ -104,19 +104,19 @@ test.describe("ウェイティングリスト", () => {
 test.describe("問い合わせ", () => {
   test("作品ページから問い合わせると、作品と種類が選ばれた状態で送れる", async ({ page }, testInfo) => {
     const email = `inquiry-${testInfo.project.name}-${Date.now()}@example.com`;
-    await page.goto("/en/works/tsui");
+    await page.goto("/en/works/four-word-pair");
     await page.getByRole("link", { name: "Inquire about this work" }).click();
-    await expect(page).toHaveURL(/\/en\/contact\?work=tsui$/);
-    await expect(page.getByLabel(/^Work/)).toHaveValue("tsui");
+    await expect(page).toHaveURL(/\/en\/contact\?work=four-word-pair$/);
+    await expect(page.getByLabel(/^Work/)).toHaveValue("four-word-pair");
     await expect(page.getByRole("radio", { name: "A work" })).toBeChecked();
     await page.getByLabel("Email", { exact: true }).fill(email);
-    await page.getByLabel("Message", { exact: true }).fill("Is TSUI available in a larger size?");
+    await page.getByLabel("Message", { exact: true }).fill("Is the Four-Word Pair available in a larger size?");
     await page.getByRole("checkbox").check();
     await page.getByRole("button", { name: "Send" }).click();
     await expect(page.getByRole("status")).toContainText("Your message has been received");
 
     const saved = JSON.parse(readFileSync(E2E_INQUIRY_FILE, "utf8")) as { entries: { email: string; work?: string; type: string }[] };
-    expect(saved.entries.find((e) => e.email === email)).toMatchObject({ work: "tsui", type: "purchase" });
+    expect(saved.entries.find((e) => e.email === email)).toMatchObject({ work: "four-word-pair", type: "purchase" });
   });
 
   test("特注ページからは「特注」が選ばれる", async ({ page }) => {

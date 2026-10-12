@@ -43,7 +43,7 @@ export default async function Home() {
   const dict = await getDictionary();
   const locale = await getLocale();
   const t = dict.home;
-  const featured = works.find((w) => w.slug === "ichi") ?? works[0];
+  const featured = works.find((w) => w.slug === "word-art") ?? works[0];
 
   return (
     <>
@@ -75,7 +75,7 @@ export default async function Home() {
           </div>
           <figure className="mx-auto w-full max-w-sm space-y-5 lg:max-w-md">
             <div className="bg-washi-deep p-[12%]">
-              <ArtworkIllustration kind="ichi" label={t.hero.visualAlt} animate />
+              <ArtworkIllustration kind="word" label={t.hero.visualAlt} animate />
             </div>
             <figcaption className="space-y-1 text-sm">
               <p className="text-sumi">{featured.title[locale]}</p>
@@ -107,7 +107,7 @@ export default async function Home() {
                     <ArtworkIllustration
                       kind={w.illustration}
                       label={`${w.title[locale]} — ${dict.common.illustrationShort}`}
-                      className={w.illustration === "ma" ? "w-3/4" : "w-full"}
+                      className={w.illustration === "name" ? "w-3/4" : "w-full"}
                     />
                   </div>
                   <div className="space-y-2">

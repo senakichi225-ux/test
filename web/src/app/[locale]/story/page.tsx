@@ -66,7 +66,7 @@ export default async function StoryPage() {
           <SectionHeading id="process-title" label={t.process.label} title={t.process.title} />
           <p className="max-w-md text-usuzumi">{t.process.lead}</p>
           <div className="max-w-[12rem] bg-washi-deep p-6">
-            <ArtworkIllustration kind="ma" label={dict.common.illustrationShort} />
+            <ArtworkIllustration kind="name" label={dict.common.illustrationShort} />
           </div>
         </div>
         {/* 工程は順番に意味があるので番号つきの一覧 */}

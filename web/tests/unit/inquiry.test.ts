@@ -34,7 +34,7 @@ describe("inquiryInputSchema", () => {
   });
 
   it("作品の指定は英小文字・数字・ハイフンだけ", () => {
-    expect(inquiryInputSchema.safeParse({ ...valid, work: "ichi" }).success).toBe(true);
+    expect(inquiryInputSchema.safeParse({ ...valid, work: "word-art" }).success).toBe(true);
     expect(inquiryInputSchema.safeParse({ ...valid, work: "../etc" }).success).toBe(false);
   });
 });

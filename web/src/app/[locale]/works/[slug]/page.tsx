@@ -32,7 +32,7 @@ export default async function WorkPage({ params }: PageProps<"/[locale]/works/[s
             <ArtworkIllustration
               kind={work.illustration}
               label={`${work.title[locale]} — ${dict.common.illustrationShort}`}
-              className={work.illustration === "tsui" ? "w-full" : work.illustration === "ma" ? "w-3/5" : "w-[62%]"}
+              className={work.illustration === "pair" ? "w-full" : work.illustration === "name" ? "w-3/5" : "w-[62%]"}
             />
           </div>
           <figcaption className="text-xs text-usuzumi">{dict.common.illustration}</figcaption>

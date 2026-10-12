@@ -5,7 +5,7 @@ export const workStatuses = ["concept", "prototype", "available", "reserved", "s
 export type WorkStatus = (typeof workStatuses)[number];
 
 /** 写真がないときに描くイラストの種類 */
-export const illustrations = ["ichi", "tsui", "ma"] as const;
+export const illustrations = ["name", "word", "pair"] as const;
 export type Illustration = (typeof illustrations)[number];
 
 const localized = z.object({ en: z.string().min(1), ja: z.string().min(1) });
@@ -14,7 +14,7 @@ export const workSchema = z
   .object({
     slug: z.string().regex(/^[a-z0-9-]+$/),
     series: z.string().min(1),
-    /** 作品台帳と同じ番号（WADO-2026-ICHI-U001 など）。構想段階は null */
+    /** 作品台帳と同じ番号（WADO-2026-NAME-U001 など）。構想段階は null */
     workNo: z.string().regex(/^WADO-\d{4}-[A-Z0-9]+-[UE]\d{3}$/).nullable(),
     title: localized,
     kind: z.enum(["unique", "edition"]),

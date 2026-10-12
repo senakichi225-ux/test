@@ -9,7 +9,7 @@ const valid = {
   email: "  Designer@Example.COM ",
   role: "designer",
   country: "France",
-  interest: "ichi",
+  interest: "name",
   message: "",
   consent: "yes",
   locale: "en",

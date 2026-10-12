@@ -21,7 +21,7 @@ export function InquiryForm({ copy, locale, works }: { copy: Copy; locale: Local
   const params = useSearchParams();
   const id = useId();
 
-  // 作品ページ（?work=ichi）や特注ページ（?type=commission）から来たときの初期値
+  // 作品ページ（?work=word-art）や特注ページ（?type=commission）から来たときの初期値
   const fromWork = params.get("work") ?? "";
   const fromType = params.get("type") ?? "";
   const v = state.values ?? {

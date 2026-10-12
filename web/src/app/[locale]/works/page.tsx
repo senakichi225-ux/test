@@ -25,7 +25,7 @@ export default async function WorksPage() {
                   <ArtworkIllustration
                     kind={w.illustration}
                     label={`${w.title[locale]} — ${dict.common.illustrationShort}`}
-                    className={w.illustration === "tsui" ? "w-full" : w.illustration === "ma" ? "w-1/2" : "w-[42%]"}
+                    className={w.illustration === "pair" ? "w-full" : w.illustration === "name" ? "w-1/2" : "w-[42%]"}
                   />
                 </div>
                 <div className="min-w-0 space-y-4">
