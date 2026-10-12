@@ -1,5 +1,5 @@
 {
-  "note": "四字熟語ペアの一覧（docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。",
+  "note": "四字熟語アートの一覧（docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。",
   "groups": [
     {
       "id": "hospitality",

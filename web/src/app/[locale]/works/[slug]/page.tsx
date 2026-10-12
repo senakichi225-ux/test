@@ -40,13 +40,7 @@ export default async function WorkPage({
             <ArtworkIllustration
               kind={work.illustration}
               label={`${work.title[locale]} — ${dict.common.illustrationShort}`}
-              className={
-                work.illustration === "pair"
-                  ? "w-full"
-                  : work.illustration === "name"
-                    ? "w-3/5"
-                    : "w-[62%]"
-              }
+              className={work.illustration === "name" ? "w-3/5" : "w-[62%]"}
             />
           </div>
           <figcaption className="text-xs text-usuzumi">

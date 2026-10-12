@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { works } from "@/lib/works";
 import { cmToIn, workSchema } from "@/lib/works/schema";
-import { idiomGroups, splitPair } from "@/lib/works/idioms";
+import { idiomGroups } from "@/lib/works/idioms";
 
 const base = {
   slug: "x",
@@ -99,7 +99,7 @@ describe("cmToIn", () => {
   });
 });
 
-describe("content/idioms.json（四字熟語ペアの一覧）", () => {
+describe("content/idioms.json（四字熟語アートの一覧）", () => {
   const all = idiomGroups.flatMap((g) => g.idioms.map((i) => i.text));
 
   it("12個あり、重複しない", () => {
@@ -110,9 +110,5 @@ describe("content/idioms.json（四字熟語ペアの一覧）", () => {
   it("悪い意味に取られやすい四字熟語は一覧に入れない（言葉アートでのみ注文可）", () => {
     expect(all).not.toContain("因果応報");
     expect(all).not.toContain("唯我独尊");
-  });
-
-  it("2文字ずつに分けられる", () => {
-    expect(splitPair("一期一会")).toEqual(["一期", "一会"]);
   });
 });

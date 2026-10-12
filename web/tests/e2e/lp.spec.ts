@@ -55,7 +55,7 @@ test.describe("ページ", () => {
     ["/en", "Beyond the Frame."],
     ["/en/works", "Works"],
     ["/en/works/word-art", "Word Art"],
-    ["/en/works/four-word-pair", "Four-Word Pair"],
+    ["/en/works/four-word-art", "Four-Word Art"],
     ["/en/works/name-art", "Name Art"],
     ["/en/story", "Story"],
     ["/en/commissions", "Commissions"],
@@ -147,8 +147,10 @@ test.describe("ウェイティングリスト", () => {
   });
 });
 
-test("四字熟語ペアのページに、選べる四字熟語の一覧がある", async ({ page }) => {
-  await page.goto("/ja/works/four-word-pair");
+test("四字熟語アートのページに、選べる四字熟語の一覧がある", async ({
+  page,
+}) => {
+  await page.goto("/ja/works/four-word-art");
   await expect(
     page.getByRole("heading", { name: "四字熟語を選ぶ" }),
   ).toBeVisible();
@@ -162,15 +164,15 @@ test.describe("問い合わせ", () => {
     page,
   }, testInfo) => {
     const email = `inquiry-${testInfo.project.name}-${Date.now()}@example.com`;
-    await page.goto("/en/works/four-word-pair");
+    await page.goto("/en/works/four-word-art");
     await page.getByRole("link", { name: "Inquire about this work" }).click();
-    await expect(page).toHaveURL(/\/en\/contact\?work=four-word-pair$/);
-    await expect(page.getByLabel(/^Work/)).toHaveValue("four-word-pair");
+    await expect(page).toHaveURL(/\/en\/contact\?work=four-word-art$/);
+    await expect(page.getByLabel(/^Work/)).toHaveValue("four-word-art");
     await expect(page.getByRole("radio", { name: "A work" })).toBeChecked();
     await page.getByLabel("Email", { exact: true }).fill(email);
     await page
       .getByLabel("Message", { exact: true })
-      .fill("Is the Four-Word Pair available in a larger size?");
+      .fill("Is the Four-Word Art available in a larger size?");
     await page.getByRole("checkbox").check();
     await page.getByRole("button", { name: "Send" }).click();
     await expect(page.getByRole("status")).toContainText(
@@ -181,7 +183,7 @@ test.describe("問い合わせ", () => {
       entries: { email: string; work?: string; type: string }[];
     };
     expect(saved.entries.find((e) => e.email === email)).toMatchObject({
-      work: "four-word-pair",
+      work: "four-word-art",
       type: "purchase",
     });
   });

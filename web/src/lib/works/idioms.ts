@@ -3,9 +3,9 @@ import data from "../../../content/idioms.json";
 
 const localized = z.object({ en: z.string().min(1), ja: z.string().min(1) });
 
-/** 四字熟語ペアで選べる四字熟語（content/idioms.json） */
+/** 四字熟語アートで選べる四字熟語（content/idioms.json） */
 export const idiomSchema = z.object({
-  /** 4文字ちょうど（2文字ずつ2枚に書く） */
+  /** 4文字ちょうど */
   text: z.string().regex(/^\p{Script=Han}{4}$/u),
   reading: z.string().min(1),
   romaji: z.string().min(1),
@@ -22,8 +22,3 @@ export const idiomsFileSchema = z.object({
 export type Idiom = z.output<typeof idiomSchema>;
 export const idiomGroups = idiomsFileSchema.parse(data).groups;
 
-/** 「一期一会」→ ["一期", "一会"]（1枚目・2枚目） */
-export function splitPair(text: string): [string, string] {
-  const chars = Array.from(text);
-  return [chars.slice(0, 2).join(""), chars.slice(2).join("")];
-}

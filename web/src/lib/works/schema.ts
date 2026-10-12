@@ -5,7 +5,7 @@ export const workStatuses = ["concept", "prototype", "available", "reserved", "s
 export type WorkStatus = (typeof workStatuses)[number];
 
 /** 写真がないときに描くイラストの種類 */
-export const illustrations = ["name", "word", "pair"] as const;
+export const illustrations = ["name", "word", "idiom"] as const;
 export type Illustration = (typeof illustrations)[number];
 
 const localized = z.object({ en: z.string().min(1), ja: z.string().min(1) });

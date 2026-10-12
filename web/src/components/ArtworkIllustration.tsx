@@ -7,7 +7,13 @@ import type { Illustration } from "@/lib/works/schema";
  */
 
 /** 和紙の面と木の縁（1枚分） */
-function Panel({ children, className = "" }: { children?: React.ReactNode; className?: string }) {
+function Panel({
+  children,
+  className = "",
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) {
   return (
     <div
       className={`relative overflow-hidden bg-washi shadow-[0_1px_0_rgba(22,21,19,0.06),0_24px_48px_-28px_rgba(22,21,19,0.5)] ${className}`}
@@ -26,7 +32,12 @@ function Panel({ children, className = "" }: { children?: React.ReactNode; class
 
 /** 落款（作品の中の小さな印。UI の色ではなく、作品の一部） */
 function Seal({ className }: { className: string }) {
-  return <span aria-hidden className={`absolute aspect-square bg-[#a8432e]/85 ${className}`} />;
+  return (
+    <span
+      aria-hidden
+      className={`absolute aspect-square bg-[#a8432e]/85 ${className}`}
+    />
+  );
 }
 
 /** 引手：くぼんだ丸い取っ手 */
@@ -42,7 +53,12 @@ function Hikite({ className }: { className: string }) {
 /** 墨の一筆（太さの変わる帯を、塗りの形で描く） */
 function Stroke({ d, className = "" }: { d: string; className?: string }) {
   return (
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden className={`absolute inset-0 h-full w-full ${className}`}>
+    <svg
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden
+      className={`absolute inset-0 h-full w-full ${className}`}
+    >
       <path d={d} fill="#161513" opacity="0.9" />
     </svg>
   );
@@ -51,10 +67,17 @@ function Stroke({ d, className = "" }: { d: string; className?: string }) {
 // 「一」の筆：入り（太く）→ 送り（細く）→ 止め（ふくらむ）
 const ICHI_STROKE =
   "M14 69.5 C 16 66.8, 21 66.2, 27 66.6 C 42 67.2, 58 66.9, 72 66.3 C 79 66, 84 65.6, 87.5 66.6 C 89.5 67.3, 89.2 69.4, 86.8 70.3 C 82 71.6, 74 70.8, 64 70.9 C 48 71.1, 33 71.6, 22 72.4 C 17 72.8, 13.2 72.1, 14 69.5 Z";
-// 2枚にまたがる流れ（左の面 → 右の面）
-const TSUI_LEFT = "M18 34 C 30 40, 48 52, 70 60 C 84 65, 96 67.5, 100 68 L 100 72 C 92 71.6, 80 70, 66 65.5 C 44 58.5, 28 46, 16 37 C 15 36, 16 33.4, 18 34 Z";
-const TSUI_RIGHT = "M0 68 C 14 69.4, 30 70, 46 69.2 C 60 68.4, 72 66, 82 63.5 C 85 62.8, 86.5 64.6, 84 66.4 C 74 71, 58 73.6, 42 74 C 26 74.4, 12 73.4, 0 72 Z";
-const MA_STROKE = "M30 30 C 34 27.5, 42 27.5, 50 30.5 C 56 33, 60 37, 61.5 41 C 62.2 43, 60.4 44, 58.6 42.6 C 54.5 38.8, 48 35.5, 41 34.2 C 36 33.3, 31.5 33.6, 29.2 33 C 27.8 32.6, 28.5 30.8, 30 30 Z";
+// 四字熟語：縦書き2行の短い筆（右の行 → 左の行）
+const brush = (x: number, y: number, w: number) =>
+  `M${x} ${y} C ${x + w * 0.3} ${y - 1.5}, ${x + w * 0.7} ${y - 1.2}, ${x + w} ${y} C ${x + w + 0.8} ${y + 1}, ${x + w} ${y + 2.4}, ${x + w * 0.7} ${y + 2.2} C ${x + w * 0.4} ${y + 2}, ${x + w * 0.2} ${y + 2.6}, ${x} ${y + 2.2} C ${x - 1} ${y + 1.8}, ${x - 0.8} ${y + 0.4}, ${x} ${y} Z`;
+const IDIOM_STROKES = [
+  brush(56, 22, 22),
+  brush(58, 42, 18),
+  brush(24, 30, 20),
+  brush(22, 50, 22),
+].join(" ");
+const MA_STROKE =
+  "M30 30 C 34 27.5, 42 27.5, 50 30.5 C 56 33, 60 37, 61.5 41 C 62.2 43, 60.4 44, 58.6 42.6 C 54.5 38.8, 48 35.5, 41 34.2 C 36 33.3, 31.5 33.6, 29.2 33 C 27.8 32.6, 28.5 30.8, 30 30 Z";
 
 export function ArtworkIllustration({
   kind,
@@ -70,21 +93,20 @@ export function ArtworkIllustration({
   className?: string;
 }) {
   const light = animate ? (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
       <div className="animate-light-sweep absolute inset-y-0 -left-1/4 w-[150%] bg-[linear-gradient(100deg,transparent_30%,rgba(255,255,255,0.55)_48%,transparent_66%)]" />
     </div>
   ) : null;
 
-  if (kind === "pair") {
+  if (kind === "idiom") {
     return (
-      <div role="img" aria-label={label} className={`relative flex gap-[4%] ${className}`}>
-        <Panel className="aspect-[1/2] w-[48%]">
-          <Stroke d={TSUI_LEFT} />
-          <Hikite className="right-[9%] top-1/2 w-[9%] -translate-y-1/2" />
-        </Panel>
-        <Panel className="aspect-[1/2] w-[48%]">
-          <Stroke d={TSUI_RIGHT} />
-          <Seal className="bottom-[8%] right-[12%] w-[6%]" />
+      <div role="img" aria-label={label} className={`relative ${className}`}>
+        <Panel className="aspect-[2/3] w-full">
+          <Stroke d={IDIOM_STROKES} />
+          <Seal className="bottom-[9%] left-[12%] w-[4.5%]" />
         </Panel>
         {light}
       </div>
