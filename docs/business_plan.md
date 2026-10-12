@@ -7,6 +7,7 @@
   - 90日間の行動計画：[`docs/plan_90days.md`](plan_90days.md)
   - Webサイト構成とデザイン方針：[`docs/website_plan.md`](website_plan.md)
   - リサーチ計画（仮説の検証方法）：[`docs/research_plan.md`](research_plan.md)
+  - クラウドファンディング計画（CAMPFIRE）：[`docs/crowdfunding_plan.md`](crowdfunding_plan.md)
 
 > **運営上の前提**：代表のせなさんは中学生です。契約・お金・アカウント作成・個人情報・販売の責任者は保護者（成人）が担います。作品の販売契約も保護者名義で行います（`CLAUDE.md` §7）。
 
