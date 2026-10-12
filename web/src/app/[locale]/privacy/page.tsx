@@ -5,14 +5,14 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.privacy.title} — SŌN` };
+  return { title: `${dict.privacy.title} — WADŌ` };
 }
 
 export default async function PrivacyPage() {
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
   return (
     <PageShell>
-      <PageIntro label="SŌN" title={dict.privacy.title}>
+      <PageIntro label="WADŌ" title={dict.privacy.title}>
         <p className="border-l-2 border-shu pl-4 text-sm text-shu">{dict.privacy.draft}</p>
         <p className="text-sm text-usuzumi">{dict.privacy.updated}</p>
       </PageIntro>

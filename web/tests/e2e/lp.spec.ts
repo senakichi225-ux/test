@@ -69,9 +69,9 @@ test.describe("ページ", () => {
     await expect(page.getByText("60 × 90 × 2 cm / 23.6 × 35.4 × 0.8 in", { exact: false })).toBeVisible();
   });
 
-  test("SPIRIT／ORIGIN／NEW は独自のコンセプトだと明記している", async ({ page }) => {
+  test("和道の意味は独自の解釈だと明記している", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.getByText("They are not the etymology of the name.", { exact: false })).toBeVisible();
+    await expect(page.getByText("not the etymology of the name.", { exact: false })).toBeVisible();
   });
 });
 

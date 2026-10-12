@@ -56,7 +56,7 @@ export default async function Home() {
           className="mx-auto grid max-w-7xl items-center gap-16 px-5 pt-16 pb-24 sm:px-10 lg:grid-cols-[1fr_0.8fr] lg:gap-24 lg:px-16 lg:pt-24 lg:pb-36"
         >
           <div className="animate-fade-up space-y-10">
-            <p className="label">SŌN · Fusuma Art</p>
+            <p className="label">WADŌ · Fusuma Art</p>
             <h1 id="hero-title" className="font-serif text-6xl leading-[0.98] font-light text-balance text-sumi sm:text-7xl lg:text-8xl">
               {TAGLINE}
             </h1>
@@ -164,7 +164,7 @@ export default async function Home() {
             <SectionHeading id="name-title" label={t.name.label} title={t.name.title} />
             <p className="text-usuzumi">{t.name.reading}</p>
           </div>
-          <div className="mt-16 grid gap-px bg-line md:grid-cols-3">
+          <div className="mt-16 grid gap-px bg-line md:grid-cols-2">
             {t.name.letters.map((l) => (
               <div key={l.letter} className="space-y-5 bg-washi p-8 md:p-10">
                 <p className="font-serif text-8xl leading-none font-light text-sumi" translate="no">

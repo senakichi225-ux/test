@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "SŌN — Beyond the Frame.",
-    "description": "SŌN is a fusuma art brand from Japan. Works built the way a fusuma is built — wooden lattice, layered paper, a wooden edge — and finished with sumi ink."
+    "title": "WADŌ — Beyond the Frame.",
+    "description": "WADŌ is a fusuma art brand from Japan. Works built the way a fusuma is built — wooden lattice, layered paper, a wooden edge — and finished with sumi ink."
   },
   "nav": {
     "works": "Works",
@@ -39,7 +39,7 @@
       "lead": "Fusuma, reimagined as contemporary art. Each work is built the way a Japanese sliding door is built — so the frame is part of the work.",
       "cta": "See the first collection",
       "secondary": "Join the waitlist",
-      "visualAlt": "Illustration of a SŌN work: a single sumi brushstroke low on an ivory paper panel with a dark wooden edge."
+      "visualAlt": "Illustration of a WADŌ work: a single sumi brushstroke low on an ivory paper panel with a dark wooden edge."
     },
     "statement": {
       "label": "Mission",
@@ -54,9 +54,9 @@
     "structure": {
       "label": "Built like a fusuma",
       "title": "The frame is not around the work. It is the work.",
-      "lead": "A framed calligraphy is paper behind glass. A SŌN work is made with the structure of a fusuma, layer by layer.",
+      "lead": "A framed calligraphy is paper behind glass. A WADŌ work is made with the structure of a fusuma, layer by layer.",
       "layers": [
-        { "name": "Hikite", "jp": "引手", "body": "The recessed pull. In SŌN works, a point of punctuation — or a signature." },
+        { "name": "Hikite", "jp": "引手", "body": "The recessed pull. In WADŌ works, a point of punctuation — or a signature." },
         { "name": "Edge", "jp": "縁", "body": "A wooden edge chosen for each work. It frames the panel and belongs to it." },
         { "name": "Face paper", "jp": "上張り", "body": "The final washi surface that receives the ink." },
         { "name": "Underlayers", "jp": "下張り", "body": "Layers of paper pasted one over another, giving the surface its tension and depth." },
@@ -66,13 +66,12 @@
     },
     "name": {
       "label": "The name",
-      "title": "SŌN",
-      "reading": "Pronounced “son”.",
-      "note": "SPIRIT, ORIGIN and NEW are a concept we created for the brand. They are not the etymology of the name.",
+      "title": "WADŌ",
+      "reading": "Written 和道. Pronounced “wa-doh”.",
+      "note": "Harmony and The Way are how we read the two characters for this brand. They are our own interpretation, not the etymology of the name.",
       "letters": [
-        { "letter": "S", "word": "Spirit", "body": "The tradition of Japan, the care of the artisans, and the soul in every work." },
-        { "letter": "Ō", "word": "Origin", "body": "A culture born in Japan, and the origin of fusuma art." },
-        { "letter": "N", "word": "New", "body": "Not only preserving tradition, but carrying it forward as a new art." }
+        { "letter": "和", "word": "Wa — Harmony", "body": "Wa means both Japan and harmony: the spirit of Japanese tradition, and a quiet balance between a work and its space." },
+        { "letter": "道", "word": "Dō — The Way", "body": "The path the artisans have walked for generations, and the new path of the fusuma as contemporary art." }
       ]
     }
   },
@@ -96,7 +95,7 @@
   },
   "story": {
     "title": "Story",
-    "lead": "SŌN begins with the Japanese fusuma — and asks what it can become beyond the home it was made for.",
+    "lead": "WADŌ begins with the Japanese fusuma — and asks what it can become beyond the home it was made for.",
     "mission": { "label": "Mission", "text": "To carry the Japanese fusuma forward as contemporary art recognised around the world." },
     "concept": {
       "label": "Concept",
@@ -126,7 +125,7 @@
     },
     "people": {
       "label": "People",
-      "text": "SŌN is a project by kerokero, founded by a student in Japan and made together with fusuma artisans. Names and stories will be shared here with each person's permission."
+      "text": "WADŌ is a project by kerokero, founded by a student in Japan and made together with fusuma artisans. Names and stories will be shared here with each person's permission."
     }
   },
   "commissions": {
@@ -157,7 +156,7 @@
     },
     "responsibility": {
       "title": "Who does what (planned)",
-      "columns": ["Item", "SŌN", "Client / local team"],
+      "columns": ["Item", "WADŌ", "Client / local team"],
       "rows": [
         ["Design and making", "Yes", "Review and approve"],
         ["Measurements on site", "Provide what we need", "Yes"],
@@ -190,7 +189,7 @@
     "message": "Message",
     "messagePlaceholder": "Tell us about your space, project or question.",
     "optional": "optional",
-    "consentBefore": "I agree that SŌN may store my message and reply by email, and I accept the ",
+    "consentBefore": "I agree that WADŌ may store my message and reply by email, and I accept the ",
     "consentLink": "privacy policy",
     "consentAfter": ".",
     "submit": "Send",
@@ -216,7 +215,7 @@
       { "title": "Duties and taxes", "body": "Import duties and taxes depend on your country. Who pays them will be stated in each quote." },
       { "title": "Returns", "body": "Each work is unique or made in a small edition, so returns are generally not accepted. If a work arrives damaged or differs from its description, we will make it right." },
       { "title": "If a work arrives damaged", "body": "Contact us within the period stated in your quote, with photographs of the work and the packaging. We will arrange a repair or a refund." },
-      { "title": "Care", "body": "Keep the work away from direct sunlight, heaters and humid places. Do not touch the paper surface; dust gently with a soft, dry brush. For repairs, contact SŌN." }
+      { "title": "Care", "body": "Keep the work away from direct sunlight, heaters and humid places. Do not touch the paper surface; dust gently with a soft, dry brush. For repairs, contact WADŌ." }
     ]
   },
   "waitlist": {
@@ -247,7 +246,7 @@
     "message": "Message",
     "messagePlaceholder": "Anything you would like us to know (optional)",
     "optional": "optional",
-    "consentBefore": "I agree to receive emails about SŌN and accept the ",
+    "consentBefore": "I agree to receive emails about WADŌ and accept the ",
     "consentLink": "privacy policy",
     "consentAfter": ".",
     "submit": "Join the waitlist",
@@ -265,7 +264,7 @@
     }
   },
   "footer": {
-    "operated": "SŌN is a project by kerokero.",
+    "operated": "WADŌ is a project by kerokero.",
     "privacy": "Privacy",
     "shipping": "Shipping & Care",
     "contact": "Contact",
@@ -276,17 +275,17 @@
     "draft": "Draft — this policy will be reviewed before the site is published.",
     "updated": "Last updated: [TBD]",
     "sections": [
-      { "title": "Who we are", "body": "SŌN is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]." },
+      { "title": "Who we are", "body": "WADŌ is a project by kerokero. The person responsible for your data is [TBD — name and contact of the operator]." },
       { "title": "What we collect", "body": "Waitlist: your email address, your role, and — if you choose — your country, the series you are interested in and a message. Contact form: your email address, the topic, your message, and — if you choose — your name, your country and the work you are asking about. We also record the page language and the time you agreed to this policy." },
-      { "title": "Why we use it", "body": "To reply to your message, and to send you news about SŌN if you joined the waitlist. We do not sell or share your data." },
+      { "title": "Why we use it", "body": "To reply to your message, and to send you news about WADŌ if you joined the waitlist. We do not sell or share your data." },
       { "title": "Where it is stored", "body": "Your data is stored on a computer managed by the operator. It is not sent to any third-party service." },
       { "title": "Your choices", "body": "You can ask us at any time to see, correct or delete your data, or to stop sending you emails, by contacting [TBD]." }
     ],
-    "back": "Back to SŌN"
+    "back": "Back to WADŌ"
   },
   "research": {
     "title": "Research dashboard",
-    "lead": "Hypotheses and evidence for SŌN. Internal use only.",
+    "lead": "Hypotheses and evidence for WADŌ. Internal use only.",
     "private": "Private page — not indexed.",
     "total": "Total",
     "areas": {
@@ -315,6 +314,6 @@
   },
   "notFound": {
     "title": "Page not found",
-    "back": "Back to SŌN"
+    "back": "Back to WADŌ"
   }
 }

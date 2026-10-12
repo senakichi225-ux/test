@@ -1,4 +1,4 @@
-# research/ — SŌN のリサーチデータ
+# research/ — 和道（WADŌ） のリサーチデータ
 
 `docs/research_plan.md` の観点ごとに、仮説と根拠を JSON で記録します。
 リサーチ管理画面（`web` の `/en/research`・`/ja/research`）がこのフォルダを読みます。

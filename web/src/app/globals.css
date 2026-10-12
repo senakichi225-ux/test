@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * SŌN デザイントークン（CLAUDE.md §5）
+ * WADŌ デザイントークン（CLAUDE.md §5）
  * Tailwind v4 では tailwind.config ではなく、ここ（@theme）にトークンを定義する。
  * 例：bg-washi / text-sumi / border-line / font-serif
  */

@@ -7,7 +7,7 @@ import { works } from "@/lib/works";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.contact.title} — SŌN`, description: dict.contact.lead };
+  return { title: `${dict.contact.title} — WADŌ`, description: dict.contact.lead };
 }
 
 export default async function ContactPage() {
@@ -16,7 +16,7 @@ export default async function ContactPage() {
   return (
     <PageShell>
       <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-[1fr_1.2fr]">
-        <PageIntro label="SŌN" title={dict.contact.title} lead={dict.contact.lead} />
+        <PageIntro label="WADŌ" title={dict.contact.title} lead={dict.contact.lead} />
         <section aria-label={dict.contact.title} className="px-5 pb-32 sm:px-10 lg:px-16 lg:pt-28">
           {/* URL の ?work= / ?type= を読むフォームなので、Suspense で囲む（Cache Components） */}
           <Suspense fallback={<div className="h-[36rem]" aria-hidden />}>

@@ -45,7 +45,7 @@ describe("waitlistInputSchema", () => {
 describe("createLocalJsonStore", () => {
   let dir: string;
   beforeEach(async () => {
-    dir = await mkdtemp(path.join(tmpdir(), "son-waitlist-"));
+    dir = await mkdtemp(path.join(tmpdir(), "wado-waitlist-"));
   });
   afterEach(async () => {
     await rm(dir, { recursive: true, force: true });

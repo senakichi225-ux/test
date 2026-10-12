@@ -20,7 +20,7 @@ export function SiteHeader({ dict, locale }: { dict: Dictionary; locale: Locale 
         {dict.nav.skip}
       </a>
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-4 sm:px-10 lg:px-16">
-        <Link href={`/${locale}`} className="text-xl text-sumi" aria-label="SŌN — Home">
+        <Link href={`/${locale}`} className="text-xl text-sumi" aria-label="WADŌ — Home">
           <Wordmark />
         </Link>
         <div className="md:order-last">

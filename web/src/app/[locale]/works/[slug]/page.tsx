@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/works/[s
   const { slug } = await params;
   const [work, locale] = [getWork(slug), await getLocale()];
   if (!work) return {};
-  return { title: `${work.title[locale]} — SŌN`, description: work.summary[locale] };
+  return { title: `${work.title[locale]} — WADŌ`, description: work.summary[locale] };
 }
 
 export default async function WorkPage({ params }: PageProps<"/[locale]/works/[slug]">) {

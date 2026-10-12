@@ -4,7 +4,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.shipping.title} — SŌN` };
+  return { title: `${dict.shipping.title} — WADŌ` };
 }
 
 export default async function ShippingCarePage() {
@@ -12,7 +12,7 @@ export default async function ShippingCarePage() {
   const t = dict.shipping;
   return (
     <PageShell>
-      <PageIntro label="SŌN" title={t.title}>
+      <PageIntro label="WADŌ" title={t.title}>
         <p className="border-l-2 border-shu pl-4 text-sm text-shu">{t.draft}</p>
       </PageIntro>
       <div className="mx-auto max-w-7xl px-5 pb-32 sm:px-10 lg:px-16">

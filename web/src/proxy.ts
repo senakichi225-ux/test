@@ -40,7 +40,7 @@ export function proxy(request: NextRequest) {
       if (header !== expected) {
         return new NextResponse("Authentication required", {
           status: 401,
-          headers: { "WWW-Authenticate": 'Basic realm="SON research", charset="UTF-8"' },
+          headers: { "WWW-Authenticate": 'Basic realm="WADO research", charset="UTF-8"' },
         });
       }
     }

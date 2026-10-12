@@ -6,7 +6,7 @@
 | `works_registry.csv` | 作品台帳。**すべての作品（試作も）を1行ずつ記録する**。表計算ソフトで開ける |
 
 ## 作品台帳の列
-- `work_no`：作品番号（`SON-2026-ICHI-U001` など。`docs/products/first_collection.md` §5）
+- `work_no`：作品番号（`WADO-2026-ICHI-U001` など。`docs/products/first_collection.md` §5）
 - `type`：`unique`（一点物）／`edition`（限定）／`prototype`（試作・非売品）
 - `edition`：限定作品の番号（例：`3/30`）。一点物は空欄
 - `status`：`making`（制作中）／`ready`（販売可能）／`reserved`（商談中）／`sold`（販売済み）／`kept`（手元に保管）

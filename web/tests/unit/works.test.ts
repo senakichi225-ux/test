@@ -37,12 +37,12 @@ describe("content/works.json", () => {
 describe("workSchema のルール", () => {
   it("構想・試作中の作品に価格を付けられない", () => {
     expect(workSchema.safeParse({ ...base, priceJpy: 100000 }).success).toBe(false);
-    expect(workSchema.safeParse({ ...base, status: "prototype", workNo: "SON-2026-ICHI-U001", priceJpy: 100000 }).success).toBe(false);
+    expect(workSchema.safeParse({ ...base, status: "prototype", workNo: "WADO-2026-ICHI-U001", priceJpy: 100000 }).success).toBe(false);
   });
 
   it("試作以降は作品番号が必要", () => {
     expect(workSchema.safeParse({ ...base, status: "available", priceJpy: 200000 }).success).toBe(false);
-    expect(workSchema.safeParse({ ...base, status: "available", workNo: "SON-2026-ICHI-U001", priceJpy: 200000 }).success).toBe(true);
+    expect(workSchema.safeParse({ ...base, status: "available", workNo: "WADO-2026-ICHI-U001", priceJpy: 200000 }).success).toBe(true);
   });
 
   it("限定作品だけが総数を持つ", () => {
@@ -52,7 +52,7 @@ describe("workSchema のルール", () => {
   });
 
   it("作品番号の形を守る", () => {
-    expect(workSchema.safeParse({ ...base, workNo: "SON-2026-MA01-E003" }).success).toBe(true);
+    expect(workSchema.safeParse({ ...base, workNo: "WADO-2026-MA01-E003" }).success).toBe(true);
     expect(workSchema.safeParse({ ...base, workNo: "ICHI-1" }).success).toBe(false);
   });
 });

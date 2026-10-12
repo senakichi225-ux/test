@@ -7,7 +7,7 @@ import { researchAreas, researchStatuses, type ResearchStatus } from "@/lib/rese
 
 // 非公開ページ：検索エンジンに載せない（本番では proxy.ts で Basic 認証）
 export const metadata: Metadata = {
-  title: "Research — SŌN",
+  title: "Research — WADŌ",
   robots: { index: false, follow: false },
 };
 

@@ -7,7 +7,7 @@ import { TAGLINE } from "@/lib/brand";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.story.title} — SŌN`, description: dict.story.lead };
+  return { title: `${dict.story.title} — WADŌ`, description: dict.story.lead };
 }
 
 export default async function StoryPage() {

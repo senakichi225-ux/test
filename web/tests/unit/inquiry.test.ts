@@ -42,7 +42,7 @@ describe("inquiryInputSchema", () => {
 describe("createLocalInquiryStore", () => {
   let dir: string;
   beforeEach(async () => {
-    dir = await mkdtemp(path.join(tmpdir(), "son-inquiry-"));
+    dir = await mkdtemp(path.join(tmpdir(), "wado-inquiry-"));
   });
   afterEach(async () => {
     await rm(dir, { recursive: true, force: true });

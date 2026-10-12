@@ -6,7 +6,7 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.commissions.title} — SŌN`, description: dict.commissions.lead };
+  return { title: `${dict.commissions.title} — WADŌ`, description: dict.commissions.lead };
 }
 
 export default async function CommissionsPage() {

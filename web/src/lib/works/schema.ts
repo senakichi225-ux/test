@@ -14,8 +14,8 @@ export const workSchema = z
   .object({
     slug: z.string().regex(/^[a-z0-9-]+$/),
     series: z.string().min(1),
-    /** 作品台帳と同じ番号（SON-2026-ICHI-U001 など）。構想段階は null */
-    workNo: z.string().regex(/^SON-\d{4}-[A-Z0-9]+-[UE]\d{3}$/).nullable(),
+    /** 作品台帳と同じ番号（WADO-2026-ICHI-U001 など）。構想段階は null */
+    workNo: z.string().regex(/^WADO-\d{4}-[A-Z0-9]+-[UE]\d{3}$/).nullable(),
     title: localized,
     kind: z.enum(["unique", "edition"]),
     /** 限定作品の総数（kind が edition のとき） */

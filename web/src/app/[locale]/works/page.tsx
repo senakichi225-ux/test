@@ -8,14 +8,14 @@ import { works } from "@/lib/works";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
-  return { title: `${dict.works.title} — SŌN`, description: dict.works.lead };
+  return { title: `${dict.works.title} — WADŌ`, description: dict.works.lead };
 }
 
 export default async function WorksPage() {
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
   return (
     <PageShell>
-      <PageIntro label="SŌN" title={dict.works.title} lead={dict.works.lead} />
+      <PageIntro label="WADŌ" title={dict.works.title} lead={dict.works.lead} />
       <section aria-label={dict.works.title} className="mx-auto max-w-7xl px-5 pb-32 sm:px-10 lg:px-16">
         <ul className="divide-y divide-line border-y border-line">
           {works.map((w) => (
