@@ -103,7 +103,7 @@
 Word Art — “Wa”                  ← 作品名
 2026                             ← 制作年
 Sumi ink on washi; fusuma construction, cedar edge   ← 素材と技法
-60 × 90 × 2 cm / 23.6 × 35.4 × 0.8 in               ← 寸法
+30 × 40 × 2 cm / 11.8 × 15.7 × 0.8 in               ← 寸法
 Unique · Certificate of authenticity                 ← 種類・証明書
 Price on request                                     ← 価格
 [Inquire about this work]                            ← 問い合わせ

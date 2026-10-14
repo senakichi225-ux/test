@@ -18,7 +18,7 @@
         "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
       },
       "size": {
-        "w": 30,
+        "w": 20,
         "h": 30,
         "d": 2
       },
@@ -52,8 +52,8 @@
         "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
       },
       "size": {
-        "w": 60,
-        "h": 90,
+        "w": 30,
+        "h": 40,
         "d": 2
       },
       "summary": {
@@ -86,17 +86,17 @@
         "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
       },
       "size": {
-        "w": 90,
-        "h": 135,
+        "w": 40,
+        "h": 60,
         "d": 2
       },
       "summary": {
-        "en": "A four-character idiom on one large panel, for hotels, inns and shops.",
-        "ja": "ホテル・旅館・お店のための、大きな一枚の四字熟語。"
+        "en": "A four-character idiom on one panel, for hotels, inns and shops.",
+        "ja": "ホテル・旅館・お店のための、一枚の四字熟語。"
       },
       "description": {
-        "en": "Choose a four-character idiom from our list, each with its meaning explained in English, and we write all four characters on one large panel. An idiom that is not on the list can be ordered for an additional fee.",
-        "ja": "私たちが用意した一覧から四字熟語を選んでいただき、大きな一枚に4文字を書きます。一覧にない四字熟語のご注文は、追加料金がかかります。"
+        "en": "Choose a four-character idiom from our list, each with its meaning explained in English, and we write all four characters on one panel. An idiom that is not on the list can be ordered for an additional fee.",
+        "ja": "私たちが用意した一覧から四字熟語を選んでいただき、一枚に4文字を書きます。一覧にない四字熟語のご注文は、追加料金がかかります。"
       },
       "illustration": "idiom",
       "images": [],

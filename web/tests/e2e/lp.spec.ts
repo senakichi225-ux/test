@@ -91,7 +91,7 @@ test.describe("ページ", () => {
       page.getByText("Assigned when the work is completed"),
     ).toBeVisible();
     await expect(
-      page.getByText("60 × 90 × 2 cm / 23.6 × 35.4 × 0.8 in", { exact: false }),
+      page.getByText("30 × 40 × 2 cm / 11.8 × 15.7 × 0.8 in", { exact: false }),
     ).toBeVisible();
   });
 
