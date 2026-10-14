@@ -14,8 +14,8 @@
       "year": null,
       "status": "concept",
       "medium": {
-        "en": "Sumi ink and colour on washi; fusuma construction (wooden lattice, layered paper), wooden edge",
-        "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
+        "en": "Sumi ink on washi; fusuma core (wooden lattice, layered paper), no frame; artist's seal",
+        "ja": "和紙に墨、襖の芯（木の骨・下張り）、枠なし、落款"
       },
       "size": {
         "w": 20,
@@ -27,8 +27,8 @@
         "ja": "あなたの名前を、漢字で。"
       },
       "description": {
-        "en": "Tell us your name. We choose kanji for its sound and meaning, write it with the brush, and finish it with a small painting. Each work comes with a note in English explaining the characters we chose.",
-        "ja": "お名前を教えてください。音と意味から漢字を選び、筆で書いて、小さな絵を添えて仕上げます。選んだ漢字の意味を説明する英語のメモが付きます。"
+        "en": "Tell us your name. We choose kanji for its sound and meaning and write it with the brush in sumi ink. Each work comes with a note in English explaining the characters we chose.",
+        "ja": "お名前を教えてください。音と意味から漢字を選び、筆と墨で書きます。選んだ漢字の意味を説明する英語のメモが付きます。"
       },
       "illustration": "name",
       "images": [],
@@ -48,8 +48,8 @@
       "year": null,
       "status": "concept",
       "medium": {
-        "en": "Sumi ink and colour on washi; fusuma construction (wooden lattice, layered paper), wooden edge",
-        "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
+        "en": "Sumi ink on washi; fusuma core (wooden lattice, layered paper), no frame; artist's seal",
+        "ja": "和紙に墨、襖の芯（木の骨・下張り）、枠なし、落款"
       },
       "size": {
         "w": 30,
@@ -82,8 +82,8 @@
       "year": null,
       "status": "concept",
       "medium": {
-        "en": "Sumi ink and colour on washi; fusuma construction (wooden lattice, layered paper), wooden edge",
-        "ja": "和紙に墨と彩色、襖の構造（木の骨・下張り）、木の縁"
+        "en": "Sumi ink on washi; fusuma core (wooden lattice, layered paper), no frame; artist's seal",
+        "ja": "和紙に墨、襖の芯（木の骨・下張り）、枠なし、落款"
       },
       "size": {
         "w": 40,

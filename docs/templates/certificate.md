@@ -13,7 +13,7 @@
 | Work No. ／ 作品番号 | [WADO-2026-NAME-U001] |
 | Type ／ 種類 | [Unique ／ 一点物] または [Limited edition 3/30 ／ 限定作品 3/30] |
 | Year ／ 制作年 | [2026] |
-| Medium ／ 素材と技法 | [Sumi ink on washi; fusuma construction (wooden lattice, layered paper), wooden edge, hikite] ／ [和紙に墨、襖の構造（木の骨・下張り）、木の縁、引手] |
+| Medium ／ 素材と技法 | [Sumi ink on washi; fusuma core (wooden lattice, layered paper), no frame; artist's seal] ／ [和紙に墨、襖の芯（木の骨・下張り）、枠なし、落款] |
 | Dimensions ／ 寸法 | [30 × 40 × 2 cm (11.8 × 15.7 × 0.8 in)] |
 | Artist ／ 制作者 | [Name] |
 | Mounting ／ 表具 | [Artisan name — only with permission ／ 職人さんのお名前（ご本人の許可がある場合のみ）] |

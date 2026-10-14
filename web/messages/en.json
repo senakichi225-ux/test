@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "WADŌ — Beyond the Frame.",
-    "description": "WADŌ is a fusuma art brand from Japan. Works built the way a fusuma is built — wooden lattice, layered paper, a wooden edge — and finished with sumi ink."
+    "description": "WADŌ is a fusuma art brand from Japan. Each work is washi pasted over a fusuma core — a wooden lattice and layered paper, with no frame — written in sumi ink and sealed by hand."
   },
   "nav": {
     "works": "Works",
@@ -36,10 +36,10 @@
   },
   "home": {
     "hero": {
-      "lead": "Fusuma, reimagined as contemporary art. Each work is built the way a Japanese sliding door is built — so the frame is part of the work.",
+      "lead": "Fusuma, reimagined as contemporary art. Washi over a fusuma core, written in sumi ink, sealed by hand — with no frame at all.",
       "cta": "See the first collection",
       "secondary": "Join the waitlist",
-      "visualAlt": "Illustration of a WADŌ work: a single sumi brushstroke low on an ivory paper panel with a dark wooden edge."
+      "visualAlt": "Illustration of a WADŌ work: a single sumi brushstroke low on an ivory washi panel with no frame, and a small seal at the lower right."
     },
     "statement": {
       "label": "Mission",
@@ -53,11 +53,10 @@
     },
     "structure": {
       "label": "Built like a fusuma",
-      "title": "The frame is not around the work. It is the work.",
-      "lead": "A framed calligraphy is paper behind glass. A WADŌ work is made with the structure of a fusuma, layer by layer.",
+      "title": "No frame. The paper is the work.",
+      "lead": "A framed calligraphy is paper behind glass. A WADŌ work has no frame at all: washi pasted over a fusuma core, sumi ink, and a seal.",
       "layers": [
-        { "name": "Hikite", "jp": "引手", "body": "The recessed pull. In WADŌ works, a point of punctuation — or a signature." },
-        { "name": "Edge", "jp": "縁", "body": "A wooden edge chosen for each work. It frames the panel and belongs to it." },
+        { "name": "Seal", "jp": "落款", "body": "The seal pressed at the lower right of every work — its signature." },
         { "name": "Face paper", "jp": "上張り", "body": "The final washi surface that receives the ink." },
         { "name": "Underlayers", "jp": "下張り", "body": "Layers of paper pasted one over another, giving the surface its tension and depth." },
         { "name": "Lattice core", "jp": "骨", "body": "A light wooden lattice at the centre of the panel." }
@@ -110,7 +109,7 @@
       "label": "Beyond the Frame.",
       "title": "Three frames we want to move beyond",
       "points": [
-        { "title": "The picture frame", "body": "Instead of putting calligraphy in a frame, we build the work with the fusuma's own structure. Its wooden edge is part of the piece." },
+        { "title": "The picture frame", "body": "Instead of putting calligraphy in a frame, we write directly on washi pasted over a fusuma core. There is no frame at all." },
         { "title": "The door", "body": "A fusuma is usually something you slide open and closed. We treat it as art that can live on a wall — and one day, again as a door." },
         { "title": "The border", "body": "From Japanese homes to galleries, homes and hotels around the world." }
       ]
@@ -124,7 +123,7 @@
         { "title": "Underlayers", "body": "Paper is pasted in layers to give the surface tension and depth." },
         { "title": "Face paper", "body": "The final washi is applied." },
         { "title": "Brush", "body": "The character or stroke is written in sumi ink — once." },
-        { "title": "Seal and edge", "body": "The work is sealed, and the wooden edge is fitted." },
+        { "title": "Seal", "body": "The seal is pressed at the lower right. No frame is fitted." },
         { "title": "Record", "body": "Each finished work receives a work number and a certificate of authenticity." }
       ]
     },

@@ -2,11 +2,11 @@ import type { Illustration } from "@/lib/works/schema";
 
 /**
  * 作品のイラスト（CSS と SVG だけ）。写真ができるまでの代わり。
- * 襖の構造でつくる作品を表す：和紙の面（上張り）、木の縁、墨の一筆、落款、引手。
+ * 枠のない作品を表す：襖の芯に張った和紙の面、墨の筆、右下の落款。
  * 必ず「Illustration」と明記して使う（CLAUDE.md §5）。
  */
 
-/** 和紙の面と木の縁（1枚分） */
+/** 枠のない和紙の面（1枚分） */
 function Panel({
   children,
   className = "",
@@ -18,11 +18,8 @@ function Panel({
     <div
       className={`relative overflow-hidden bg-washi shadow-[0_1px_0_rgba(22,21,19,0.06),0_24px_48px_-28px_rgba(22,21,19,0.5)] ${className}`}
     >
-      {/* 木の縁（ふち）：内側に細い面取りの光 */}
-      <div className="absolute inset-0 border-[clamp(4px,2.4%,10px)] border-[#2a2420]" />
-      <div className="absolute inset-[clamp(4px,2.4%,10px)] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)]" />
-      {/* 上張りの和紙：わずかな繊維と、紙の層のふくらみ */}
-      <div className="absolute inset-[clamp(4px,2.4%,10px)] bg-[radial-gradient(120%_90%_at_30%_25%,#f8f5ee_0%,#f1ece2_55%,#e7e0d3_100%)]">
+      {/* 上張りの和紙：わずかな繊維と、紙の層のふくらみ。枠は付けない */}
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_30%_25%,#f8f5ee_0%,#f1ece2_55%,#e7e0d3_100%)]">
         <div className="washi-texture absolute inset-0 opacity-80" />
         {children}
       </div>
@@ -36,16 +33,6 @@ function Seal({ className }: { className: string }) {
     <span
       aria-hidden
       className={`absolute aspect-square bg-[#a8432e]/85 ${className}`}
-    />
-  );
-}
-
-/** 引手：くぼんだ丸い取っ手 */
-function Hikite({ className }: { className: string }) {
-  return (
-    <span
-      aria-hidden
-      className={`absolute aspect-square rounded-full bg-[radial-gradient(circle_at_42%_38%,#3b342d_0%,#1c1814_58%,#6b6156_72%,#2b2520_100%)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.6)] ${className}`}
     />
   );
 }
@@ -106,7 +93,7 @@ export function ArtworkIllustration({
       <div role="img" aria-label={label} className={`relative ${className}`}>
         <Panel className="aspect-[2/3] w-full">
           <Stroke d={IDIOM_STROKES} />
-          <Seal className="bottom-[9%] left-[12%] w-[4.5%]" />
+          <Seal className="bottom-[9%] right-[10%] w-[4.5%]" />
         </Panel>
         {light}
       </div>
@@ -117,11 +104,8 @@ export function ArtworkIllustration({
     return (
       <div role="img" aria-label={label} className={`relative ${className}`}>
         <Panel className="aspect-square w-full">
-          {/* 文様紙：ごく淡い丸の繰り返し */}
-          <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_center,transparent_0,transparent_8px,#c9c2b4_9px,transparent_10px)] [background-size:24px_24px]" />
           <Stroke d={MA_STROKE} />
-          <Hikite className="right-[16%] top-[60%] w-[12%]" />
-          <Seal className="bottom-[10%] left-[12%] w-[5%]" />
+          <Seal className="bottom-[10%] right-[12%] w-[5%]" />
         </Panel>
         {light}
       </div>
