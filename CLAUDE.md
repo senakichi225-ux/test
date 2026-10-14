@@ -175,7 +175,7 @@ npm run check      # lint＋typecheck＋test をまとめて
 - 文字：見出し・ロゴは **Cormorant Garamond＋Zen Old Mincho**、本文・UI は **Hanken Grotesk＋Zen Kaku Gothic New**（`next/font/google`。Ō を含む `latin-ext` を読み込む）。
 - レイアウト：最大幅 1280px、セクションの上下は大きく（PC で 128px 以上）。非対称のグリッドを許す。角丸・影・グラデーションのボタンは使わない。
 - 動き：ゆっくりのフェードと、光が差す1回だけの演出。`prefers-reduced-motion` を尊重。
-- 写真：正面／斜めからの光／ディテール／設置イメージ／工程（手元）。**権利（撮影者・職人・写っている人）の許可が取れた写真のみ使用。** 写真がないうちは CSS のイラストに「Illustration」と明記する。
+- 写真：**正面**と**壁に掛けたところ**（2026-10-14 決定）。**権利（撮影者・職人・写っている人）の許可が取れた写真のみ使用。** 写真がないうちは CSS のイラストに「Illustration」と明記する。
 
 ### ロゴ・ワードマーク
 - 文字だけのワードマーク「WADŌ」。Cormorant Garamond、字間を広く。マクロンは細い一本線として見せる。色は `sumi`。
