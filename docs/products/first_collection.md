@@ -79,6 +79,16 @@
 - **注意**：名前・メールアドレスは個人情報。保存と管理はおうちの人と行う（`CLAUDE.md` §7）。
 - **試作の順番**：**いちばん最初に作る。** 小さく安く、材料・工程・撮影・梱包・配送テストを一通り試せるから。
 
+- **見本の漢字（2026-10-15 決定）**：英語の説明は、作品に付ける英語のメモにそのまま使う。
+
+| 名前 | 漢字 | 読み | 意味（日本語） | 英語の説明 |
+|---|---|---|---|---|
+| エマ（Emma） | 恵茉 | え・ま | 恵まれた人生と上品さ。恵＝恵み・幸運、茉＝ジャスミン（茉莉）の花 | A blessed life and elegance. 恵 means blessings and good fortune; 茉 evokes the jasmine flower. |
+| ソフィア（Sophia） | 想妃愛 | そ・ふぃ・あ | 思いやり・気品・愛。想＝人を思いやる心、妃＝気品、愛＝愛 | Compassion, grace and love. 想 means caring thoughts for others; 妃 means elegance and dignity; 愛 means love. |
+| リアム（Liam） | 理愛夢 | り・あ・む | 理性・愛・夢。理＝知恵、愛＝やさしさ、夢＝夢に向かう気持ち | Reason, love and dreams. 理 means reason and wisdom; 愛 means love and kindness; 夢 means dreams and aspirations. |
+
+- 名前の読みに合わせた当て字をふくむ（例：妃を「ふぃ」、愛を「あ」と読む）。英語のメモには「名前の音に合わせて選んだ漢字です」と書き添える。
+
 ### B. 言葉アート（Word Art）— あなたが選ぶ言葉を、1〜3文字で
 
 - 一文字（例：「和」「光」）、大切な言葉、願い、四字熟語など。
