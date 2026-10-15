@@ -1,5 +1,5 @@
 {
-  "note": "四字熟語アートの一覧（11個。2026-10-15 せなが確定。docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。note は社内用のメモ（サイトには出さない）。",
+  "note": "四字熟語アートの一覧（12個。2026-10-15 せなが確定、新郎新婦を追加。docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。note は社内用のメモ（サイトには出さない）。",
   "groups": [
     {
       "id": "hospitality",
@@ -122,8 +122,7 @@
             "ja": "心身ともに健やかで、穏やかな日々を送れるように。",
             "en": "May you stay healthy in body and mind, with calm days."
           },
-          "checked": false,
-          "note": "一般的な願いの表現。四字熟語としての辞書掲載状況は未確認。"
+          "checked": false
         },
         {
           "text": "商売繁盛",
@@ -151,8 +150,30 @@
             "ja": "幸運だけでなく、人としての徳も備えた豊かな人生を送る。",
             "en": "A rich life with both good fortune and good character."
           },
-          "checked": false,
-          "note": "四字熟語全体の辞書定義は未確認。"
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "celebration",
+      "label": {
+        "en": "Celebration",
+        "ja": "お祝い"
+      },
+      "idioms": [
+        {
+          "text": "新郎新婦",
+          "reading": "しんろうしんぷ",
+          "romaji": "shinrō shinpu",
+          "meaning": {
+            "ja": "結婚式の主役である、花婿と花嫁。",
+            "en": "The groom and the bride."
+          },
+          "wish": {
+            "ja": "二人で新しい人生を歩み、末長く幸せでいられるように。",
+            "en": "May the two of you begin a new life together and stay happy for many years."
+          },
+          "checked": false
         }
       ]
     },

@@ -102,8 +102,8 @@ describe("cmToIn", () => {
 describe("content/idioms.json（四字熟語アートの一覧）", () => {
   const all = idiomGroups.flatMap((g) => g.idioms.map((i) => i.text));
 
-  it("11個あり、重複しない", () => {
-    expect(all).toHaveLength(11);
+  it("12個あり、重複しない", () => {
+    expect(all).toHaveLength(12);
     expect(new Set(all).size).toBe(all.length);
   });
 
