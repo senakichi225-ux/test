@@ -1,5 +1,5 @@
 {
-  "note": "四字熟語アートの一覧（docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。",
+  "note": "四字熟語アートの一覧（11個。2026-10-15 せなが確定。docs/products/first_collection.md §2-C）。意味と英語の説明は、辞書で確認したら checked を true にする。note は社内用のメモ（サイトには出さない）。",
   "groups": [
     {
       "id": "hospitality",
@@ -13,8 +13,12 @@
           "reading": "いちごいちえ",
           "romaji": "ichigo ichie",
           "meaning": {
-            "ja": "一生に一度の出会いを大切にする",
-            "en": "One time, one meeting — treasure every encounter."
+            "ja": "一生に一度の機会と考え、出会いを大切にすること。",
+            "en": "Treat each meeting as a once-in-a-lifetime chance, and cherish it."
+          },
+          "wish": {
+            "ja": "一つひとつの出会いを大切にし、誠意を尽くす。",
+            "en": "To cherish every encounter and give it your sincere best."
           },
           "checked": false
         },
@@ -23,8 +27,12 @@
           "reading": "いしんでんしん",
           "romaji": "ishin denshin",
           "meaning": {
-            "ja": "言葉がなくても、心が通じ合う",
-            "en": "Heart to heart, understood without words."
+            "ja": "言葉にしなくても、互いの気持ちや考えが伝わること。",
+            "en": "Feelings and thoughts understood without words."
+          },
+          "wish": {
+            "ja": "言葉を超えて心が通じ合い、互いを理解する。",
+            "en": "Hearts that understand each other beyond words."
           },
           "checked": false
         },
@@ -33,8 +41,12 @@
           "reading": "せんきゃくばんらい",
           "romaji": "senkyaku banrai",
           "meaning": {
-            "ja": "たくさんのお客さんが次々に訪れる",
-            "en": "Guests arriving one after another — a place that thrives."
+            "ja": "多くの客が次々に訪れること。",
+            "en": "Many guests arriving one after another."
+          },
+          "wish": {
+            "ja": "多くの人が集まり、出会いと活気にあふれる場所になる。",
+            "en": "A place full of people, new encounters and life."
           },
           "checked": false
         }
@@ -52,8 +64,12 @@
           "reading": "かちょうふうげつ",
           "romaji": "kachō fūgetsu",
           "meaning": {
-            "ja": "花・鳥・風・月。自然の美しさ",
-            "en": "The beauty of nature: flower, bird, wind and moon."
+            "ja": "花・鳥・風・月など、自然の美しい景色やその趣を楽しむこと。",
+            "en": "Enjoying the beauty of nature — flowers, birds, wind and moon."
+          },
+          "wish": {
+            "ja": "自然の美しさに気づき、日々の暮らしの中に趣を見いだす。",
+            "en": "To notice the beauty of nature and find it in everyday life."
           },
           "checked": false
         },
@@ -62,8 +78,12 @@
           "reading": "しゅんかしゅうとう",
           "romaji": "shunka shūtō",
           "meaning": {
-            "ja": "春・夏・秋・冬、四つの季節",
-            "en": "Spring, summer, autumn and winter."
+            "ja": "春・夏・秋・冬の四つの季節。",
+            "en": "Spring, summer, autumn and winter — the four seasons."
+          },
+          "wish": {
+            "ja": "季節の巡りを大切にし、移り変わる自然の美しさを楽しむ。",
+            "en": "To cherish the turning seasons and the changing beauty of nature."
           },
           "checked": false
         }
@@ -81,8 +101,12 @@
           "reading": "しょうもんらいふく",
           "romaji": "shōmon raifuku",
           "meaning": {
-            "ja": "笑う人のところに福が来る",
+            "ja": "笑いの絶えない家には福が訪れるということ。",
             "en": "Good fortune comes to a home full of laughter."
+          },
+          "wish": {
+            "ja": "笑顔と幸福に満ちた日々が続くように。",
+            "en": "May your days stay full of smiles and happiness."
           },
           "checked": false
         },
@@ -91,18 +115,27 @@
           "reading": "しんたいけんこう",
           "romaji": "shintai kenkō",
           "meaning": {
-            "ja": "体がじょうぶで元気であること",
-            "en": "A strong and healthy body."
+            "ja": "体が健康であることを表す言葉。",
+            "en": "Good health of the body."
           },
-          "checked": false
+          "wish": {
+            "ja": "心身ともに健やかで、穏やかな日々を送れるように。",
+            "en": "May you stay healthy in body and mind, with calm days."
+          },
+          "checked": false,
+          "note": "一般的な願いの表現。四字熟語としての辞書掲載状況は未確認。"
         },
         {
           "text": "商売繁盛",
           "reading": "しょうばいはんじょう",
           "romaji": "shōbai hanjō",
           "meaning": {
-            "ja": "商売がうまくいって栄える",
-            "en": "A thriving business."
+            "ja": "商売が栄え、うまくいくこと。",
+            "en": "A business that prospers."
+          },
+          "wish": {
+            "ja": "事業が発展し、多くの人に喜ばれる仕事になるように。",
+            "en": "May your business grow and bring joy to many people."
           },
           "checked": false
         },
@@ -111,20 +144,15 @@
           "reading": "ふくとくえんまん",
           "romaji": "fukutoku enman",
           "meaning": {
-            "ja": "幸せと豊かさに恵まれ、満ち足りている",
-            "en": "Fortune and virtue — a life full and complete."
+            "ja": "福運と徳に恵まれ、満ち足りていること。",
+            "en": "Blessed with good fortune and virtue, and fully content."
           },
-          "checked": false
-        },
-        {
-          "text": "交通安全",
-          "reading": "こうつうあんぜん",
-          "romaji": "kōtsū anzen",
-          "meaning": {
-            "ja": "事故なく、安全に行き来できるように",
-            "en": "Safe travels on every road."
+          "wish": {
+            "ja": "幸運だけでなく、人としての徳も備えた豊かな人生を送る。",
+            "en": "A rich life with both good fortune and good character."
           },
-          "checked": false
+          "checked": false,
+          "note": "四字熟語全体の辞書定義は未確認。"
         }
       ]
     },
@@ -140,8 +168,12 @@
           "reading": "てんかむそう",
           "romaji": "tenka musō",
           "meaning": {
-            "ja": "世の中に並ぶものがないほど、すぐれている",
-            "en": "Without equal under heaven."
+            "ja": "天下に並ぶ者がいないほど、優れていること。",
+            "en": "Without equal anywhere under heaven."
+          },
+          "wish": {
+            "ja": "自分だけの強みを磨き、唯一無二の存在を目指す。",
+            "en": "To polish your own strengths and become one of a kind."
           },
           "checked": false
         },
@@ -150,8 +182,12 @@
           "reading": "しっぷうじんらい",
           "romaji": "shippū jinrai",
           "meaning": {
-            "ja": "風や雷のように、すばやく力強い",
-            "en": "Swift as the wind, sudden as thunder."
+            "ja": "激しい風と雷のように、動きや行動が非常に速いこと。",
+            "en": "Swift as a fierce wind and thunder — very fast in movement and action."
+          },
+          "wish": {
+            "ja": "決断と行動を素早くし、勢いよく前進する。",
+            "en": "To decide and act quickly, and move forward with momentum."
           },
           "checked": false
         }

@@ -36,6 +36,10 @@ export function IdiomList({
                 <p className="col-span-2 min-w-0 text-sm leading-relaxed text-usuzumi">
                   {it.meaning[locale]}
                 </p>
+                <p className="col-span-2 min-w-0 text-sm leading-relaxed text-sumi">
+                  {copy.wishLabel}
+                  {it.wish[locale]}
+                </p>
               </li>
             ))}
           </ul>

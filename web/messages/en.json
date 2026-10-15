@@ -91,6 +91,7 @@
     "workNoPending": "Assigned when the work is completed",
     "idioms": {
       "title": "Choose an idiom",
+      "wishLabel": "The wish: ",
       "lead": "Choose one from this list. All four characters are written on one panel. An idiom that is not on the list can be ordered for an additional fee.",
       "note": "The list and the English explanations are drafts, and will be checked before orders open."
     },
