@@ -84,10 +84,10 @@
 | 名前 | 漢字 | 読み | 意味（日本語） | 英語の説明 |
 |---|---|---|---|---|
 | エマ（Emma） | 恵茉 | え・ま | 恵まれた人生と上品さ。恵＝恵み・幸運、茉＝ジャスミン（茉莉）の花 | A blessed life and elegance. 恵 means blessings and good fortune; 茉 evokes the jasmine flower. |
-| ソフィア（Sophia） | 想妃愛 | そ・ふぃ・あ | 思いやり・気品・愛。想＝人を思いやる心、妃＝気品、愛＝愛 | Compassion, grace and love. 想 means caring thoughts for others; 妃 means elegance and dignity; 愛 means love. |
+| ソフィア（Sophia） | 想妃亜 | そ・ふぃ・あ | 思いやり・気品。想＝人を思いやる心、妃＝気品、亜＝名前の響きを整える字 | Compassion, thoughtfulness and grace. 想 means caring thoughts for others; 妃 means elegance and dignity; 亜 completes the sound of the name. |
 | リアム（Liam） | 理愛夢 | り・あ・む | 理性・愛・夢。理＝知恵、愛＝やさしさ、夢＝夢に向かう気持ち | Reason, love and dreams. 理 means reason and wisdom; 愛 means love and kindness; 夢 means dreams and aspirations. |
 
-- 名前の読みに合わせた当て字をふくむ（例：妃を「ふぃ」、愛を「あ」と読む）。英語のメモには「名前の音に合わせて選んだ漢字です」と書き添える。
+- 名前の読みに合わせた当て字をふくむ（例：妃を「ふぃ」、愛を「あ」と読む）。「亜」のもとの意味は「次ぐ」なので、意味の説明では音を整える字として紹介する。英語のメモには「名前の音に合わせて選んだ漢字です」と書き添える。
 
 ### B. 言葉アート（Word Art）— あなたが選ぶ言葉を、1〜3文字で
 
